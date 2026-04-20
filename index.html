@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Financial Tools — MoneyDecoded</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #f7f6f2;
+    --surface: #ffffff;
+    --border: #e8e6e0;
+    --text: #1a1917;
+    --muted: #8a8880;
+    --accent: #1a6b4a;
+    --accent-light: #e8f4ee;
+    --accent-mid: #2d9966;
+    --mono: 'DM Mono', monospace;
+    --sans: 'DM Sans', sans-serif;
+    --radius: 12px;
+    --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04);
+  }
+
+  body {
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  /* Header */
+  header {
+    padding: 28px 40px 24px;
+    border-bottom: 1px solid var(--border);
+    background: var(--surface);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .logo-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+  .logo-text {
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: var(--muted);
+  }
+  .logo-text span { color: var(--text); }
+
+  /* Nav tabs */
+  nav {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 0 40px;
+    display: flex;
+    gap: 0;
+    overflow-x: auto;
+  }
+  nav button {
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--muted);
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    padding: 14px 20px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: color 0.15s, border-color 0.15s;
+  }
+  nav button:hover { color: var(--text); }
+  nav button.active {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+    font-weight: 500;
+  }
+
+  /* Main layout */
+  main {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 40px 24px 80px;
+  }
+
+  /* Calculator panel */
+  .calc { display: none; }
+  .calc.active { display: block; }
+
+  .calc-header {
+    margin-bottom: 32px;
+  }
+  .calc-tag {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: var(--accent-light);
+    padding: 4px 10px;
+    border-radius: 100px;
+    margin-bottom: 12px;
+  }
+  .calc-title {
+    font-size: 26px;
+    font-weight: 300;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    line-height: 1.2;
+  }
+  .calc-desc {
+    margin-top: 8px;
+    font-size: 14px;
+    color: var(--muted);
+    font-weight: 300;
+  }
+
+  /* Card */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 28px;
+    box-shadow: var(--shadow);
+    margin-bottom: 16px;
+  }
+
+  /* Form fields */
+  .field-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+  .field-group.single { grid-template-columns: 1fr; }
+  .field-group.three { grid-template-columns: 1fr 1fr 1fr; }
+
+  .field label {
+    display: block;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 8px;
+  }
+  .input-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  .input-prefix, .input-suffix {
+    position: absolute;
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--muted);
+    pointer-events: none;
+  }
+  .input-prefix { left: 12px; }
+  .input-suffix { right: 12px; }
+
+  input[type="number"], input[type="text"], select {
+    width: 100%;
+    padding: 10px 14px;
+    font-family: var(--mono);
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--text);
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    outline: none;
+    transition: border-color 0.15s, background 0.15s;
+    -moz-appearance: textfield;
+  }
+  input[type="number"]::-webkit-outer-spin-button,
+  input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; }
+  input[type="number"]:focus, select:focus {
+    border-color: var(--accent-mid);
+    background: var(--surface);
+  }
+  .has-prefix input { padding-left: 28px; }
+  .has-suffix input { padding-right: 32px; }
+
+  /* Button */
+  .btn {
+    width: 100%;
+    padding: 13px;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-family: var(--sans);
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    letter-spacing: 0.01em;
+    transition: background 0.15s, transform 0.1s;
+    margin-top: 4px;
+  }
+  .btn:hover { background: #155c3e; }
+  .btn:active { transform: scale(0.99); }
+
+  /* Result */
+  .result-card {
+    background: var(--accent-light);
+    border: 1px solid #c8e8d8;
+    border-radius: var(--radius);
+    padding: 24px 28px;
+    margin-top: 16px;
+    display: none;
+  }
+  .result-card.visible { display: block; }
+  .result-label {
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin-bottom: 6px;
+  }
+  .result-main {
+    font-family: var(--mono);
+    font-size: 32px;
+    font-weight: 500;
+    color: var(--accent);
+    letter-spacing: -0.02em;
+    line-height: 1;
+    margin-bottom: 16px;
+  }
+  .result-breakdown {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 12px;
+    padding-top: 16px;
+    border-top: 1px solid #c8e8d8;
+  }
+  .result-item {}
+  .result-item-label {
+    font-size: 11px;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 3px;
+    opacity: 0.7;
+  }
+  .result-item-value {
+    font-family: var(--mono);
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--accent);
+  }
+
+  /* ETF comparison table */
+  .etf-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: var(--mono);
+    font-size: 13px;
+    margin-top: 16px;
+  }
+  .etf-table th {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    font-weight: 500;
+    font-family: var(--sans);
+    padding: 8px 12px;
+    text-align: right;
+    border-bottom: 1px solid var(--border);
+  }
+  .etf-table th:first-child { text-align: left; }
+  .etf-table td {
+    padding: 12px 12px;
+    border-bottom: 1px solid var(--border);
+    text-align: right;
+  }
+  .etf-table td:first-child { text-align: left; font-family: var(--sans); font-weight: 500; }
+  .etf-table tr:last-child td { border-bottom: none; }
+  .etf-table .best { color: var(--accent); font-weight: 500; }
+  .etf-table .ticker {
+    display: inline-block;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 1px 7px;
+    font-size: 12px;
+    color: var(--muted);
+    margin-left: 4px;
+  }
+
+  /* Add ETF row button */
+  .add-row-btn {
+    background: none;
+    border: 1px dashed var(--border);
+    border-radius: 8px;
+    padding: 10px;
+    width: 100%;
+    font-family: var(--sans);
+    font-size: 13px;
+    color: var(--muted);
+    cursor: pointer;
+    transition: border-color 0.15s, color 0.15s;
+    margin-top: 8px;
+  }
+  .add-row-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+  .etf-row { display: grid; grid-template-columns: 80px 1fr 1fr 1fr auto; gap: 10px; align-items: end; margin-bottom: 10px; }
+  .etf-row .remove-btn {
+    background: none;
+    border: none;
+    color: var(--muted);
+    cursor: pointer;
+    font-size: 16px;
+    padding: 10px 6px;
+    line-height: 1;
+    transition: color 0.15s;
+  }
+  .etf-row .remove-btn:hover { color: #c0392b; }
+
+  /* Divider */
+  .divider {
+    height: 1px;
+    background: var(--border);
+    margin: 24px 0;
+  }
+
+  /* Footer */
+  footer {
+    text-align: center;
+    padding: 24px;
+    font-size: 12px;
+    color: var(--muted);
+    border-top: 1px solid var(--border);
+    margin-top: 40px;
+  }
+  footer a { color: var(--accent); text-decoration: none; }
+
+  @media (max-width: 600px) {
+    header { padding: 20px 20px 16px; }
+    nav { padding: 0 20px; }
+    main { padding: 28px 16px 60px; }
+    .field-group { grid-template-columns: 1fr; }
+    .field-group.three { grid-template-columns: 1fr 1fr; }
+    .result-main { font-size: 26px; }
+    .etf-row { grid-template-columns: 70px 1fr 1fr; }
+    .etf-row .field:nth-child(4), .etf-row .remove-btn { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo-dot"></div>
+  <div class="logo-text"><span>Money</span>Decoded — tools</div>
+</header>
+
+<nav>
+  <button class="active" onclick="switchTab('compound', this)">Compound Interest</button>
+  <button onclick="switchTab('loan', this)">Loan Repayment</button>
+  <button onclick="switchTab('savings', this)">Savings Goal</button>
+  <button onclick="switchTab('etf', this)">ETF Comparison</button>
+</nav>
+
+<main>
+
+  <!-- 1. Compound Interest -->
+  <div class="calc active" id="calc-compound">
+    <div class="calc-header">
+      <div class="calc-tag">Compound Interest</div>
+      <h1 class="calc-title">How much will your<br>investment grow?</h1>
+      <p class="calc-desc">Calculate future value with regular contributions and compounding.</p>
+    </div>
+    <div class="card">
+      <div class="field-group">
+        <div class="field">
+          <label>Initial Amount</label>
+          <div class="input-wrap has-prefix">
+            <span class="input-prefix">$</span>
+            <input type="number" id="ci-principal" value="10000" min="0">
+          </div>
+        </div>
+        <div class="field">
+          <label>Monthly Contribution</label>
+          <div class="input-wrap has-prefix">
+            <span class="input-prefix">$</span>
+            <input type="number" id="ci-monthly" value="500" min="0">
+          </div>
+        </div>
+      </div>
+      <div class="field-group three">
+        <div class="field">
+          <label>Annual Rate (%)</label>
+          <div class="input-wrap has-suffix">
+            <input type="number" id="ci-rate" value="7" min="0" max="100" step="0.1">
+            <span class="input-suffix">%</span>
+          </div>
+        </div>
+        <div class="field">
+          <label>Years</label>
+          <div class="input-wrap">
+            <input type="number" id="ci-years" value="20" min="1" max="100">
+          </div>
+        </div>
+        <div class="field">
+          <label>Compound</label>
+          <div class="input-wrap">
+            <select id="ci-freq">
+              <option value="12">Monthly</option>
+              <option value="4">Quarterly</option>
+              <option value="1">Annually</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <button class="btn" onclick="calcCompound()">Calculate →</button>
+    </div>
+    <div class="result-card" id="ci-result">
+      <div class="result-label">Future Value</div>
+      <div class="result-main" id="ci-fv">—</div>
+      <div class="result-breakdown">
+        <div class="result-item">
+          <div class="result-item-label">Total Invested</div>
+          <div class="result-item-value" id="ci-invested">—</div>
+        </div>
+        <div class="result-item">
+          <div class="result-item-label">Interest Earned</div>
+          <div class="result-item-value" id="ci-earned">—</div>
+        </div>
+        <div class="result-item">
+          <div class="result-item-label">Growth</div>
+          <div class="result-item-value" id="ci-growth">—</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. Loan Repayment -->
+  <div class="calc" id="calc-loan">
+    <div class="calc-header">
+      <div class="calc-tag">Loan Repayment</div>
+      <h1 class="calc-title">What's your monthly<br>payment?</h1>
+      <p class="calc-desc">Calculate monthly payments, total interest, and payoff date.</p>
+    </div>
+    <div class="card">
+      <div class="field-group">
+        <div class="field">
+          <label>Loan Amount</label>
+          <div class="input-wrap has-prefix">
+            <span class="input-prefix">$</span>
+            <input type="number" id="loan-amount" value="25000" min="0">
+          </div>
+        </div>
+        <div class="field">
+          <label>Annual Interest Rate</label>
+          <div class="input-wrap has-suffix">
+            <input type="number" id="loan-rate" value="6.5" min="0" max="100" step="0.1">
+            <span class="input-suffix">%</span>
+          </div>
+        </div>
+      </div>
+      <div class="field-group">
+        <div class="field">
+          <label>Loan Term (years)</label>
+          <div class="input-wrap">
+            <input type="number" id="loan-years" value="5" min="1" max="50">
+          </div>
+        </div>
+        <div class="field">
+          <label>Extra Monthly Payment</label>
+          <div class="input-wrap has-prefix">
+            <span class="input-prefix">$</span>
+            <input type="number" id="loan-extra" value="0" min="0">
+          </div>
+        </div>
+      </div>
+      <button class="btn" onclick="calcLoan()">Calculate →</button>
+    </div>
+    <div class="result-card" id="loan-result">
+      <div class="result-label">Monthly Payment</div>
+      <div class="result-main" id="loan-monthly">—</div>
+      <div class="result-breakdown">
+        <div class="result-item">
+          <div class="result-item-label">Total Payment</div>
+          <div class="result-item-value" id="loan-total">—</div>
+        </div>
+        <div class="result-item">
+          <div class="result-item-label">Total Interest</div>
+          <div class="result-item-value" id="loan-interest">—</div>
+        </div>
+        <div class="result-item">
+          <div class="result-item-label">Payoff Date</div>
+          <div class="result-item-value" id="loan-payoff">—</div>
+        </div>
+        <div class="result-item">
+          <div class="result-item-label">Interest Saved</div>
+          <div class="result-item-value" id="loan-saved">—</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. Savings Goal -->
+  <div class="calc" id="calc-savings">
+    <div class="calc-header">
+      <div class="calc-tag">Savings Goal</div>
+      <h1 class="calc-title">How much do you need<br>to save each month?</h1>
+      <p class="calc-desc">Work backwards from your goal to find the required monthly savings.</p>
+    </div>
+    <div class="card">
+      <div class="field-group">
+        <div class="field">
+          <label>Target Amount</label>
+          <div class="input-wrap has-prefix">
+            <span class="input-prefix">$</span>
+            <input type="number" id="sv-goal" value="100000" min="0">
+          </div>
+        </div>
+        <div class="field">
+          <label>Current Savings</label>
+          <div class="input-wrap has-prefix">
+            <span class="input-prefix">$</span>
+            <input type="number" id="sv-current" value="5000" min="0">
+          </div>
+        </div>
+      </div>
+      <div class="field-group">
+        <div class="field">
+          <label>Years to Goal</label>
+          <div class="input-wrap">
+            <input type="number" id="sv-years" value="10" min="1" max="50">
+          </div>
+        </div>
+        <div class="field">
+          <label>Expected Return (%)</label>
+          <div class="input-wrap has-suffix">
+            <input type="number" id="sv-rate" value="5" min="0" max="50" step="0.1">
+            <span class="input-suffix">%</span>
+          </div>
+        </div>
+      </div>
+      <button class="btn" onclick="calcSavings()">Calculate →</button>
+    </div>
+    <div class="result-card" id="sv-result">
+      <div class="result-label">Required Monthly Savings</div>
+      <div class="result-main" id="sv-monthly">—</div>
+      <div class="result-breakdown">
+        <div class="result-item">
+          <div class="result-item-label">Total Contributed</div>
+          <div class="result-item-value" id="sv-contributed">—</div>
+        </div>
+        <div class="result-item">
+          <div class="result-item-label">Returns Earned</div>
+          <div class="result-item-value" id="sv-returns">—</div>
+        </div>
+        <div class="result-item">
+          <div class="result-item-label">Final Amount</div>
+          <div class="result-item-value" id="sv-final">—</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. ETF Comparison -->
+  <div class="calc" id="calc-etf">
+    <div class="calc-header">
+      <div class="calc-tag">ETF Comparison</div>
+      <h1 class="calc-title">Which ETF performs<br>better after fees?</h1>
+      <p class="calc-desc">Compare up to 4 ETFs by return, expense ratio, and net performance.</p>
+    </div>
+    <div class="card">
+      <div style="margin-bottom:8px">
+        <div style="display:grid;grid-template-columns:80px 1fr 1fr 1fr auto;gap:10px;margin-bottom:6px">
+          <div style="font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:0.06em;color:var(--muted)">Ticker</div>
+          <div style="font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:0.06em;color:var(--muted)">Annual Return</div>
+          <div style="font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:0.06em;color:var(--muted)">Expense Ratio</div>
+          <div style="font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:0.06em;color:var(--muted)">Dividend Yield</div>
+          <div></div>
+        </div>
+        <div id="etf-rows">
+          <div class="etf-row">
+            <div class="field"><div class="input-wrap"><input type="text" placeholder="VOO" style="text-transform:uppercase"></div></div>
+            <div class="field"><div class="input-wrap has-suffix"><input type="number" value="10.2" step="0.1"><span class="input-suffix">%</span></div></div>
+            <div class="field"><div class="input-wrap has-suffix"><input type="number" value="0.03" step="0.01"><span class="input-suffix">%</span></div></div>
+            <div class="field"><div class="input-wrap has-suffix"><input type="number" value="1.4" step="0.1"><span class="input-suffix">%</span></div></div>
+            <button class="remove-btn" onclick="removeRow(this)">×</button>
+          </div>
+          <div class="etf-row">
+            <div class="field"><div class="input-wrap"><input type="text" placeholder="QQQ" style="text-transform:uppercase"></div></div>
+            <div class="field"><div class="input-wrap has-suffix"><input type="number" value="12.1" step="0.1"><span class="input-suffix">%</span></div></div>
+            <div class="field"><div class="input-wrap has-suffix"><input type="number" value="0.20" step="0.01"><span class="input-suffix">%</span></div></div>
+            <div class="field"><div class="input-wrap has-suffix"><input type="number" value="0.6" step="0.1"><span class="input-suffix">%</span></div></div>
+            <button class="remove-btn" onclick="removeRow(this)">×</button>
+          </div>
+          <div class="etf-row">
+            <div class="field"><div class="input-wrap"><input type="text" placeholder="VTI" style="text-transform:uppercase"></div></div>
+            <div class="field"><div class="input-wrap has-suffix"><input type="number" value="9.8" step="0.1"><span class="input-suffix">%</span></div></div>
+            <div class="field"><div class="input-wrap has-suffix"><input type="number" value="0.03" step="0.01"><span class="input-suffix">%</span></div></div>
+            <div class="field"><div class="input-wrap has-suffix"><input type="number" value="1.5" step="0.1"><span class="input-suffix">%</span></div></div>
+            <button class="remove-btn" onclick="removeRow(this)">×</button>
+          </div>
+        </div>
+        <button class="add-row-btn" onclick="addRow()">+ Add ETF</button>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="field-group">
+        <div class="field">
+          <label>Investment Amount</label>
+          <div class="input-wrap has-prefix">
+            <span class="input-prefix">$</span>
+            <input type="number" id="etf-amount" value="10000">
+          </div>
+        </div>
+        <div class="field">
+          <label>Time Horizon (years)</label>
+          <div class="input-wrap">
+            <input type="number" id="etf-years" value="10" min="1" max="50">
+          </div>
+        </div>
+      </div>
+      <button class="btn" onclick="calcETF()">Compare →</button>
+    </div>
+
+    <div class="result-card" id="etf-result" style="display:none">
+      <div class="result-label">Comparison Results</div>
+      <div id="etf-table-wrap"></div>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  Part of <a href="https://moneydecoded.net">moneydecoded.net</a> — for informational purposes only, not financial advice.
+</footer>
+
+<script>
+// Utility
+function fmt(n) {
+  if (n >= 1e6) return '$' + (n/1e6).toFixed(2) + 'M';
+  return '$' + n.toLocaleString('en-US', {minimumFractionDigits: 0, maximumFractionDigits: 0});
+}
+function fmtPct(n) { return (n >= 0 ? '+' : '') + n.toFixed(1) + '%'; }
+
+// Tab switching
+function switchTab(id, btn) {
+  document.querySelectorAll('.calc').forEach(c => c.classList.remove('active'));
+  document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+  document.getElementById('calc-' + id).classList.add('active');
+  btn.classList.add('active');
+}
+
+// 1. Compound Interest
+function calcCompound() {
+  const P = parseFloat(document.getElementById('ci-principal').value) || 0;
+  const m = parseFloat(document.getElementById('ci-monthly').value) || 0;
+  const r = parseFloat(document.getElementById('ci-rate').value) / 100;
+  const t = parseInt(document.getElementById('ci-years').value) || 1;
+  const n = parseInt(document.getElementById('ci-freq').value);
+
+  const rn = r / n;
+  const nt = n * t;
+  const FV_principal = P * Math.pow(1 + rn, nt);
+  const FV_contributions = m * (Math.pow(1 + rn, nt) - 1) / rn;
+  const FV = FV_principal + FV_contributions;
+  const invested = P + m * 12 * t;
+  const earned = FV - invested;
+  const growth = ((FV / invested) - 1) * 100;
+
+  document.getElementById('ci-fv').textContent = fmt(FV);
+  document.getElementById('ci-invested').textContent = fmt(invested);
+  document.getElementById('ci-earned').textContent = fmt(earned);
+  document.getElementById('ci-growth').textContent = fmtPct(growth);
+  document.getElementById('ci-result').classList.add('visible');
+}
+
+// 2. Loan Repayment
+function calcLoan() {
+  const P = parseFloat(document.getElementById('loan-amount').value) || 0;
+  const r = parseFloat(document.getElementById('loan-rate').value) / 100 / 12;
+  const n = parseInt(document.getElementById('loan-years').value) * 12;
+  const extra = parseFloat(document.getElementById('loan-extra').value) || 0;
+
+  const base = r === 0 ? P / n : P * r * Math.pow(1+r, n) / (Math.pow(1+r, n) - 1);
+  const monthly = base + extra;
+
+  // Payoff with extra payments
+  let balance = P, months = 0, totalPaid = 0;
+  while (balance > 0 && months < 600) {
+    const interest = balance * r;
+    const payment = Math.min(monthly, balance + interest);
+    balance = balance + interest - payment;
+    totalPaid += payment;
+    months++;
+  }
+  const totalInterest = totalPaid - P;
+
+  // Without extra
+  const totalBase = base * n;
+  const savedInterest = (totalBase - P) - totalInterest;
+
+  const payoffDate = new Date();
+  payoffDate.setMonth(payoffDate.getMonth() + months);
+  const payoffStr = payoffDate.toLocaleDateString('en-US', {month:'short', year:'numeric'});
+
+  document.getElementById('loan-monthly').textContent = fmt(monthly);
+  document.getElementById('loan-total').textContent = fmt(totalPaid);
+  document.getElementById('loan-interest').textContent = fmt(totalInterest);
+  document.getElementById('loan-payoff').textContent = payoffStr;
+  document.getElementById('loan-saved').textContent = extra > 0 ? fmt(savedInterest) : '—';
+  document.getElementById('loan-result').classList.add('visible');
+}
+
+// 3. Savings Goal
+function calcSavings() {
+  const goal = parseFloat(document.getElementById('sv-goal').value) || 0;
+  const current = parseFloat(document.getElementById('sv-current').value) || 0;
+  const years = parseInt(document.getElementById('sv-years').value) || 1;
+  const rate = parseFloat(document.getElementById('sv-rate').value) / 100;
+
+  const n = years * 12;
+  const r = rate / 12;
+  const FV_current = current * Math.pow(1 + r, n);
+  const remaining = goal - FV_current;
+  const monthly = remaining <= 0 ? 0 : (remaining * r) / (Math.pow(1+r, n) - 1);
+
+  const contributed = current + monthly * n;
+  const finalAmount = FV_current + (r === 0 ? monthly * n : monthly * (Math.pow(1+r,n)-1)/r);
+  const returns = finalAmount - contributed;
+
+  document.getElementById('sv-monthly').textContent = monthly <= 0 ? 'Already on track!' : fmt(monthly);
+  document.getElementById('sv-contributed').textContent = fmt(contributed);
+  document.getElementById('sv-returns').textContent = fmt(Math.max(0, returns));
+  document.getElementById('sv-final').textContent = fmt(finalAmount);
+  document.getElementById('sv-result').classList.add('visible');
+}
+
+// 4. ETF Comparison
+function addRow() {
+  const rows = document.getElementById('etf-rows');
+  if (rows.children.length >= 4) return;
+  const div = document.createElement('div');
+  div.className = 'etf-row';
+  div.innerHTML = `
+    <div class="field"><div class="input-wrap"><input type="text" placeholder="SPY" style="text-transform:uppercase"></div></div>
+    <div class="field"><div class="input-wrap has-suffix"><input type="number" value="9.5" step="0.1"><span class="input-suffix">%</span></div></div>
+    <div class="field"><div class="input-wrap has-suffix"><input type="number" value="0.09" step="0.01"><span class="input-suffix">%</span></div></div>
+    <div class="field"><div class="input-wrap has-suffix"><input type="number" value="1.2" step="0.1"><span class="input-suffix">%</span></div></div>
+    <button class="remove-btn" onclick="removeRow(this)">×</button>`;
+  rows.appendChild(div);
+}
+function removeRow(btn) {
+  const rows = document.getElementById('etf-rows');
+  if (rows.children.length <= 2) return;
+  btn.closest('.etf-row').remove();
+}
+
+function calcETF() {
+  const amount = parseFloat(document.getElementById('etf-amount').value) || 10000;
+  const years = parseInt(document.getElementById('etf-years').value) || 10;
+  const rows = document.querySelectorAll('#etf-rows .etf-row');
+
+  const etfs = Array.from(rows).map(row => {
+    const inputs = row.querySelectorAll('input');
+    return {
+      ticker: inputs[0].value.toUpperCase() || '—',
+      ret: parseFloat(inputs[1].value) / 100 || 0,
+      exp: parseFloat(inputs[2].value) / 100 || 0,
+      div: parseFloat(inputs[3].value) / 100 || 0,
+    };
+  });
+
+  etfs.forEach(e => {
+    e.net = e.ret - e.exp;
+    e.fv = amount * Math.pow(1 + e.net, years);
+    e.gain = e.fv - amount;
+    e.total = e.net + e.div;
+  });
+
+  const bestFV = Math.max(...etfs.map(e => e.fv));
+
+  let html = `<table class="etf-table">
+    <thead><tr>
+      <th>ETF</th>
+      <th>Net Return</th>
+      <th>Total Yield</th>
+      <th>Future Value</th>
+      <th>Gain</th>
+    </tr></thead><tbody>`;
+
+  etfs.forEach(e => {
+    const best = e.fv === bestFV;
+    html += `<tr>
+      <td>${e.ticker}<span class="ticker">${(e.exp*100).toFixed(2)}% fee</span></td>
+      <td class="${best?'best':''}">${(e.net*100).toFixed(2)}%</td>
+      <td class="${best?'best':''}">${(e.total*100).toFixed(2)}%</td>
+      <td class="${best?'best':''}">${fmt(e.fv)}${best?' ★':''}</td>
+      <td class="${best?'best':''}">${fmt(e.gain)}</td>
+    </tr>`;
+  });
+  html += '</tbody></table>';
+
+  document.getElementById('etf-table-wrap').innerHTML = html;
+  document.getElementById('etf-result').style.display = 'block';
+}
+</script>
+</body>
+</html>
