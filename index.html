@@ -22,6 +22,8 @@
     --sans: 'DM Sans', sans-serif;
     --radius: 12px;
     --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04);
+    --wise-blue: #163300;
+    --wise-green: #9fe870;
   }
 
   body {
@@ -33,7 +35,6 @@
     line-height: 1.6;
   }
 
-  /* Header */
   header {
     padding: 28px 40px 24px;
     border-bottom: 1px solid var(--border);
@@ -74,7 +75,6 @@
     color: #fff;
   }
 
-  /* Nav tabs */
   nav {
     background: var(--surface);
     border-bottom: 1px solid var(--border);
@@ -103,20 +103,16 @@
     font-weight: 500;
   }
 
-  /* Main layout */
   main {
     max-width: 720px;
     margin: 0 auto;
     padding: 40px 24px 80px;
   }
 
-  /* Calculator panel */
   .calc { display: none; }
   .calc.active { display: block; }
 
-  .calc-header {
-    margin-bottom: 32px;
-  }
+  .calc-header { margin-bottom: 32px; }
   .calc-tag {
     display: inline-block;
     font-family: var(--mono);
@@ -144,7 +140,6 @@
     font-weight: 300;
   }
 
-  /* Card */
   .card {
     background: var(--surface);
     border: 1px solid var(--border);
@@ -154,7 +149,6 @@
     margin-bottom: 16px;
   }
 
-  /* Form fields */
   .field-group {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -211,7 +205,6 @@
   .has-prefix input { padding-left: 28px; }
   .has-suffix input { padding-right: 32px; }
 
-  /* Button */
   .btn {
     width: 100%;
     padding: 13px;
@@ -230,7 +223,6 @@
   .btn:hover { background: #155c3e; }
   .btn:active { transform: scale(0.99); }
 
-  /* Result */
   .result-card {
     background: var(--accent-light);
     border: 1px solid #c8e8d8;
@@ -264,7 +256,6 @@
     padding-top: 16px;
     border-top: 1px solid #c8e8d8;
   }
-  .result-item {}
   .result-item-label {
     font-size: 11px;
     color: var(--accent);
@@ -280,10 +271,77 @@
     color: var(--accent);
   }
 
+  /* ── Wise CTA ── */
+  .wise-cta {
+    display: none;
+    margin-top: 12px;
+    border-radius: var(--radius);
+    overflow: hidden;
+    text-decoration: none;
+    transition: transform 0.15s, box-shadow 0.15s;
+    box-shadow: var(--shadow);
+  }
+  .wise-cta:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.10);
+  }
+  .wise-cta.visible { display: block; }
+
+  .wise-cta-inner {
+    background: #163300;
+    padding: 18px 22px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .wise-logo {
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    background: #9fe870;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 500;
+    color: #163300;
+    letter-spacing: -0.02em;
+  }
+  .wise-cta-text { flex: 1; }
+  .wise-cta-label {
+    font-size: 11px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #9fe870;
+    margin-bottom: 3px;
+    opacity: 0.8;
+  }
+  .wise-cta-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: #ffffff;
+    line-height: 1.3;
+  }
+  .wise-cta-arrow {
+    font-size: 18px;
+    color: #9fe870;
+    flex-shrink: 0;
+  }
+  .wise-cta-sub {
+    background: #1e4200;
+    padding: 8px 22px;
+    font-size: 12px;
+    color: #9fe870;
+    opacity: 0.75;
+  }
+
   /* Blog CTA banner */
   .blog-cta {
     display: none;
-    margin-top: 16px;
+    margin-top: 12px;
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: var(--radius);
@@ -298,10 +356,7 @@
     box-shadow: var(--shadow);
   }
   .blog-cta.visible { display: flex; }
-  .blog-cta-icon {
-    font-size: 22px;
-    flex-shrink: 0;
-  }
+  .blog-cta-icon { font-size: 22px; flex-shrink: 0; }
   .blog-cta-text { flex: 1; }
   .blog-cta-label {
     font-size: 11px;
@@ -317,13 +372,9 @@
     color: var(--text);
     line-height: 1.3;
   }
-  .blog-cta-arrow {
-    font-size: 18px;
-    color: var(--accent);
-    flex-shrink: 0;
-  }
+  .blog-cta-arrow { font-size: 18px; color: var(--accent); flex-shrink: 0; }
 
-  /* ETF comparison table */
+  /* ETF */
   .etf-table {
     width: 100%;
     border-collapse: collapse;
@@ -362,7 +413,6 @@
     margin-left: 4px;
   }
 
-  /* Add ETF row button */
   .add-row-btn {
     background: none;
     border: 1px dashed var(--border);
@@ -391,14 +441,8 @@
   }
   .etf-row .remove-btn:hover { color: #c0392b; }
 
-  /* Divider */
-  .divider {
-    height: 1px;
-    background: var(--border);
-    margin: 24px 0;
-  }
+  .divider { height: 1px; background: var(--border); margin: 24px 0; }
 
-  /* Footer */
   footer {
     text-align: center;
     padding: 24px;
@@ -419,6 +463,7 @@
     .etf-row { grid-template-columns: 70px 1fr 1fr; }
     .etf-row .field:nth-child(4), .etf-row .remove-btn { display: none; }
     .blog-cta { flex-direction: column; gap: 10px; }
+    .wise-cta-inner { gap: 12px; }
   }
 </style>
 </head>
@@ -508,6 +553,20 @@
         </div>
       </div>
     </div>
+
+    <!-- Wise CTA: Compound -->
+    <a href="WISE_TRACKING_LINK_HERE" class="wise-cta" id="ci-wise" target="_blank" rel="noopener">
+      <div class="wise-cta-inner">
+        <div class="wise-logo">W</div>
+        <div class="wise-cta-text">
+          <div class="wise-cta-label">Sponsored · Wise</div>
+          <div class="wise-cta-title">Move your investment returns across borders — save on exchange fees</div>
+        </div>
+        <div class="wise-cta-arrow">→</div>
+      </div>
+      <div class="wise-cta-sub">Mid-market rate · No hidden fees · 50+ currencies</div>
+    </a>
+
     <a href="https://www.moneydecoded.net/search/label/Investing" class="blog-cta" id="ci-cta">
       <div class="blog-cta-icon">📈</div>
       <div class="blog-cta-text">
@@ -581,6 +640,20 @@
         </div>
       </div>
     </div>
+
+    <!-- Wise CTA: Loan -->
+    <a href="WISE_TRACKING_LINK_HERE" class="wise-cta" id="loan-wise" target="_blank" rel="noopener">
+      <div class="wise-cta-inner">
+        <div class="wise-logo">W</div>
+        <div class="wise-cta-text">
+          <div class="wise-cta-label">Sponsored · Wise</div>
+          <div class="wise-cta-title">Paying off an overseas loan? Transfer money at the real exchange rate</div>
+        </div>
+        <div class="wise-cta-arrow">→</div>
+      </div>
+      <div class="wise-cta-sub">Mid-market rate · No hidden fees · 50+ currencies</div>
+    </a>
+
     <a href="https://www.moneydecoded.net/search/label/Personal%20Finance" class="blog-cta" id="loan-cta">
       <div class="blog-cta-icon">💳</div>
       <div class="blog-cta-text">
@@ -650,6 +723,20 @@
         </div>
       </div>
     </div>
+
+    <!-- Wise CTA: Savings -->
+    <a href="WISE_TRACKING_LINK_HERE" class="wise-cta" id="sv-wise" target="_blank" rel="noopener">
+      <div class="wise-cta-inner">
+        <div class="wise-logo">W</div>
+        <div class="wise-cta-text">
+          <div class="wise-cta-label">Sponsored · Wise</div>
+          <div class="wise-cta-title">Save in multiple currencies — hold USD, EUR, GBP and more in one account</div>
+        </div>
+        <div class="wise-cta-arrow">→</div>
+      </div>
+      <div class="wise-cta-sub">Mid-market rate · No hidden fees · 50+ currencies</div>
+    </a>
+
     <a href="https://www.moneydecoded.net/search/label/Savings" class="blog-cta" id="sv-cta">
       <div class="blog-cta-icon">🎯</div>
       <div class="blog-cta-text">
@@ -701,9 +788,7 @@
         </div>
         <button class="add-row-btn" onclick="addRow()">+ Add ETF</button>
       </div>
-
       <div class="divider"></div>
-
       <div class="field-group">
         <div class="field">
           <label>Investment Amount</label>
@@ -726,6 +811,20 @@
       <div class="result-label">Comparison Results</div>
       <div id="etf-table-wrap"></div>
     </div>
+
+    <!-- Wise CTA: ETF -->
+    <a href="WISE_TRACKING_LINK_HERE" class="wise-cta" id="etf-wise" target="_blank" rel="noopener">
+      <div class="wise-cta-inner">
+        <div class="wise-logo">W</div>
+        <div class="wise-cta-text">
+          <div class="wise-cta-label">Sponsored · Wise</div>
+          <div class="wise-cta-title">Investing globally? Transfer funds internationally at the real exchange rate</div>
+        </div>
+        <div class="wise-cta-arrow">→</div>
+      </div>
+      <div class="wise-cta-sub">Mid-market rate · No hidden fees · 50+ currencies</div>
+    </a>
+
     <a href="https://www.moneydecoded.net/search/label/Etfs" class="blog-cta" id="etf-cta">
       <div class="blog-cta-icon">📊</div>
       <div class="blog-cta-text">
@@ -743,14 +842,12 @@
 </footer>
 
 <script>
-// Utility
 function fmt(n) {
   if (n >= 1e6) return '$' + (n/1e6).toFixed(2) + 'M';
   return '$' + n.toLocaleString('en-US', {minimumFractionDigits: 0, maximumFractionDigits: 0});
 }
 function fmtPct(n) { return (n >= 0 ? '+' : '') + n.toFixed(1) + '%'; }
 
-// Tab switching
 function switchTab(id, btn) {
   document.querySelectorAll('.calc').forEach(c => c.classList.remove('active'));
   document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
@@ -758,7 +855,11 @@ function switchTab(id, btn) {
   btn.classList.add('active');
 }
 
-// 1. Compound Interest
+function showWise(id) {
+  const el = document.getElementById(id);
+  if (el) el.classList.add('visible');
+}
+
 function calcCompound() {
   const P = parseFloat(document.getElementById('ci-principal').value) || 0;
   const m = parseFloat(document.getElementById('ci-monthly').value) || 0;
@@ -780,10 +881,10 @@ function calcCompound() {
   document.getElementById('ci-earned').textContent = fmt(earned);
   document.getElementById('ci-growth').textContent = fmtPct(growth);
   document.getElementById('ci-result').classList.add('visible');
+  showWise('ci-wise');
   document.getElementById('ci-cta').classList.add('visible');
 }
 
-// 2. Loan Repayment
 function calcLoan() {
   const P = parseFloat(document.getElementById('loan-amount').value) || 0;
   const r = parseFloat(document.getElementById('loan-rate').value) / 100 / 12;
@@ -802,7 +903,6 @@ function calcLoan() {
     months++;
   }
   const totalInterest = totalPaid - P;
-
   const totalBase = base * n;
   const savedInterest = (totalBase - P) - totalInterest;
 
@@ -816,10 +916,10 @@ function calcLoan() {
   document.getElementById('loan-payoff').textContent = payoffStr;
   document.getElementById('loan-saved').textContent = extra > 0 ? fmt(savedInterest) : '—';
   document.getElementById('loan-result').classList.add('visible');
+  showWise('loan-wise');
   document.getElementById('loan-cta').classList.add('visible');
 }
 
-// 3. Savings Goal
 function calcSavings() {
   const goal = parseFloat(document.getElementById('sv-goal').value) || 0;
   const current = parseFloat(document.getElementById('sv-current').value) || 0;
@@ -841,10 +941,10 @@ function calcSavings() {
   document.getElementById('sv-returns').textContent = fmt(Math.max(0, returns));
   document.getElementById('sv-final').textContent = fmt(finalAmount);
   document.getElementById('sv-result').classList.add('visible');
+  showWise('sv-wise');
   document.getElementById('sv-cta').classList.add('visible');
 }
 
-// 4. ETF Comparison
 function addRow() {
   const rows = document.getElementById('etf-rows');
   if (rows.children.length >= 4) return;
@@ -858,6 +958,7 @@ function addRow() {
     <button class="remove-btn" onclick="removeRow(this)">×</button>`;
   rows.appendChild(div);
 }
+
 function removeRow(btn) {
   const rows = document.getElementById('etf-rows');
   if (rows.children.length <= 2) return;
@@ -890,11 +991,7 @@ function calcETF() {
 
   let html = `<table class="etf-table">
     <thead><tr>
-      <th>ETF</th>
-      <th>Net Return</th>
-      <th>Total Yield</th>
-      <th>Future Value</th>
-      <th>Gain</th>
+      <th>ETF</th><th>Net Return</th><th>Total Yield</th><th>Future Value</th><th>Gain</th>
     </tr></thead><tbody>`;
 
   etfs.forEach(e => {
@@ -911,6 +1008,7 @@ function calcETF() {
 
   document.getElementById('etf-table-wrap').innerHTML = html;
   document.getElementById('etf-result').style.display = 'block';
+  showWise('etf-wise');
   document.getElementById('etf-cta').classList.add('visible');
 }
 </script>
