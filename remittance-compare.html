@@ -119,6 +119,8 @@
     .cr.winner .cr-cost { color: var(--accent); }
     .cr-recv { font-size: 0.75rem; color: var(--ink2); margin-top: 2px; }
     .cr-tag  { font-size: 0.68rem; color: var(--accent); font-weight: 700; margin-top: 4px; }
+    .cr-cta  { display: inline-block; margin-top: 8px; font-size: 0.72rem; font-weight: 700; color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent); transition: opacity 0.15s; }
+    .cr-cta:hover { opacity: 0.7; }
     .calc-footnote { font-size: 0.72rem; color: var(--muted); margin-top: 10px; }
 
     .wise-box { background: var(--wise-dk); color: #fff; border: 2px solid var(--ink); border-radius: 4px; padding: 40px; margin-bottom: 48px; box-shadow: 6px 6px 0 var(--wise); position: relative; overflow: hidden; }
@@ -199,6 +201,7 @@
     <div class="hero-aside">
       <div class="aside-title">$1,000 Sent to UK — Total Cost</div>
       <div class="aside-row"><span class="aside-name">Wise</span><span class="aside-fee fee-winner">~$4</span></div>
+      <div class="aside-row"><span class="aside-name">OFX</span><span class="aside-fee fee-winner">~$5–15</span></div>
       <div class="aside-row"><span class="aside-name">Remitly</span><span class="aside-fee fee-ok">~$8–17*</span></div>
       <div class="aside-row"><span class="aside-name">Western Union</span><span class="aside-fee fee-ok">~$10–33</span></div>
       <div class="aside-row"><span class="aside-name">Chase Bank</span><span class="aside-fee fee-high">~$55–90</span></div>
@@ -284,6 +287,15 @@
           <td>~£728–756</td>
           <td>1–5 days</td>
           <td><span class="badge b-high">Expensive</span></td>
+        </tr>
+        <tr>
+          <td><div class="p-cell"><span class="p-name">OFX</span><span class="p-type">Fintech</span></div></td>
+          <td>$0</td>
+          <td>~0.5–1.5%</td>
+          <td>~$5–15</td>
+          <td>~£786–792</td>
+          <td>1–2 days</td>
+          <td><span class="badge b-mid">Good for Large Transfers</span></td>
         </tr>
         <tr>
           <td><div class="p-cell"><span class="p-name">Bank of America</span><span class="p-type">US Major Bank</span></div></td>
@@ -426,12 +438,13 @@
   const FX  = { gbp:0.794, eur:0.925, jpy:153.2, aud:1.535, cad:1.368, mxn:17.1 };
   const SYM = { gbp:'£', eur:'€', jpy:'¥', aud:'A$', cad:'C$', mxn:'MX$' };
   const PROVIDERS = [
-    { name:'Wise',            flat:4.14,  fx:0.000, cls:'winner' },
-    { name:'Remitly',         flat:2.99,  fx:0.010, cls:'' },
-    { name:'Western Union',   flat:8.00,  fx:0.015, cls:'' },
-    { name:'Chase Bank',      flat:40.00, fx:0.030, cls:'' },
-    { name:'Wells Fargo',     flat:35.00, fx:0.030, cls:'' },
-    { name:'Bank of America', flat:35.00, fx:0.030, cls:'' },
+    { name:'Wise',            flat:4.14,  fx:0.000, cls:'winner', link:'WISE_TRACKING_LINK_HERE' },
+    { name:'Remitly',         flat:2.99,  fx:0.010, cls:'',       link:'REMITLY_TRACKING_LINK_HERE' },
+    { name:'OFX',             flat:0,     fx:0.010, cls:'',       link:'OFX_TRACKING_LINK_HERE' },
+    { name:'Western Union',   flat:8.00,  fx:0.015, cls:'',       link:null },
+    { name:'Chase Bank',      flat:40.00, fx:0.030, cls:'',       link:null },
+    { name:'Wells Fargo',     flat:35.00, fx:0.030, cls:'',       link:null },
+    { name:'Bank of America', flat:35.00, fx:0.030, cls:'',       link:null },
   ];
 
   function calc() {
@@ -441,11 +454,13 @@
     document.getElementById('calcOut').innerHTML = PROVIDERS.map(p => {
       const fee  = p.flat + amt * p.fx;
       const recv = ((amt - fee) * rate).toLocaleString(undefined, {maximumFractionDigits:0});
+      const ctaBtn = p.link ? `<a href="${p.link}" target="_blank" rel="noopener sponsored" class="cr-cta">Get started →</a>` : '';
       return `<div class="cr ${p.cls}">
         <div class="cr-name">${p.name}</div>
         <div class="cr-cost">$${fee.toFixed(2)} fee</div>
         <div class="cr-recv">Recipient gets ~${sym}${recv}</div>
         ${p.cls==='winner'?'<div class="cr-tag">✓ Lowest cost</div>':''}
+        ${ctaBtn}
       </div>`;
     }).join('');
   }
