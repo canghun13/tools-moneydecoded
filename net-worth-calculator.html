@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Net Worth Calculator 2026 — Assets Minus Liabilities | MoneyDecoded</title>
+  <meta name="description" content="Free net worth calculator. Add your assets and liabilities to instantly calculate your total net worth. Track your financial health in minutes." />
+  <link rel="icon" href="/favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root{--bg:#f7f5f0;--paper:#fff;--ink:#1a1a1a;--ink2:#4a4a4a;--muted:#888;--border:#e2ddd6;--accent:#1a4f2e;--accent-l:#e8f5ee;--accent-mid:#2d9966;--wise:#9fe870;--wise-dk:#163300;--warn:#c0392b;--warn-l:#fdf0ee;--rule:#d5cfc6;--mono:'DM Mono',monospace;}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    body{background:var(--bg);color:var(--ink);font-family:'DM Sans',sans-serif;font-size:15px;line-height:1.7;}
+    .disclosure{background:#fffbea;border-bottom:1px solid #e5d96a;padding:8px 20px;font-size:.72rem;color:#7a6a00;text-align:center;}
+    header{background:var(--paper);border-bottom:2px solid var(--ink);padding:0 24px;display:flex;align-items:stretch;justify-content:space-between;position:sticky;top:0;z-index:100;}
+    .logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.15rem;color:var(--ink);text-decoration:none;display:flex;align-items:center;padding:14px 0;}
+    .logo span{color:var(--accent);}
+    .header-nav{display:flex;align-items:center;}
+    .header-nav a{font-size:.82rem;font-weight:500;color:var(--ink2);text-decoration:none;padding:0 14px;border-left:1px solid var(--border);height:100%;display:flex;align-items:center;}
+    .header-cta{display:flex;align-items:center;background:var(--wise);color:var(--wise-dk);font-weight:700;font-size:.8rem;padding:0 20px;text-decoration:none;border-left:2px solid var(--ink);white-space:nowrap;}
+    .hero{max-width:960px;margin:0 auto;padding:56px 24px 40px;display:grid;grid-template-columns:1fr 300px;gap:48px;align-items:start;}
+    @media(max-width:720px){.hero{grid-template-columns:1fr}.hero-aside{display:none}}
+    .hero-kicker{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:16px;border-left:3px solid var(--accent);padding-left:10px;}
+    h1{font-family:'Playfair Display',serif;font-weight:900;font-size:clamp(1.8rem,4vw,2.6rem);line-height:1.1;letter-spacing:-1px;margin-bottom:16px;}
+    h1 em{color:var(--accent);font-style:normal;}
+    .hero-byline{font-size:.8rem;color:var(--muted);margin-bottom:16px;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);padding:10px 0;}
+    .hero-lead{font-size:.95rem;color:var(--ink2);line-height:1.65;}
+    .hero-aside{background:var(--ink);color:#fff;border-radius:4px;padding:24px;border:2px solid var(--ink);box-shadow:6px 6px 0 var(--accent);}
+    .aside-title{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--wise);margin-bottom:16px;}
+    .aside-stat{padding:12px 0;border-bottom:1px solid #2a2a2a;}
+    .aside-stat:last-of-type{border-bottom:none;}
+    .aside-stat-num{font-family:'Playfair Display',serif;font-weight:700;font-size:1.4rem;color:var(--wise);}
+    .aside-stat-label{font-size:.75rem;color:#999;margin-top:2px;}
+    .aside-note{font-size:.68rem;color:#555;margin-top:12px;}
+    .body-wrap{max-width:960px;margin:0 auto;padding:0 24px 80px;}
+    .calc-section{background:var(--paper);border:2px solid var(--ink);border-radius:4px;padding:36px;margin-bottom:24px;box-shadow:5px 5px 0 var(--ink);}
+    .section-header{display:flex;align-items:center;gap:10px;margin-bottom:20px;padding-bottom:12px;border-bottom:2px solid var(--border);}
+    .section-badge{width:28px;height:28px;border-radius:4px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.8rem;border:2px solid var(--ink);}
+    .section-badge.asset{background:var(--accent-l);color:var(--accent);}
+    .section-badge.liab{background:var(--warn-l);color:var(--warn);}
+    .section-title{font-weight:700;font-size:1rem;}
+    .input-row{display:grid;grid-template-columns:1fr 140px;gap:12px;margin-bottom:12px;align-items:center;}
+    .input-row label{font-size:.82rem;color:var(--ink2);}
+    .input-wrap{position:relative;display:flex;align-items:center;}
+    .input-prefix{position:absolute;left:12px;font-family:var(--mono);font-size:13px;color:var(--muted);pointer-events:none;}
+    input[type="number"]{width:100%;padding:9px 12px 9px 26px;font-family:var(--mono);font-size:13px;color:var(--ink);background:var(--bg);border:1.5px solid var(--border);border-radius:6px;outline:none;-moz-appearance:textfield;}
+    input[type="number"]::-webkit-outer-spin-button,input[type="number"]::-webkit-inner-spin-button{-webkit-appearance:none;}
+    input[type="number"]:focus{border-color:var(--accent-mid);background:var(--paper);}
+    .calc-btn{width:100%;padding:14px;background:var(--accent);color:#fff;border:2px solid var(--ink);border-radius:6px;font-family:'DM Sans',sans-serif;font-size:1rem;font-weight:700;cursor:pointer;box-shadow:3px 3px 0 var(--ink);transition:transform .1s,box-shadow .1s;margin-top:8px;}
+    .calc-btn:hover{transform:translate(-1px,-1px);box-shadow:4px 4px 0 var(--ink);}
+    .results{display:none;margin-top:28px;}
+    .results.visible{display:block;}
+    .result-grid{display:grid;grid-template-columns:repeat(3,1fr);border:2px solid var(--ink);border-radius:4px;overflow:hidden;margin-bottom:20px;}
+    @media(max-width:600px){.result-grid{grid-template-columns:1fr 1fr}}
+    .result-cell{background:var(--paper);padding:20px 16px;border-right:2px solid var(--ink);border-bottom:2px solid var(--ink);}
+    .result-cell:nth-child(3){border-right:none;}
+    .result-cell:nth-child(4),.result-cell:nth-child(5),.result-cell:nth-child(6){border-bottom:none;}
+    .result-cell.highlight{background:var(--ink);}
+    .result-cell.positive{background:var(--accent-l);}
+    .result-cell.negative{background:var(--warn-l);}
+    .result-label{font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:6px;}
+    .result-cell.highlight .result-label{color:var(--wise);}
+    .result-value{font-family:'Playfair Display',serif;font-weight:700;font-size:1.5rem;color:var(--accent);}
+    .result-cell.highlight .result-value{color:var(--wise);font-size:1.8rem;}
+    .result-cell.negative .result-value{color:var(--warn);}
+    .result-sub{font-size:.72rem;color:var(--muted);margin-top:3px;}
+    .result-cell.highlight .result-sub{color:#666;}
+    .nw-verdict{background:var(--ink);color:#fff;border-radius:4px;padding:20px 24px;margin-bottom:20px;display:flex;align-items:center;gap:16px;}
+    .nw-verdict-icon{font-size:2rem;flex-shrink:0;}
+    .nw-verdict-title{font-family:'Playfair Display',serif;font-weight:700;font-size:1.1rem;margin-bottom:4px;}
+    .nw-verdict-sub{font-size:.82rem;color:#aaa;}
+    .cta-block{margin-top:20px;display:flex;flex-direction:column;gap:12px;}
+    .lender-cta{display:flex;align-items:center;gap:16px;background:var(--paper);border:2px solid var(--ink);border-radius:6px;padding:18px 20px;text-decoration:none;color:var(--ink);box-shadow:3px 3px 0 var(--ink);transition:transform .1s,box-shadow .1s;}
+    .lender-cta:hover{transform:translate(-1px,-1px);box-shadow:4px 4px 0 var(--ink);}
+    .lender-icon{width:40px;height:40px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:1rem;flex-shrink:0;border:2px solid var(--ink);}
+    .lender-body{flex:1;}
+    .lender-tag{font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:2px;}
+    .lender-title{font-size:.9rem;font-weight:600;color:var(--ink);line-height:1.3;}
+    .lender-sub{font-size:.75rem;color:var(--ink2);margin-top:2px;}
+    .lender-arrow{font-size:1.1rem;color:var(--muted);flex-shrink:0;}
+    .blog-cta-block{display:flex;align-items:center;gap:14px;background:var(--accent-l);border:1.5px solid var(--accent);border-radius:6px;padding:16px 20px;text-decoration:none;color:var(--ink);}
+    .blog-cta-icon{font-size:1.4rem;flex-shrink:0;}
+    .blog-cta-label{font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:2px;}
+    .blog-cta-title{font-size:.88rem;font-weight:600;color:var(--ink);}
+    hr.rule{border:none;border-top:2px solid var(--ink);margin:48px 0;}
+    .sec-label{font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:6px;}
+    .sec-title{font-family:'Playfair Display',serif;font-weight:900;font-size:clamp(1.3rem,3vw,1.8rem);letter-spacing:-.5px;margin-bottom:10px;}
+    .faq-list{display:flex;flex-direction:column;border:2px solid var(--ink);border-radius:4px;overflow:hidden;box-shadow:5px 5px 0 var(--ink);}
+    .fi{border-bottom:1px solid var(--border);}.fi:last-child{border-bottom:none;}
+    .fi-q{padding:16px 20px;font-weight:600;font-size:.9rem;cursor:pointer;display:flex;justify-content:space-between;align-items:center;background:var(--paper);user-select:none;}
+    .fi-q:hover{background:#faf8f4;}
+    .fi-arr{color:var(--muted);transition:transform .2s;}
+    .fi.open .fi-arr{transform:rotate(180deg);}
+    .fi-a{display:none;padding:0 20px 16px;font-size:.85rem;color:var(--ink2);line-height:1.7;background:var(--paper);}
+    .fi.open .fi-a{display:block;}
+    .bottom-banner{background:var(--ink);color:#fff;padding:56px 24px;text-align:center;}
+    .bottom-banner h2{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,4vw,2.2rem);font-weight:900;margin-bottom:12px;}
+    .bottom-banner h2 span{color:var(--wise);}
+    .bottom-banner p{color:#aaa;font-size:.88rem;margin-bottom:24px;max-width:500px;margin-left:auto;margin-right:auto;}
+    .bottom-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+    .btn-primary{display:inline-flex;align-items:center;gap:8px;background:var(--wise);color:var(--wise-dk);font-weight:700;font-size:.9rem;padding:13px 24px;border-radius:6px;text-decoration:none;border:2px solid var(--wise-dk);box-shadow:3px 3px 0 var(--wise-dk);}
+    .btn-ghost{display:inline-flex;align-items:center;background:transparent;color:#fff;font-weight:600;font-size:.9rem;padding:13px 24px;border-radius:6px;text-decoration:none;border:2px solid #fff;}
+    footer{background:var(--paper);border-top:2px solid var(--ink);padding:32px 24px;text-align:center;font-size:.78rem;color:var(--muted);}
+    footer a{color:var(--accent);text-decoration:none;}
+    footer p+p{margin-top:6px;}
+  </style>
+</head>
+<body>
+<div class="disclosure"><strong>Advertiser Disclosure:</strong> MoneyDecoded may earn a commission when you click affiliate links.</div>
+<header>
+  <a href="https://moneydecoded.net" class="logo">Money<span>Decoded</span></a>
+  <div class="header-nav">
+    <a href="https://tools.moneydecoded.net">← All Tools</a>
+    <a href="https://tools.moneydecoded.net/mortgage-calculator.html">Mortgage</a>
+    <a href="https://tools.moneydecoded.net/remittance-compare.html">Wire Transfer</a>
+    <a href="https://moneydecoded.net" class="header-cta">📰 Read the Blog →</a>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="hero-main">
+    <div class="hero-kicker">Free Calculator · 2026</div>
+    <h1>Net Worth Calculator — <em>Your Real</em> Financial Picture</h1>
+    <div class="hero-byline">By MoneyDecoded · Updated April 2026</div>
+    <p class="hero-lead">Net worth = everything you own minus everything you owe. Enter your assets and liabilities below to instantly see where you stand financially — and how you compare to US averages.</p>
+  </div>
+  <div class="hero-aside">
+    <div class="aside-title">📊 US Net Worth by Age (Median)</div>
+    <div class="aside-stat"><div class="aside-stat-num">$39K</div><div class="aside-stat-label">Under 35</div></div>
+    <div class="aside-stat"><div class="aside-stat-num">$135K</div><div class="aside-stat-label">Ages 35–44</div></div>
+    <div class="aside-stat"><div class="aside-stat-num">$247K</div><div class="aside-stat-label">Ages 45–54</div></div>
+    <div class="aside-note">Source: Federal Reserve Survey of Consumer Finances 2022. Median figures.</div>
+  </div>
+</div>
+
+<div class="body-wrap">
+  <div class="calc-section">
+    <div class="section-header"><div class="section-badge asset">+</div><div class="section-title">Assets — What You Own</div></div>
+    <div class="input-row"><label>Checking & Savings</label><div class="input-wrap"><span class="input-prefix">$</span><input type="number" id="a-cash" value="0" min="0"></div></div>
+    <div class="input-row"><label>Investment Accounts (brokerage)</label><div class="input-wrap"><span class="input-prefix">$</span><input type="number" id="a-invest" value="0" min="0"></div></div>
+    <div class="input-row"><label>Retirement (401k, IRA)</label><div class="input-wrap"><span class="input-prefix">$</span><input type="number" id="a-retire" value="0" min="0"></div></div>
+    <div class="input-row"><label>Home Value</label><div class="input-wrap"><span class="input-prefix">$</span><input type="number" id="a-home" value="0" min="0"></div></div>
+    <div class="input-row"><label>Other Real Estate</label><div class="input-wrap"><span class="input-prefix">$</span><input type="number" id="a-realestate" value="0" min="0"></div></div>
+    <div class="input-row"><label>Vehicles</label><div class="input-wrap"><span class="input-prefix">$</span><input type="number" id="a-car" value="0" min="0"></div></div>
+    <div class="input-row"><label>Business Interests</label><div class="input-wrap"><span class="input-prefix">$</span><input type="number" id="a-biz" value="0" min="0"></div></div>
+    <div class="input-row"><label>Other Assets</label><div class="input-wrap"><span class="input-prefix">$</span><input type="number" id="a-other" value="0" min="0"></div></div>
+  </div>
+
+  <div class="calc-section">
+    <div class="section-header"><div class="section-badge liab">−</div><div class="section-title">Liabilities — What You Owe</div></div>
+    <div class="input-row"><label>Mortgage Balance</label><div class="input-wrap"><span class="input-prefix">$</span><input type="number" id="l-mortgage" value="0" min="0"></div></div>
+    <div class="input-row"><label>Car Loans</label><div class="input-wrap"><span class="input-prefix">$</span><input type="number" id="l-car" value="0" min="0"></div></div>
+    <div class="input-row"><label>Student Loans</label><div class="input-wrap"><span class="input-prefix">$</span><input type="number" id="l-student" value="0" min="0"></div></div>
+    <div class="input-row"><label>Credit Card Debt</label><div class="input-wrap"><span class="input-prefix">$</span><input type="number" id="l-cc" value="0" min="0"></div></div>
+    <div class="input-row"><label>Personal Loans</label><div class="input-wrap"><span class="input-prefix">$</span><input type="number" id="l-personal" value="0" min="0"></div></div>
+    <div class="input-row"><label>Other Liabilities</label><div class="input-wrap"><span class="input-prefix">$</span><input type="number" id="l-other" value="0" min="0"></div></div>
+    <button class="calc-btn" onclick="calculate()">Calculate My Net Worth →</button>
+  </div>
+
+  <div class="results" id="results">
+    <div class="result-grid">
+      <div class="result-cell highlight">
+        <div class="result-label">Net Worth</div>
+        <div class="result-value" id="res-nw">—</div>
+        <div class="result-sub">Assets minus liabilities</div>
+      </div>
+      <div class="result-cell">
+        <div class="result-label">Total Assets</div>
+        <div class="result-value" id="res-assets" style="color:var(--accent)">—</div>
+        <div class="result-sub">Everything you own</div>
+      </div>
+      <div class="result-cell">
+        <div class="result-label">Total Liabilities</div>
+        <div class="result-value" id="res-liab" style="color:var(--warn)">—</div>
+        <div class="result-sub">Everything you owe</div>
+      </div>
+      <div class="result-cell">
+        <div class="result-label">Debt-to-Asset Ratio</div>
+        <div class="result-value" id="res-ratio">—</div>
+        <div class="result-sub">Lower is better</div>
+      </div>
+      <div class="result-cell">
+        <div class="result-label">Liquid Assets</div>
+        <div class="result-value" id="res-liquid">—</div>
+        <div class="result-sub">Cash + investments</div>
+      </div>
+      <div class="result-cell">
+        <div class="result-label">Home Equity</div>
+        <div class="result-value" id="res-equity">—</div>
+        <div class="result-sub">Home value − mortgage</div>
+      </div>
+    </div>
+    <div class="nw-verdict" id="nw-verdict">
+      <div class="nw-verdict-icon" id="verdict-icon">💼</div>
+      <div>
+        <div class="nw-verdict-title" id="verdict-title">—</div>
+        <div class="nw-verdict-sub" id="verdict-sub">—</div>
+      </div>
+    </div>
+    <div class="cta-block">
+      <a href="WEALTHFRONT_TRACKING_LINK_HERE" target="_blank" rel="noopener sponsored" class="lender-cta">
+        <div class="lender-icon" style="background:#e8f5ee;color:#1a4f2e;">WF</div>
+        <div class="lender-body">
+          <div class="lender-tag">Sponsored · Wealthfront</div>
+          <div class="lender-title">Grow your net worth — invest automatically with Wealthfront</div>
+          <div class="lender-sub">$500 minimum · Tax-loss harvesting · 5.00% APY on cash</div>
+        </div>
+        <div class="lender-arrow">→</div>
+      </a>
+      <a href="WISE_TRACKING_LINK_HERE" target="_blank" rel="noopener sponsored" class="lender-cta">
+        <div class="lender-icon" style="background:#f0fdf0;color:#163300;">W</div>
+        <div class="lender-body">
+          <div class="lender-tag">Sponsored · Wise</div>
+          <div class="lender-title">Hold and grow international assets at the real exchange rate</div>
+          <div class="lender-sub">40+ currencies · No hidden fees · Used by 16M+ people</div>
+        </div>
+        <div class="lender-arrow">→</div>
+      </a>
+      <a href="https://www.moneydecoded.net/search/label/personal finance" class="blog-cta-block">
+        <div class="blog-cta-icon">📊</div>
+        <div>
+          <div class="blog-cta-label">From the blog</div>
+          <div class="blog-cta-title">How to build net worth in your 30s — the strategies that actually work</div>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <hr class="rule"/>
+  <div class="sec-label">Common Questions</div>
+  <div class="sec-title">Net Worth FAQ</div>
+  <div class="faq-list" style="margin-top:16px;">
+    <div class="fi"><div class="fi-q" onclick="faq(this)">What is a good net worth by age? <span class="fi-arr">▾</span></div><div class="fi-a">According to the Federal Reserve, median net worth in the US is: under 35 (~$39K), 35–44 (~$135K), 45–54 (~$247K), 55–64 (~$364K), 65+ (~$409K). A common rule of thumb: your net worth should be roughly your age × your annual income ÷ 10. But the most important metric is whether your net worth is growing year over year.</div></div>
+    <div class="fi"><div class="fi-q" onclick="faq(this)">Should I include my home in net worth? <span class="fi-arr">▾</span></div><div class="fi-a">Yes — your home's current market value is an asset, and your mortgage balance is a liability. The difference is your home equity. However, financial planners often look at "liquid net worth" separately (excluding real estate and retirement accounts with penalties for early withdrawal) since you can't easily spend illiquid assets.</div></div>
+    <div class="fi"><div class="fi-q" onclick="faq(this)">What is the fastest way to increase net worth? <span class="fi-arr">▾</span></div><div class="fi-a">The fastest levers are: (1) increase income — a salary increase or side income has compounding effects, (2) aggressively pay down high-interest debt — especially credit cards, (3) invest consistently — even small amounts compound significantly over time, and (4) avoid lifestyle inflation as income rises. Tracking net worth monthly keeps you accountable.</div></div>
+    <div class="fi"><div class="fi-q" onclick="faq(this)">Is negative net worth normal? <span class="fi-arr">▾</span></div><div class="fi-a">Yes — especially for young people with student loans or those who recently bought a home with a small down payment. Negative net worth is not a crisis if you have stable income and a plan. The key metric is the trend: is your net worth improving month over month? That's more important than the absolute number.</div></div>
+  </div>
+</div>
+
+<div class="bottom-banner">
+  <h2>Ready to <span>Grow Your Net Worth?</span></h2>
+  <p>Invest automatically and let compounding do the work.</p>
+  <div class="bottom-btns">
+    <a href="WEALTHFRONT_TRACKING_LINK_HERE" target="_blank" rel="noopener sponsored" class="btn-primary">📈 Start Investing — Wealthfront</a>
+    <a href="https://moneydecoded.net" class="btn-ghost">Read More on the Blog</a>
+  </div>
+  <p style="color:#555;font-size:.72rem;margin-top:16px;">Affiliate disclosure: MoneyDecoded may earn a commission if you open an account via these links.</p>
+</div>
+<footer>
+  <p><a href="https://www.moneydecoded.net">MoneyDecoded</a> &nbsp;·&nbsp; <a href="https://tools.moneydecoded.net">Financial Calculators</a> &nbsp;·&nbsp; <a href="https://www.moneydecoded.net/p/privacy-policy.html">Privacy Policy</a></p>
+  <p style="margin-top:8px;">For informational purposes only. Not financial advice.</p>
+  <p style="margin-top:6px;">© 2026 MoneyDecoded. All rights reserved.</p>
+</footer>
+<script>
+function faq(el){el.parentElement.classList.toggle('open');}
+function fmt(n){const abs=Math.abs(Math.round(n));const s='$'+abs.toLocaleString('en-US');return n<0?'-'+s:s;}
+function calculate(){
+  const g=id=>parseFloat(document.getElementById(id).value)||0;
+  const cash=g('a-cash'),invest=g('a-invest'),retire=g('a-retire'),home=g('a-home'),re=g('a-realestate'),car=g('a-car'),biz=g('a-biz'),otherA=g('a-other');
+  const mortgage=g('l-mortgage'),carL=g('l-car'),student=g('l-student'),cc=g('l-cc'),personal=g('l-personal'),otherL=g('l-other');
+  const totalAssets=cash+invest+retire+home+re+car+biz+otherA;
+  const totalLiab=mortgage+carL+student+cc+personal+otherL;
+  const nw=totalAssets-totalLiab;
+  const ratio=totalAssets>0?((totalLiab/totalAssets)*100).toFixed(1)+'%':'0%';
+  const liquid=cash+invest;
+  const equity=home-mortgage;
+  document.getElementById('res-nw').textContent=fmt(nw);
+  document.getElementById('res-nw').style.color=nw>=0?'var(--wise)':'#f87171';
+  document.getElementById('res-assets').textContent=fmt(totalAssets);
+  document.getElementById('res-liab').textContent=fmt(totalLiab);
+  document.getElementById('res-ratio').textContent=ratio;
+  document.getElementById('res-liquid').textContent=fmt(liquid);
+  document.getElementById('res-equity').textContent=fmt(equity);
+  let icon,title,sub;
+  if(nw>1000000){icon='🏆';title='Millionaire Net Worth';sub='You\'re in the top tier. Keep investing and protecting your wealth.';}
+  else if(nw>250000){icon='💪';title='Strong Financial Position';sub='Well above the median US net worth. Keep compounding.';}
+  else if(nw>0){icon='✅';title='Positive Net Worth';sub='You own more than you owe — keep building from here.';}
+  else if(nw===0){icon='⚖️';title='Break Even';sub='Assets equal liabilities. Focus on growing the gap.';}
+  else{icon='🎯';title='Negative Net Worth — That\'s OK';sub='Common for young people or after major purchases. Focus on the trend, not the number.';}
+  document.getElementById('verdict-icon').textContent=icon;
+  document.getElementById('verdict-title').textContent=title;
+  document.getElementById('verdict-sub').textContent=sub;
+  document.getElementById('results').classList.add('visible');
+  document.getElementById('results').scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+</script>
+</body>
+</html>
