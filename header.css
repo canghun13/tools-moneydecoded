@@ -1,8 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@900&display=swap');
 /* ── MoneyDecoded 공통 헤더 CSS ── */
 
 .disclosure { background: #fffbea; border-bottom: 1px solid #e5d96a; padding: 8px 20px; font-size: 0.72rem; color: #7a6a00; text-align: center; }
 .disclosure strong { font-weight: 600; }
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@900&display=swap');
 
 header {
   background: #ffffff;
