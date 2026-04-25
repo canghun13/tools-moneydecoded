@@ -21,6 +21,7 @@
     .header-nav::-webkit-scrollbar { display: none; }
     .header-nav a { font-size: 13px; font-weight: 400; color: var(--ink2, #5f6368); text-decoration: none; border-bottom: 2px solid transparent; padding: 12px 14px; white-space: nowrap; display: inline-flex; align-items: center; transition: color 0.15s; }
     .header-nav a:hover { color: var(--accent, #1a6b4a); }
+    .header-nav a.active { color: var(--accent, #1a6b4a); font-weight: 600; border-bottom: 2px solid var(--accent, #1a6b4a); }
     .header-nav-outer { border-top: 1px solid var(--border); overflow-x: auto; background: #fff; position: sticky; top: 44px; z-index: 99; box-shadow: 0 2px 6px rgba(0,0,0,0.06); }
     .header-nav-outer::-webkit-scrollbar { height: 6px; background: #f0f0f0; }
     .header-nav-outer::-webkit-scrollbar-thumb { background: #b0b0b0; border-radius: 4px; }
@@ -146,10 +147,11 @@
     <a href="https://tools.moneydecoded.net">← All Tools</a>
     <a href="https://tools.moneydecoded.net/mortgage-calculator.html">Mortgage</a>
     <a href="https://tools.moneydecoded.net/budget-calculator.html">Budget</a>
-    <a href="https://tools.moneydecoded.net/rent-vs-buy-calculator.html">Rent vs Buy</a>
+    <a href="https://tools.moneydecoded.net/rent-vs-buy-calculator.html" class="active">Rent vs Buy</a>
     <a href="https://tools.moneydecoded.net/emergency-fund-calculator.html">Emergency Fund</a>
     <a href="https://tools.moneydecoded.net/remittance-compare.html">Wire Transfer</a>
     <a href="https://tools.moneydecoded.net/debt-payoff-calculator.html">Debt Payoff</a>
+    <a href="https://tools.moneydecoded.net/tax-bracket-calculator.html">Tax Bracket</a>
     <a href="https://tools.moneydecoded.net/best-hysa-rates.html">Best HYSA</a>
     <a href="https://tools.moneydecoded.net/best-cd-rates.html">Best CD Rates</a>
   </nav>

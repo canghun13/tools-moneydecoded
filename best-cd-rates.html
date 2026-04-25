@@ -53,14 +53,13 @@
       letter-spacing: -0.3px;
     }
     .header-blog-cta {
+      background: var(--accent);
+      color: #fff;
       font-size: 13px;
-      font-weight: 500;
-      color: var(--accent);
-      text-decoration: none;
-      padding: 5px 12px;
-      border: 1px solid var(--accent-border);
+      font-weight: 600;
+      padding: 6px 12px;
       border-radius: 6px;
-      background: var(--accent-light);
+      text-decoration: none;
       white-space: nowrap;
     }
     .header-nav-wrap {
@@ -81,18 +80,9 @@
       width: max-content;
       height: var(--nav-h);
     }
-    .header-nav a {
-      font-size: 13px;
-      font-weight: 500;
-      color: var(--text-muted);
-      text-decoration: none;
-      padding: 5px 10px;
-      border-radius: 6px;
-      white-space: nowrap;
-      transition: background 0.15s, color 0.15s;
-    }
-    .header-nav a:hover { background: var(--bg); color: var(--text); }
-    .header-nav a.active { background: var(--accent-light); color: var(--accent); font-weight: 600; }
+    .header-nav a { font-size: 13px; font-weight: 400; color: var(--text-muted); text-decoration: none; border-bottom: 2px solid transparent; padding: 12px 14px; white-space: nowrap; display: inline-flex; align-items: center; transition: color 0.15s; }
+    .header-nav a:hover { color: var(--accent); }
+    .header-nav a.active { color: var(--accent); font-weight: 600; border-bottom: 2px solid var(--accent); }
 
     /* ── MAIN ── */
     .page-wrap {
@@ -351,6 +341,7 @@
       <a href="https://tools.moneydecoded.net/emergency-fund-calculator.html">Emergency Fund</a>
       <a href="https://tools.moneydecoded.net/remittance-compare.html">Wire Transfer</a>
       <a href="https://tools.moneydecoded.net/debt-payoff-calculator.html">Debt Payoff</a>
+      <a href="https://tools.moneydecoded.net/tax-bracket-calculator.html">Tax Bracket</a>
       <a href="https://tools.moneydecoded.net/best-hysa-rates.html">Best HYSA</a>
       <a href="https://tools.moneydecoded.net/best-cd-rates.html" class="active">Best CD Rates</a>
     </nav>
