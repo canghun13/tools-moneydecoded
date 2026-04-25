@@ -31,37 +31,10 @@
     }
 
     /* ── HEADER ── */
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: #fff;
-      box-shadow: 0 1px 0 var(--border);
-    }
-    .header-top {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 24px;
-      height: var(--header-h);
-    }
-    .header-logo {
-      font-size: 17px;
-      font-weight: 700;
-      color: var(--text);
-      text-decoration: none;
-      letter-spacing: -0.3px;
-    }
-    .header-blog-cta {
-      background: var(--accent);
-      color: #fff;
-      font-size: 13px;
-      font-weight: 600;
-      padding: 6px 12px;
-      border-radius: 6px;
-      text-decoration: none;
-      white-space: nowrap;
-    }
+    
+    
+    
+    
     .header-nav-wrap {
       overflow-x: auto;
       -webkit-overflow-scrolling: touch;
@@ -72,17 +45,10 @@
     .header-nav-wrap::-webkit-scrollbar { height: 6px; }
     .header-nav-wrap::-webkit-scrollbar-track { background: #f0f0ee; }
     .header-nav-wrap::-webkit-scrollbar-thumb { background: #ccc; border-radius: 3px; }
-    .header-nav {
-      display: flex;
-      align-items: center;
-      gap: 2px;
-      padding: 4px 24px;
-      width: max-content;
-      height: var(--nav-h);
-    }
-    .header-nav a { font-size: 13px; font-weight: 400; color: var(--text-muted); text-decoration: none; border-bottom: 2px solid transparent; padding: 12px 14px; white-space: nowrap; display: inline-flex; align-items: center; transition: color 0.15s; }
-    .header-nav a:hover { color: var(--accent); }
-    .header-nav a.active { color: var(--accent); font-weight: 600; border-bottom: 2px solid var(--accent); }
+    
+    
+    
+    
 
     /* ── MAIN ── */
     .page-wrap {
@@ -319,22 +285,23 @@
         gap: 12px;
       }
       .card-right { text-align: left; }
-      .header-top { padding: 0 16px; }
-      .header-nav { padding: 4px 16px; }
+      
+      
       .page-wrap { padding: 24px 16px 48px; }
     }
   </style>
+  <link rel="stylesheet" href="header.css">
 </head>
 <body>
 
 <header>
   <div class="header-top">
-    <a href="https://moneydecoded.net" class="header-logo">MoneyDecoded</a>
+    <a href="https://moneydecoded.net" class="logo">Money<span>Decoded</span></a>
     <a href="https://moneydecoded.net" class="header-blog-cta">📰 Read the Blog →</a>
   </div>
   <div class="header-nav-wrap">
     <nav class="header-nav">
-      <a href="https://tools.moneydecoded.net">← All Tools</a>
+            <a href="https://tools.moneydecoded.net">← All Tools</a>
       <a href="https://tools.moneydecoded.net/mortgage-calculator.html">Mortgage</a>
       <a href="https://tools.moneydecoded.net/budget-calculator.html">Budget</a>
       <a href="https://tools.moneydecoded.net/rent-vs-buy-calculator.html">Rent vs Buy</a>

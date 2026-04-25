@@ -27,20 +27,20 @@
   body { font-family: 'DM Sans', sans-serif; color: var(--text); background: var(--bg); font-size: 16px; line-height: 1.6; }
 
   /* HEADER */
-  .site-header { background: #fff; border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
-  .header-top { display: flex; align-items: center; justify-content: space-between; padding: 0 24px; height: 44px; }
-  .header-nav-outer { border-top: 1px solid var(--border); overflow-x: auto; background: #fff; position: sticky; top: 44px; z-index: 99; box-shadow: 0 2px 6px rgba(0,0,0,0.06); }
-  .header-nav-outer::-webkit-scrollbar { height: 6px; background: #f0f0f0; }
-  .header-nav-outer::-webkit-scrollbar-thumb { background: #b0b0b0; border-radius: 4px; }
-  .header-nav-outer::-webkit-scrollbar-thumb:hover { background: #888; }
-  .header-logo { font-family: 'DM Serif Display', serif; font-size: 17px; color: var(--text); text-decoration: none; white-space: nowrap; }
-  .header-cta { background: var(--green); color: #fff; font-size: 13px; font-weight: 600; padding: 6px 12px; border-radius: 6px; text-decoration: none; white-space: nowrap; }
+  .site-
   
   
-  .header-nav { display: flex; gap: 0; padding: 0 24px; width: max-content; }
-  .header-nav a { font-size: 13px; font-weight: 400; color: var(--text-muted); text-decoration: none; border-bottom: 2px solid transparent; padding: 12px 14px; white-space: nowrap; display: inline-flex; align-items: center; transition: color 0.15s, border-color 0.15s; }
-  .header-nav a:hover { color: var(--green); }
-  .header-nav a.active { color: var(--green); font-weight: 600; }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
 
   /* DISCLOSURE */
   .disclosure { background: var(--bg-soft); border-bottom: 1px solid var(--border); padding: 8px 24px; font-size: 12px; color: var(--text-muted); text-align: center; }
@@ -139,13 +139,14 @@
     .card-cta { flex-direction: column; align-items: flex-start; }
   }
 </style>
+  <link rel="stylesheet" href="header.css">
 </head>
 <body>
 
-<header class="site-header">
+<header>
   <div class="header-top">
-    <a href="https://moneydecoded.net" class="header-logo">MoneyDecoded</a>
-    <a href="https://moneydecoded.net" class="header-cta">📰 Read the Blog →</a>
+    <a href="https://moneydecoded.net" class="logo">Money<span>Decoded</span></a>
+    <a href="https://moneydecoded.net" class="header-blog-cta">📰 Read the Blog →</a>
   </div>
 </header>
 <div class="header-nav-outer">
@@ -157,7 +158,8 @@
     <a href="https://tools.moneydecoded.net/emergency-fund-calculator.html">Emergency Fund</a>
     <a href="https://tools.moneydecoded.net/remittance-compare.html">Wire Transfer</a>
     <a href="https://tools.moneydecoded.net/debt-payoff-calculator.html">Debt Payoff</a>
-    <a href="https://tools.moneydecoded.net/best-hysa-rates.html">Best HYSA</a>
+    <a href="https://tools.moneydecoded.net/tax-bracket-calculator.html">Tax Bracket</a>
+    <a href="https://tools.moneydecoded.net/best-hysa-rates.html" class="active">Best HYSA</a>
     <a href="https://tools.moneydecoded.net/best-cd-rates.html">Best CD Rates</a>
   </nav>
 </div>
