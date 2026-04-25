@@ -28,7 +28,7 @@
 
   /* HEADER */
   .site-header { background: #fff; border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
-  .header-top { max-width: 900px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 0 24px; height: 44px; }
+  .header-top { display: flex; align-items: center; justify-content: space-between; padding: 0 24px; height: 44px; }
   .header-nav-outer { border-top: 1px solid var(--border); overflow-x: auto; background: #fff; position: sticky; top: 44px; z-index: 99; box-shadow: 0 2px 6px rgba(0,0,0,0.06); }
   .header-nav-outer::-webkit-scrollbar { height: 6px; background: #f0f0f0; }
   .header-nav-outer::-webkit-scrollbar-thumb { background: #b0b0b0; border-radius: 4px; }
@@ -37,7 +37,7 @@
   .header-cta { background: var(--green); color: #fff; font-size: 13px; font-weight: 600; padding: 6px 12px; border-radius: 6px; text-decoration: none; white-space: nowrap; }
   
   
-  .header-nav { display: flex; gap: 0; max-width: 900px; margin: 0 auto; padding: 0 24px; width: max-content; min-width: min(900px, 100%); }
+  .header-nav { display: flex; gap: 0; padding: 0 24px; width: max-content; }
   .header-nav a { font-size: 13px; font-weight: 400; color: var(--text-muted); text-decoration: none; border-bottom: 2px solid transparent; padding: 12px 14px; white-space: nowrap; display: inline-flex; align-items: center; transition: color 0.15s, border-color 0.15s; }
   .header-nav a:hover { color: var(--green); }
   .header-nav a.active { color: var(--green); font-weight: 600; }
