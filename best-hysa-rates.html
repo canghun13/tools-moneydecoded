@@ -27,12 +27,13 @@
   body { font-family: 'DM Sans', sans-serif; color: var(--text); background: var(--bg); font-size: 16px; line-height: 1.6; }
 
   /* HEADER */
-  .site-header { background: #fff; border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; overflow-x: auto; }
-  .site-header::-webkit-scrollbar { display: none; }
-  .header-inner { max-width: 900px; margin: 0 auto; display: flex; align-items: center; height: 52px; padding: 0 16px; min-width: max-content; }
+  .site-header { background: #fff; border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; width: 100%; }
+  .header-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; width: 100%; }
+  .header-scroll::-webkit-scrollbar { display: none; }
+  .header-inner { display: flex; align-items: center; height: 52px; padding: 0 16px; width: max-content; min-width: 100%; }
   .header-logo { font-family: 'DM Serif Display', serif; font-size: 17px; color: var(--text); text-decoration: none; white-space: nowrap; margin-right: 12px; flex-shrink: 0; }
-  .header-nav { display: flex; align-items: center; gap: 2px; }
-  .header-nav a { font-size: 13px; color: var(--text-muted); text-decoration: none; padding: 6px 8px; border-radius: 6px; white-space: nowrap; transition: background 0.15s, color 0.15s; }
+  .header-nav { display: flex; align-items: center; gap: 2px; flex-shrink: 0; }
+  .header-nav a { font-size: 13px; color: var(--text-muted); text-decoration: none; padding: 6px 8px; border-radius: 6px; white-space: nowrap; flex-shrink: 0; transition: background 0.15s, color 0.15s; }
   .header-nav a:hover { background: var(--bg-soft); color: var(--text); }
   .header-nav a.active { color: var(--green); font-weight: 600; }
   .header-cta { background: var(--green) !important; color: #fff !important; font-weight: 600 !important; margin-left: 6px; }
@@ -139,6 +140,7 @@
 <body>
 
 <header class="site-header">
+  <div class="header-scroll">
   <div class="header-inner">
     <a href="https://moneydecoded.net" class="header-logo">MoneyDecoded</a>
     <nav class="header-nav">
@@ -151,6 +153,7 @@
       <a href="https://tools.moneydecoded.net/debt-payoff-calculator.html">Debt Payoff</a>
       <a href="https://moneydecoded.net" class="header-cta">📰 Read the Blog →</a>
     </nav>
+  </div>
   </div>
 </header>
 
