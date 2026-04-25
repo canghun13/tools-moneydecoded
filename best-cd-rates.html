@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Best CD Rates 2026 – Compare Top Certificate of Deposit Rates | MoneyDecoded</title>
+  <meta name="description" content="Compare the best CD rates from top banks in 2026. Find the highest APY on 6-month, 1-year, 2-year, and 5-year certificates of deposit. Updated regularly." />
+  <link rel="canonical" href="https://tools.moneydecoded.net/best-cd-rates.html" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #f9f9f7;
+      --surface: #ffffff;
+      --border: #e8e8e4;
+      --text: #1a1917;
+      --text-muted: #6b6b65;
+      --accent: #1a6b4a;
+      --accent-light: #e8f4ee;
+      --accent-border: #c8e8d8;
+      --header-h: 44px;
+      --nav-h: 42px;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    /* ── HEADER ── */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: #fff;
+      box-shadow: 0 1px 0 var(--border);
+    }
+    .header-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+      height: var(--header-h);
+    }
+    .header-logo {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: -0.3px;
+    }
+    .header-blog-cta {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--accent);
+      text-decoration: none;
+      padding: 5px 12px;
+      border: 1px solid var(--accent-border);
+      border-radius: 6px;
+      background: var(--accent-light);
+      white-space: nowrap;
+    }
+    .header-nav-wrap {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      border-top: 1px solid var(--border);
+      background: #fff;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+    }
+    .header-nav-wrap::-webkit-scrollbar { height: 6px; }
+    .header-nav-wrap::-webkit-scrollbar-track { background: #f0f0ee; }
+    .header-nav-wrap::-webkit-scrollbar-thumb { background: #ccc; border-radius: 3px; }
+    .header-nav {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      padding: 4px 24px;
+      width: max-content;
+      height: var(--nav-h);
+    }
+    .header-nav a {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-muted);
+      text-decoration: none;
+      padding: 5px 10px;
+      border-radius: 6px;
+      white-space: nowrap;
+      transition: background 0.15s, color 0.15s;
+    }
+    .header-nav a:hover { background: var(--bg); color: var(--text); }
+    .header-nav a.active { background: var(--accent-light); color: var(--accent); font-weight: 600; }
+
+    /* ── MAIN ── */
+    .page-wrap {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 32px 20px 64px;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      margin-bottom: 32px;
+    }
+    .hero-badge {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+      background: var(--accent-light);
+      border: 1px solid var(--accent-border);
+      border-radius: 4px;
+      padding: 3px 8px;
+      margin-bottom: 12px;
+    }
+    .hero h1 {
+      font-size: clamp(22px, 4vw, 30px);
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      line-height: 1.25;
+      margin-bottom: 10px;
+    }
+    .hero p {
+      font-size: 15px;
+      color: var(--text-muted);
+      max-width: 620px;
+      margin-bottom: 16px;
+    }
+    .hero-meta {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+    .hero-meta strong { color: var(--text); }
+
+    /* ── FILTER TABS ── */
+    .filter-wrap {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+    .filter-btn {
+      font-size: 13px;
+      font-weight: 500;
+      padding: 6px 14px;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .filter-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .filter-btn.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+
+    /* ── RATE CARDS ── */
+    .rate-grid {
+      display: grid;
+      gap: 12px;
+    }
+    .rate-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px 24px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 16px;
+      transition: box-shadow 0.15s;
+    }
+    .rate-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.07); }
+    .rate-card.top-pick {
+      border-color: var(--accent-border);
+      background: linear-gradient(135deg, #f8fdfb 0%, #fff 100%);
+    }
+
+    .card-left { display: flex; flex-direction: column; gap: 6px; }
+    .card-badges { display: flex; gap: 6px; flex-wrap: wrap; }
+    .badge {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 2px 7px;
+      border-radius: 3px;
+    }
+    .badge-top { background: #fef3c7; color: #92400e; }
+    .badge-no-penalty { background: #dbeafe; color: #1e40af; }
+    .badge-fdic { background: #f3f4f6; color: #374151; }
+
+    .card-bank {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .card-detail {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+    .card-detail span { color: var(--text); font-weight: 500; }
+
+    .card-right { text-align: right; }
+    .apy-label {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-muted);
+      margin-bottom: 2px;
+    }
+    .apy-value {
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--accent);
+      letter-spacing: -1px;
+      line-height: 1;
+    }
+    .apy-term {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    /* ── HIDDEN CARDS ── */
+    .rate-card[data-term] { display: grid; }
+
+    /* ── EXPLAINER ── */
+    .explainer {
+      margin-top: 48px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    @media (max-width: 640px) { .explainer { grid-template-columns: 1fr; } }
+
+    .explainer-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+    }
+    .explainer-card h3 {
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .explainer-card p {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* ── FAQ ── */
+    .faq { margin-top: 48px; }
+    .faq h2 {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+    .faq-item {
+      border-bottom: 1px solid var(--border);
+      padding: 16px 0;
+    }
+    .faq-item:last-child { border-bottom: none; }
+    .faq-q {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+    .faq-a {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* ── AFFILIATE BANNER ── */
+    .affiliate-banner {
+      margin-top: 40px;
+      padding: 16px 20px;
+      background: var(--accent-light);
+      border: 1px solid var(--accent-border);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .affiliate-banner span { font-size: 22px; }
+    .affiliate-banner-text { flex: 1; }
+    .affiliate-banner-text div:first-child {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--accent);
+      margin-bottom: 3px;
+    }
+    .affiliate-banner-text a {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    /* ── DISCLAIMER ── */
+    .disclaimer {
+      margin-top: 32px;
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      padding: 16px;
+      background: #f5f5f3;
+      border-radius: 8px;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      .rate-card {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+      .card-right { text-align: left; }
+      .header-top { padding: 0 16px; }
+      .header-nav { padding: 4px 16px; }
+      .page-wrap { padding: 24px 16px 48px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-top">
+    <a href="https://moneydecoded.net" class="header-logo">MoneyDecoded</a>
+    <a href="https://moneydecoded.net" class="header-blog-cta">📰 Read the Blog →</a>
+  </div>
+  <div class="header-nav-wrap">
+    <nav class="header-nav">
+      <a href="https://tools.moneydecoded.net">← All Tools</a>
+      <a href="https://tools.moneydecoded.net/mortgage-calculator.html">Mortgage</a>
+      <a href="https://tools.moneydecoded.net/budget-calculator.html">Budget</a>
+      <a href="https://tools.moneydecoded.net/rent-vs-buy-calculator.html">Rent vs Buy</a>
+      <a href="https://tools.moneydecoded.net/emergency-fund-calculator.html">Emergency Fund</a>
+      <a href="https://tools.moneydecoded.net/remittance-compare.html">Wire Transfer</a>
+      <a href="https://tools.moneydecoded.net/debt-payoff-calculator.html">Debt Payoff</a>
+      <a href="https://tools.moneydecoded.net/best-hysa-rates.html">Best HYSA</a>
+      <a href="https://tools.moneydecoded.net/best-cd-rates.html" class="active">Best CD Rates</a>
+    </nav>
+  </div>
+</header>
+
+<main class="page-wrap">
+
+  <div class="hero">
+    <div class="hero-badge">📊 Updated April 2026</div>
+    <h1>Best CD Rates for 2026</h1>
+    <p>Compare the highest certificate of deposit rates from top online banks. Lock in a guaranteed APY — no market risk, FDIC insured.</p>
+    <div class="hero-meta">
+      Rates sourced from bank websites · <strong>Updated regularly</strong> · FDIC insured up to $250,000
+    </div>
+  </div>
+
+  <!-- FILTER TABS -->
+  <div class="filter-wrap">
+    <button class="filter-btn active" data-filter="all">All Terms</button>
+    <button class="filter-btn" data-filter="6mo">6 Months</button>
+    <button class="filter-btn" data-filter="1yr">1 Year</button>
+    <button class="filter-btn" data-filter="2yr">2 Years</button>
+    <button class="filter-btn" data-filter="5yr">5 Years</button>
+    <button class="filter-btn" data-filter="no-penalty">No-Penalty CDs</button>
+  </div>
+
+  <!-- RATE CARDS -->
+  <div class="rate-grid" id="rateGrid">
+
+    <div class="rate-card top-pick" data-term="6mo" data-no-penalty="false">
+      <div class="card-left">
+        <div class="card-badges">
+          <span class="badge badge-top">🏆 Top Pick</span>
+          <span class="badge badge-fdic">FDIC Insured</span>
+        </div>
+        <div class="card-bank">Marcus by Goldman Sachs</div>
+        <div class="card-detail">Min deposit: <span>$500</span> · Term: <span>6 months</span></div>
+        <div class="card-detail">Early withdrawal penalty: <span>90 days interest</span></div>
+      </div>
+      <div class="card-right">
+        <div class="apy-label">APY</div>
+        <div class="apy-value">4.50%</div>
+        <div class="apy-term">6-Month CD</div>
+      </div>
+    </div>
+
+    <div class="rate-card" data-term="6mo" data-no-penalty="false">
+      <div class="card-left">
+        <div class="card-badges">
+          <span class="badge badge-fdic">FDIC Insured</span>
+        </div>
+        <div class="card-bank">Ally Bank</div>
+        <div class="card-detail">Min deposit: <span>$0</span> · Term: <span>6 months</span></div>
+        <div class="card-detail">Early withdrawal penalty: <span>60 days interest</span></div>
+      </div>
+      <div class="card-right">
+        <div class="apy-label">APY</div>
+        <div class="apy-value">4.25%</div>
+        <div class="apy-term">6-Month CD</div>
+      </div>
+    </div>
+
+    <div class="rate-card top-pick" data-term="1yr" data-no-penalty="false">
+      <div class="card-left">
+        <div class="card-badges">
+          <span class="badge badge-top">🏆 Top Pick</span>
+          <span class="badge badge-fdic">FDIC Insured</span>
+        </div>
+        <div class="card-bank">Marcus by Goldman Sachs</div>
+        <div class="card-detail">Min deposit: <span>$500</span> · Term: <span>1 year</span></div>
+        <div class="card-detail">Early withdrawal penalty: <span>270 days interest</span></div>
+      </div>
+      <div class="card-right">
+        <div class="apy-label">APY</div>
+        <div class="apy-value">4.40%</div>
+        <div class="apy-term">1-Year CD</div>
+      </div>
+    </div>
+
+    <div class="rate-card" data-term="1yr" data-no-penalty="true">
+      <div class="card-left">
+        <div class="card-badges">
+          <span class="badge badge-no-penalty">No Penalty</span>
+          <span class="badge badge-fdic">FDIC Insured</span>
+        </div>
+        <div class="card-bank">Ally Bank – No Penalty CD</div>
+        <div class="card-detail">Min deposit: <span>$0</span> · Term: <span>11 months</span></div>
+        <div class="card-detail">Withdraw anytime after <span>6 days</span> with no penalty</div>
+      </div>
+      <div class="card-right">
+        <div class="apy-label">APY</div>
+        <div class="apy-value">4.00%</div>
+        <div class="apy-term">11-Month No Penalty</div>
+      </div>
+    </div>
+
+    <div class="rate-card" data-term="1yr" data-no-penalty="false">
+      <div class="card-left">
+        <div class="card-badges">
+          <span class="badge badge-fdic">FDIC Insured</span>
+        </div>
+        <div class="card-bank">Discover Bank</div>
+        <div class="card-detail">Min deposit: <span>$2,500</span> · Term: <span>1 year</span></div>
+        <div class="card-detail">Early withdrawal penalty: <span>6 months interest</span></div>
+      </div>
+      <div class="card-right">
+        <div class="apy-label">APY</div>
+        <div class="apy-value">4.10%</div>
+        <div class="apy-term">1-Year CD</div>
+      </div>
+    </div>
+
+    <div class="rate-card" data-term="1yr" data-no-penalty="false">
+      <div class="card-left">
+        <div class="card-badges">
+          <span class="badge badge-fdic">FDIC Insured</span>
+        </div>
+        <div class="card-bank">Synchrony Bank</div>
+        <div class="card-detail">Min deposit: <span>$0</span> · Term: <span>1 year</span></div>
+        <div class="card-detail">Early withdrawal penalty: <span>90 days interest</span></div>
+      </div>
+      <div class="card-right">
+        <div class="apy-label">APY</div>
+        <div class="apy-value">4.30%</div>
+        <div class="apy-term">1-Year CD</div>
+      </div>
+    </div>
+
+    <div class="rate-card top-pick" data-term="2yr" data-no-penalty="false">
+      <div class="card-left">
+        <div class="card-badges">
+          <span class="badge badge-top">🏆 Top Pick</span>
+          <span class="badge badge-fdic">FDIC Insured</span>
+        </div>
+        <div class="card-bank">Synchrony Bank</div>
+        <div class="card-detail">Min deposit: <span>$0</span> · Term: <span>2 years</span></div>
+        <div class="card-detail">Early withdrawal penalty: <span>180 days interest</span></div>
+      </div>
+      <div class="card-right">
+        <div class="apy-label">APY</div>
+        <div class="apy-value">4.20%</div>
+        <div class="apy-term">2-Year CD</div>
+      </div>
+    </div>
+
+    <div class="rate-card" data-term="2yr" data-no-penalty="false">
+      <div class="card-left">
+        <div class="card-badges">
+          <span class="badge badge-fdic">FDIC Insured</span>
+        </div>
+        <div class="card-bank">Marcus by Goldman Sachs</div>
+        <div class="card-detail">Min deposit: <span>$500</span> · Term: <span>2 years</span></div>
+        <div class="card-detail">Early withdrawal penalty: <span>270 days interest</span></div>
+      </div>
+      <div class="card-right">
+        <div class="apy-label">APY</div>
+        <div class="apy-value">4.10%</div>
+        <div class="apy-term">2-Year CD</div>
+      </div>
+    </div>
+
+    <div class="rate-card top-pick" data-term="5yr" data-no-penalty="false">
+      <div class="card-left">
+        <div class="card-badges">
+          <span class="badge badge-top">🏆 Top Pick</span>
+          <span class="badge badge-fdic">FDIC Insured</span>
+        </div>
+        <div class="card-bank">Discover Bank</div>
+        <div class="card-detail">Min deposit: <span>$2,500</span> · Term: <span>5 years</span></div>
+        <div class="card-detail">Early withdrawal penalty: <span>18 months interest</span></div>
+      </div>
+      <div class="card-right">
+        <div class="apy-label">APY</div>
+        <div class="apy-value">3.90%</div>
+        <div class="apy-term">5-Year CD</div>
+      </div>
+    </div>
+
+    <div class="rate-card" data-term="5yr" data-no-penalty="false">
+      <div class="card-left">
+        <div class="card-badges">
+          <span class="badge badge-fdic">FDIC Insured</span>
+        </div>
+        <div class="card-bank">Ally Bank</div>
+        <div class="card-detail">Min deposit: <span>$0</span> · Term: <span>5 years</span></div>
+        <div class="card-detail">Early withdrawal penalty: <span>150 days interest</span></div>
+      </div>
+      <div class="card-right">
+        <div class="apy-label">APY</div>
+        <div class="apy-value">3.75%</div>
+        <div class="apy-term">5-Year CD</div>
+      </div>
+    </div>
+
+    <div class="rate-card" data-term="6mo" data-no-penalty="true">
+      <div class="card-left">
+        <div class="card-badges">
+          <span class="badge badge-no-penalty">No Penalty</span>
+          <span class="badge badge-fdic">FDIC Insured</span>
+        </div>
+        <div class="card-bank">Marcus by Goldman Sachs – No Penalty CD</div>
+        <div class="card-detail">Min deposit: <span>$500</span> · Term: <span>7 months</span></div>
+        <div class="card-detail">Withdraw anytime after <span>7 days</span> with no penalty</div>
+      </div>
+      <div class="card-right">
+        <div class="apy-label">APY</div>
+        <div class="apy-value">4.15%</div>
+        <div class="apy-term">7-Month No Penalty</div>
+      </div>
+    </div>
+
+  </div><!-- /rate-grid -->
+
+  <!-- AFFILIATE PLACEHOLDER -->
+  <div class="affiliate-banner" style="margin-top:32px;">
+    <span>🏦</span>
+    <div class="affiliate-banner-text">
+      <div>Free Tool</div>
+      <a href="https://tools.moneydecoded.net/best-hysa-rates.html">
+        Want flexibility? Compare the best High-Yield Savings Accounts → MoneyDecoded Tools
+      </a>
+    </div>
+  </div>
+
+  <!-- EXPLAINER CARDS -->
+  <div class="explainer">
+    <div class="explainer-card">
+      <h3>📌 What is a CD?</h3>
+      <p>A Certificate of Deposit (CD) is a savings account that holds a fixed amount of money for a fixed period of time — called a "term." In exchange, the bank pays you a higher interest rate than a regular savings account. At the end of the term, you get your money back plus interest.</p>
+    </div>
+    <div class="explainer-card">
+      <h3>⚠️ Early Withdrawal Penalty</h3>
+      <p>If you pull your money out before the term ends, you'll usually pay a penalty — typically 60 to 270 days of interest. No-penalty CDs let you withdraw early without a fee, but often offer slightly lower rates in exchange.</p>
+    </div>
+    <div class="explainer-card">
+      <h3>📈 CD vs HYSA</h3>
+      <p>A High-Yield Savings Account (HYSA) offers flexibility — you can withdraw anytime. A CD locks your money in for a set term but usually offers a higher guaranteed rate. CDs are best if you know you won't need the money for a while.</p>
+    </div>
+    <div class="explainer-card">
+      <h3>🪜 CD Ladder Strategy</h3>
+      <p>Instead of putting all your money into one CD, split it into multiple CDs with different terms (e.g., 6-month, 1-year, 2-year). As each matures, reinvest. This gives you both high rates and regular access to your cash.</p>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <div class="faq">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-item">
+      <div class="faq-q">Are CDs FDIC insured?</div>
+      <div class="faq-a">Yes. CDs from FDIC-insured banks are covered up to $250,000 per depositor, per bank. All banks listed on this page are FDIC insured.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">When is a CD a good idea?</div>
+      <div class="faq-a">CDs make sense when you have cash you won't need for a defined period — like saving for a down payment in 2 years, or parking an emergency fund you've already built. They offer a guaranteed return with zero market risk.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">What happens when my CD matures?</div>
+      <div class="faq-a">When your CD matures, you typically have a grace period (usually 7–10 days) to withdraw your money or roll it into a new CD. If you do nothing, most banks automatically renew it at the current rate.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">How are CD rates determined?</div>
+      <div class="faq-a">CD rates are closely tied to the Federal Reserve's benchmark interest rate. When the Fed raises rates, CD rates tend to go up. Online banks typically offer higher rates than traditional brick-and-mortar banks because they have lower overhead costs.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">How often are these rates updated?</div>
+      <div class="faq-a">We review and update rates regularly. Rates shown are approximate and may change — always verify the current rate on the bank's website before opening an account.</div>
+    </div>
+  </div>
+
+  <div class="disclaimer">
+    <strong>Disclaimer:</strong> Rates shown are for informational purposes only and may not reflect current offerings. Always verify rates directly with the bank before opening an account. MoneyDecoded may receive compensation from some of the companies listed on this page. This does not influence our rate comparisons or rankings.
+  </div>
+
+</main>
+
+<script>
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const cards = document.querySelectorAll('.rate-card');
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.dataset.filter;
+      cards.forEach(card => {
+        if (filter === 'all') {
+          card.style.display = 'grid';
+        } else if (filter === 'no-penalty') {
+          card.style.display = card.dataset.noPenalty === 'true' ? 'grid' : 'none';
+        } else {
+          card.style.display = card.dataset.term === filter ? 'grid' : 'none';
+        }
+      });
+    });
+  });
+</script>
+
+</body>
+</html>
