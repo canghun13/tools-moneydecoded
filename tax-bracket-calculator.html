@@ -21,18 +21,21 @@
     html{scroll-behavior:smooth;}
     body{background:var(--bg);color:var(--ink);font-family:'DM Sans',sans-serif;font-size:15px;line-height:1.7;}
     .disclosure{background:#fffbea;border-bottom:1px solid #e5d96a;padding:8px 20px;font-size:.72rem;color:#7a6a00;text-align:center;}
-    header{background:var(--paper);border-bottom:2px solid var(--ink);padding:0 24px;display:flex;align-items:stretch;justify-content:space-between;position:sticky;top:0;z-index:100;}
-    .logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.15rem;color:var(--ink);text-decoration:none;display:flex;align-items:center;padding:14px 0;letter-spacing:-.5px;}
     .logo span{color:var(--accent);}
     header { background: #fff; border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
-    .header-top { display: flex; align-items: center; justify-content: space-between; padding: 0 24px; height: 44px; }
+
+
+    .header-nav { display: flex; gap: 0; max-width: 960px; margin: 0 auto; padding: 0 24px; width: max-content; min-width: min(960px, 100%); }
+    .header-nav::-webkit-scrollbar { display: none; }
+    .header-nav a { font-size: 13px; font-weight: 400; color: var(--ink2, #5f6368); text-decoration: none; border-bottom: 2px solid transparent; padding: 12px 14px; white-space: nowrap; display: inline-flex; align-items: center; transition: color 0.15s; }
+    .header-nav a:hover { color: var(--accent, #1a6b4a); }
+    .header-nav-outer { border-top: 1px solid var(--border); overflow-x: auto; background: #fff; position: sticky; top: 44px; z-index: 99; box-shadow: 0 2px 6px rgba(0,0,0,0.06); }
+    .header-nav-outer::-webkit-scrollbar { height: 6px; background: #f0f0f0; }
+    .header-nav-outer::-webkit-scrollbar-thumb { background: #b0b0b0; border-radius: 4px; }
+    .header-nav-outer::-webkit-scrollbar-thumb:hover { background: #888; }
+    .header-top { max-width: 960px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 0 24px; height: 44px; }
     .header-logo { font-size: 17px; font-weight: 700; color: var(--ink); text-decoration: none; white-space: nowrap; }
     .header-blog-cta { background: var(--accent); color: #fff; font-size: 13px; font-weight: 600; padding: 6px 12px; border-radius: 6px; text-decoration: none; white-space: nowrap; }
-    .header-nav-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; border-top: 1px solid var(--border); }
-    .header-nav-wrap::-webkit-scrollbar { display: none; }
-    .header-nav { display: flex; align-items: center; gap: 2px; padding: 4px 24px; width: max-content; }
-    .header-nav a { font-size: 13px; color: var(--ink2); text-decoration: none; padding: 5px 10px; border-radius: 6px; white-space: nowrap; transition: color 0.15s; }
-    .header-nav a:hover { color: var(--accent); background: rgba(0,0,0,0.04); }
     
     
     .hero{max-width:960px;margin:0 auto;padding:56px 24px 40px;display:grid;grid-template-columns:1fr 300px;gap:48px;align-items:start;}
@@ -138,8 +141,9 @@
     <a href="https://moneydecoded.net" class="header-logo">MoneyDecoded</a>
     <a href="https://moneydecoded.net" class="header-blog-cta">📰 Read the Blog →</a>
   </div>
-  <div class="header-nav-wrap">
-    <nav class="header-nav">
+</header>
+
+<div class="header-nav-outer"><nav class="header-nav">
     <a href="https://tools.moneydecoded.net">← All Tools</a>
     <a href="https://tools.moneydecoded.net/mortgage-calculator.html">Mortgage</a>
     <a href="https://tools.moneydecoded.net/budget-calculator.html">Budget</a>
@@ -148,9 +152,7 @@
     <a href="https://tools.moneydecoded.net/remittance-compare.html">Wire Transfer</a>
     <a href="https://tools.moneydecoded.net/debt-payoff-calculator.html">Debt Payoff</a>
     <a href="https://tools.moneydecoded.net/best-hysa-rates.html">Best HYSA</a>
-    </nav>
-  </div>
-</header>
+  </nav></div>
 
 <div class="hero">
   <div class="hero-main">
