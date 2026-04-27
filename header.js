@@ -2,18 +2,18 @@
   const BASE = 'https://tools.moneydecoded.net/';
 
   const CALCULATORS = [
-    { label: 'Mortgage',             href: 'mortgage-calculator.html' },
-    { label: '401(k)',               href: '401k-calculator.html' },
-    { label: 'Compound Interest',    href: 'compound-interest-calculator.html' },
-    { label: 'Loan Repayment',       href: 'loan-repayment-calculator.html' },
-    { label: 'Savings Goal',         href: 'savings-goal-calculator.html' },
-    { label: 'Inflation',            href: 'inflation-calculator.html' },
-    { label: 'Net Worth',            href: 'net-worth-calculator.html' },
-    { label: 'Rent vs Buy',          href: 'rent-vs-buy-calculator.html' },
-    { label: 'Emergency Fund',       href: 'emergency-fund-calculator.html' },
-    { label: 'Debt Payoff',          href: 'debt-payoff-calculator.html' },
-    { label: 'Tax Bracket',          href: 'tax-bracket-calculator.html' },
-    { label: '50/30/20 Budget',      href: 'budget-calculator.html' },
+    { label: 'Mortgage',          href: 'mortgage-calculator.html' },
+    { label: '401(k)',            href: '401k-calculator.html' },
+    { label: 'Compound Interest', href: 'compound-interest-calculator.html' },
+    { label: 'Loan Repayment',    href: 'loan-repayment-calculator.html' },
+    { label: 'Savings Goal',      href: 'savings-goal-calculator.html' },
+    { label: 'Inflation',         href: 'inflation-calculator.html' },
+    { label: 'Net Worth',         href: 'net-worth-calculator.html' },
+    { label: 'Rent vs Buy',       href: 'rent-vs-buy-calculator.html' },
+    { label: 'Emergency Fund',    href: 'emergency-fund-calculator.html' },
+    { label: 'Debt Payoff',       href: 'debt-payoff-calculator.html' },
+    { label: 'Tax Bracket',       href: 'tax-bracket-calculator.html' },
+    { label: '50/30/20 Budget',   href: 'budget-calculator.html' },
   ];
 
   const COMPARE = [
@@ -23,16 +23,16 @@
     { label: 'Send Money Abroad', href: 'remittance-compare.html' },
   ];
 
-  const currentFile = location.pathname.split('/').pop() || '';
+  const currentFile = location.pathname.split('/').pop() || 'index.html';
 
   function isActive(href) {
-    return currentFile === href || currentFile === href.replace('.html', '');
+    return currentFile === href;
   }
 
-  function buildDropdown(items) {
+  function buildLinks(items) {
     return items.map(item => {
-      const active = isActive(item.href) ? ' class="active"' : '';
-      return `<a href="${BASE}${item.href}"${active}>${item.label}</a>`;
+      const cls = isActive(item.href) ? ' class="active"' : '';
+      return `<a href="${BASE}${item.href}"${cls}>${item.label}</a>`;
     }).join('');
   }
 
@@ -49,49 +49,39 @@
 </div>
 <header class="md-header">
   <div class="md-header-inner">
-    <a href="https://moneydecoded.net" class="md-logo">Money<span>Decoded</span></a>
-    <nav class="md-nav" id="mdNav">
+    <a href="https://tools.moneydecoded.net/" class="md-logo">Money<span>Decoded</span></a>
+    <nav class="md-nav">
       <div class="md-dropdown${calcActive}">
         <button class="md-dropdown-btn" aria-expanded="false">Calculators <span class="md-arrow">▾</span></button>
-        <div class="md-dropdown-menu">
-          ${buildDropdown(CALCULATORS)}
-        </div>
+        <div class="md-dropdown-menu">${buildLinks(CALCULATORS)}</div>
       </div>
       <div class="md-dropdown${compareActive}">
         <button class="md-dropdown-btn" aria-expanded="false">Compare &amp; Rates <span class="md-arrow">▾</span></button>
-        <div class="md-dropdown-menu">
-          ${buildDropdown(COMPARE)}
-        </div>
+        <div class="md-dropdown-menu">${buildLinks(COMPARE)}</div>
       </div>
     </nav>
     <a href="https://moneydecoded.net" class="md-blog-cta">📰 Blog</a>
-    <button class="md-hamburger" id="mdHamburger" aria-label="메뉴 열기" aria-expanded="false">
+    <button class="md-hamburger" id="mdHamburger" aria-label="Open menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
   </div>
-  <!-- 모바일 메뉴 -->
   <div class="md-mobile-menu" id="mdMobileMenu">
     <div class="md-mobile-section">
       <div class="md-mobile-label">Calculators</div>
-      ${buildDropdown(CALCULATORS)}
+      ${buildLinks(CALCULATORS)}
     </div>
     <div class="md-mobile-section">
       <div class="md-mobile-label">Compare &amp; Rates</div>
-      ${buildDropdown(COMPARE)}
+      ${buildLinks(COMPARE)}
     </div>
     <a href="https://moneydecoded.net" class="md-mobile-blog">📰 Read the Blog →</a>
   </div>
 </header>`;
 
-  // 삽입
-  const target = document.currentScript || document.querySelector('script[src*="header.js"]');
-  if (target) {
-    target.insertAdjacentHTML('beforebegin', html);
-  } else {
-    document.body.insertAdjacentHTML('afterbegin', html);
-  }
+  // body 맨 앞에 안정적으로 삽입
+  document.body.insertAdjacentHTML('afterbegin', html);
 
-  // 드롭다운 토글 (데스크탑)
+  // 드롭다운 토글
   document.querySelectorAll('.md-dropdown-btn').forEach(btn => {
     btn.addEventListener('click', function (e) {
       e.stopPropagation();
@@ -108,7 +98,6 @@
     });
   });
 
-  // 외부 클릭 시 드롭다운 닫기
   document.addEventListener('click', function () {
     document.querySelectorAll('.md-dropdown.open').forEach(d => {
       d.classList.remove('open');
@@ -116,11 +105,12 @@
     });
   });
 
-  // 햄버거 토글 (모바일)
+  // 햄버거
   const hamburger = document.getElementById('mdHamburger');
   const mobileMenu = document.getElementById('mdMobileMenu');
   if (hamburger && mobileMenu) {
-    hamburger.addEventListener('click', function () {
+    hamburger.addEventListener('click', function (e) {
+      e.stopPropagation();
       const isOpen = mobileMenu.classList.toggle('open');
       this.classList.toggle('open', isOpen);
       this.setAttribute('aria-expanded', isOpen);
