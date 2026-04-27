@@ -14,6 +14,7 @@
     { label: 'Debt Payoff',       href: 'debt-payoff-calculator.html' },
     { label: 'Tax Bracket',       href: 'tax-bracket-calculator.html' },
     { label: '50/30/20 Budget',   href: 'budget-calculator.html' },
+    { label: 'Savings Rate',       href: 'savings-rate-calculator.html' },
   ];
 
   const COMPARE = [

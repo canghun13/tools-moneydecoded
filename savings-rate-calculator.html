@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Savings Rate Calculator 2026 — How Much of Your Income Are You Saving? | MoneyDecoded</title>
+  <meta name="description" content="Free savings rate calculator. Find out what percentage of your income you're saving, how it compares to benchmarks, and how small changes compound over time." />
+  <meta property="og:title" content="Savings Rate Calculator (2026) — MoneyDecoded" />
+  <meta property="og:description" content="Calculate your personal savings rate and see how it affects your path to financial independence." />
+  <link rel="icon" href="/favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg:       #f7f5f0;
+      --paper:    #ffffff;
+      --ink:      #1a1a1a;
+      --ink2:     #4a4a4a;
+      --muted:    #888;
+      --border:   #e2ddd6;
+      --accent:   #1a4f2e;
+      --accent-l: #e8f5ee;
+      --accent-mid: #2d9966;
+      --wise:     #9fe870;
+      --wise-dk:  #163300;
+      --warn:     #c0392b;
+      --warn-l:   #fdf0ee;
+      --mid:      #1a3a6e;
+      --mid-l:    #eef3fc;
+      --rule:     #d5cfc6;
+      --mono:     'DM Mono', monospace;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--ink); font-family: 'DM Sans', sans-serif; font-size: 15px; line-height: 1.7; }
+
+    /* HERO */
+    .hero { max-width: 960px; margin: 0 auto; padding: 56px 24px 40px; display: grid; grid-template-columns: 1fr 300px; gap: 48px; align-items: start; }
+    @media(max-width:720px){ .hero{grid-template-columns:1fr} .hero-aside{display:none} }
+
+    .hero-kicker { display: inline-block; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; border-left: 3px solid var(--accent); padding-left: 10px; }
+    h1 { font-family: 'Playfair Display', serif; font-weight: 900; font-size: clamp(1.8rem, 4vw, 2.6rem); line-height: 1.1; letter-spacing: -1px; margin-bottom: 16px; }
+    h1 em { color: var(--accent); font-style: normal; }
+    .hero-byline { font-size: 0.8rem; color: var(--muted); margin-bottom: 16px; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); padding: 10px 0; }
+    .hero-lead { font-size: 0.95rem; color: var(--ink2); line-height: 1.65; }
+
+    .hero-aside { background: var(--ink); color: #fff; border-radius: 4px; padding: 24px; border: 2px solid var(--ink); box-shadow: 6px 6px 0 var(--accent); }
+    .aside-title { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--wise); margin-bottom: 16px; }
+    .aside-stat { padding: 12px 0; border-bottom: 1px solid #2a2a2a; }
+    .aside-stat:last-of-type { border-bottom: none; }
+    .aside-stat-num { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1.4rem; color: var(--wise); }
+    .aside-stat-label { font-size: 0.75rem; color: #999; margin-top: 2px; }
+    .aside-note { font-size: 0.68rem; color: #555; margin-top: 12px; }
+
+    /* CALCULATOR */
+    .body-wrap { max-width: 960px; margin: 0 auto; padding: 0 24px 80px; }
+    .calc-section { background: var(--paper); border: 2px solid var(--ink); border-radius: 4px; padding: 36px; margin-bottom: 24px; box-shadow: 5px 5px 0 var(--ink); }
+    .calc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 24px; }
+    .calc-grid.three { grid-template-columns: 1fr 1fr 1fr; }
+    @media(max-width:600px){ .calc-grid, .calc-grid.three { grid-template-columns: 1fr; } }
+
+    .field { display: flex; flex-direction: column; }
+    .field label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+    .field-hint { font-size: 0.7rem; color: var(--muted); margin-top: 4px; }
+    .input-wrap { position: relative; display: flex; align-items: center; }
+    .input-prefix, .input-suffix { position: absolute; font-family: var(--mono); font-size: 13px; color: var(--muted); pointer-events: none; }
+    .input-prefix { left: 12px; }
+    .input-suffix { right: 12px; }
+    input[type="number"] {
+      width: 100%; padding: 11px 14px;
+      font-family: var(--mono); font-size: 14px;
+      color: var(--ink); background: var(--bg);
+      border: 1.5px solid var(--border); border-radius: 6px;
+      outline: none; transition: border-color 0.15s, background 0.15s;
+      -moz-appearance: textfield;
+    }
+    input[type="number"]::-webkit-outer-spin-button,
+    input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; }
+    input[type="number"]:focus { border-color: var(--accent-mid); background: var(--paper); }
+    input[type="range"] {
+      width: 100%; padding: 0; height: 4px; border-radius: 2px;
+      background: var(--border); cursor: pointer; border: none;
+      accent-color: var(--accent); margin-top: 8px;
+      -moz-appearance: textfield;
+    }
+    .has-prefix input { padding-left: 28px; }
+    .has-suffix input { padding-right: 32px; }
+
+    .calc-btn {
+      width: 100%; padding: 14px;
+      background: var(--accent); color: #fff;
+      border: 2px solid var(--ink); border-radius: 6px;
+      font-family: 'DM Sans', sans-serif; font-size: 1rem; font-weight: 700;
+      cursor: pointer; box-shadow: 3px 3px 0 var(--ink);
+      transition: transform 0.1s, box-shadow 0.1s;
+    }
+    .calc-btn:hover { transform: translate(-1px,-1px); box-shadow: 4px 4px 0 var(--ink); }
+    .calc-btn:active { transform: translate(1px,1px); box-shadow: 2px 2px 0 var(--ink); }
+
+    /* RESULTS */
+    .results { display: none; margin-top: 28px; }
+    .results.visible { display: block; }
+
+    .result-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border: 2px solid var(--ink); border-radius: 4px; overflow: hidden; margin-bottom: 20px; }
+    @media(max-width:600px){ .result-grid { grid-template-columns: 1fr 1fr; } }
+    .result-cell { background: var(--paper); padding: 20px 16px; border-right: 2px solid var(--ink); border-bottom: 2px solid var(--ink); }
+    .result-cell:nth-child(3) { border-right: none; }
+    .result-cell:nth-child(4), .result-cell:nth-child(5), .result-cell:nth-child(6) { border-bottom: none; }
+    @media(max-width:600px){
+      .result-cell:nth-child(2) { border-right: none; }
+      .result-cell:nth-child(3) { border-right: 2px solid var(--ink); }
+      .result-cell:nth-child(4) { border-bottom: none; }
+      .result-cell:nth-child(5) { border-right: none; border-bottom: none; }
+      .result-cell:nth-child(6) { border-bottom: none; }
+    }
+    .result-cell.highlight { background: var(--ink); }
+    .result-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+    .result-cell.highlight .result-label { color: var(--wise); }
+    .result-value { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1.5rem; color: var(--accent); }
+    .result-cell.highlight .result-value { color: var(--wise); font-size: 1.8rem; }
+    .result-sub { font-size: 0.72rem; color: var(--muted); margin-top: 3px; }
+    .result-cell.highlight .result-sub { color: #666; }
+
+    /* SAVINGS RATE METER */
+    .meter-wrap { margin-bottom: 24px; }
+    .meter-label-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+    .meter-title { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+    .meter-badge { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1.1rem; color: var(--accent); }
+    .meter-bar-bg { background: var(--border); border-radius: 4px; height: 14px; overflow: hidden; border: 1px solid var(--ink); }
+    .meter-bar-fill { height: 100%; border-radius: 4px; transition: width 0.6s ease, background 0.3s; }
+    .meter-benchmarks { display: flex; justify-content: space-between; margin-top: 6px; font-size: 0.65rem; color: var(--muted); }
+
+    /* PROJECTION TABLE */
+    .proj-wrap { overflow-x: auto; border: 1.5px solid var(--border); border-radius: 4px; margin-bottom: 8px; }
+    table.proj { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+    table.proj thead tr { background: var(--ink); }
+    table.proj thead th { padding: 10px 14px; text-align: right; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #ccc; white-space: nowrap; }
+    table.proj thead th:first-child { text-align: left; }
+    table.proj tbody tr { border-top: 1px solid var(--border); }
+    table.proj tbody tr:hover { background: #faf8f4; }
+    table.proj tbody td { padding: 9px 14px; text-align: right; font-family: var(--mono); font-size: 0.8rem; }
+    table.proj tbody td:first-child { text-align: left; font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 0.8rem; color: var(--ink2); }
+    table.proj tbody tr.milestone td { color: var(--accent); font-weight: 700; }
+
+    /* CTA BLOCKS */
+    .cta-block { margin-top: 20px; display: flex; flex-direction: column; gap: 12px; }
+    .blog-cta-block { display: flex; align-items: center; gap: 14px; background: var(--accent-l); border: 1.5px solid var(--accent); border-radius: 6px; padding: 16px 20px; text-decoration: none; color: var(--ink); transition: background 0.15s; }
+    .blog-cta-block:hover { background: #d4eddf; }
+    .blog-cta-icon { font-size: 1.4rem; flex-shrink: 0; }
+    .blog-cta-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin-bottom: 2px; }
+    .blog-cta-title { font-size: 0.88rem; font-weight: 600; color: var(--ink); }
+
+    /* CONTENT */
+    hr.rule { border: none; border-top: 2px solid var(--ink); margin: 48px 0; }
+    .sec-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
+    .sec-title { font-family: 'Playfair Display', serif; font-weight: 900; font-size: clamp(1.3rem, 3vw, 1.8rem); letter-spacing: -0.5px; margin-bottom: 10px; }
+    .sec-body { color: var(--ink2); font-size: 0.9rem; line-height: 1.75; margin-bottom: 20px; }
+
+    .tip-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; }
+    .tip-card { background: var(--paper); border: 1.5px solid var(--border); border-radius: 4px; padding: 20px; }
+    .tip-icon { font-size: 1.5rem; margin-bottom: 10px; }
+    .tip-title { font-weight: 700; font-size: 0.88rem; margin-bottom: 6px; }
+    .tip-desc { font-size: 0.82rem; color: var(--ink2); line-height: 1.55; }
+
+    .faq-list { display: flex; flex-direction: column; gap: 0; border: 2px solid var(--ink); border-radius: 4px; overflow: hidden; box-shadow: 5px 5px 0 var(--ink); }
+    .fi { border-bottom: 1px solid var(--border); }
+    .fi:last-child { border-bottom: none; }
+    .fi-q { padding: 16px 20px; font-weight: 600; font-size: 0.9rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; background: var(--paper); transition: background 0.12s; user-select: none; }
+    .fi-q:hover { background: #faf8f4; }
+    .fi-arr { color: var(--muted); transition: transform 0.2s; }
+    .fi.open .fi-arr { transform: rotate(180deg); }
+    .fi-a { display: none; padding: 0 20px 16px; font-size: 0.85rem; color: var(--ink2); line-height: 1.7; background: var(--paper); }
+    .fi.open .fi-a { display: block; }
+
+    .stat-strip { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 0; border: 2px solid var(--ink); border-radius: 4px; overflow: hidden; margin-bottom: 36px; }
+    .stat-cell { background: var(--paper); padding: 20px 16px; border-right: 2px solid var(--ink); }
+    .stat-cell:last-child { border-right: none; }
+    .stat-num { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 900; color: var(--accent); }
+    .stat-lbl { font-size: 0.75rem; color: var(--ink2); margin-top: 2px; }
+
+    .bottom-banner { background: var(--ink); color: #fff; padding: 56px 24px; text-align: center; }
+    .bottom-banner h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.6rem, 4vw, 2.2rem); font-weight: 900; margin-bottom: 12px; line-height: 1.2; }
+    .bottom-banner h2 span { color: var(--wise); }
+    .bottom-banner p { color: #aaa; font-size: 0.88rem; margin-bottom: 24px; max-width: 500px; margin-left: auto; margin-right: auto; }
+    .bottom-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .btn-primary { display: inline-flex; align-items: center; gap: 8px; background: var(--wise); color: var(--wise-dk); font-weight: 700; font-size: 0.9rem; padding: 13px 24px; border-radius: 6px; text-decoration: none; border: 2px solid var(--wise-dk); transition: all 0.15s; box-shadow: 3px 3px 0 var(--wise-dk); }
+    .btn-primary:hover { transform: translate(-1px,-1px); box-shadow: 4px 4px 0 var(--wise-dk); }
+    .btn-ghost { display: inline-flex; align-items: center; gap: 6px; background: transparent; color: #fff; font-weight: 600; font-size: 0.9rem; padding: 13px 24px; border-radius: 6px; text-decoration: none; border: 2px solid #fff; transition: all 0.15s; }
+    .btn-ghost:hover { background: rgba(255,255,255,0.1); }
+
+    footer { background: var(--paper); border-top: 2px solid var(--ink); padding: 32px 24px; text-align: center; font-size: 0.78rem; color: var(--muted); }
+    footer a { color: var(--accent); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+    footer p + p { margin-top: 6px; }
+  </style>
+  <link rel="stylesheet" href="header.css">
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-main">
+    <div class="hero-kicker">Free Calculator · Updated 2026</div>
+    <h1>Savings Rate Calculator — <em>What Percentage</em> Are You Actually Saving?</h1>
+    <div class="hero-byline">By MoneyDecoded · Last updated April 2026 · 2-minute tool</div>
+    <p class="hero-lead">Enter your income and monthly expenses to instantly see your savings rate, how it compares to common benchmarks, and how much your savings could grow over time. No sign-up required.</p>
+  </div>
+  <div class="hero-aside">
+    <div class="aside-title">📊 Savings Rate Benchmarks</div>
+    <div class="aside-stat">
+      <div class="aside-stat-num">5%</div>
+      <div class="aside-stat-label">Average U.S. personal savings rate</div>
+    </div>
+    <div class="aside-stat">
+      <div class="aside-stat-num">15%</div>
+      <div class="aside-stat-label">Recommended for retirement (incl. employer match)</div>
+    </div>
+    <div class="aside-stat">
+      <div class="aside-stat-num">50%+</div>
+      <div class="aside-stat-label">FIRE movement target rate</div>
+    </div>
+    <div class="aside-note">Sources: U.S. Bureau of Economic Analysis, Fidelity. Benchmarks are general guidelines — your situation may vary.</div>
+  </div>
+</div>
+
+<div class="body-wrap">
+
+  <div class="calc-section">
+    <div class="sec-label">Savings Rate Calculator</div>
+    <div class="sec-title" style="margin-bottom:24px;">Calculate Your Personal Savings Rate</div>
+
+    <div class="calc-grid">
+      <div class="field">
+        <label>Gross Monthly Income</label>
+        <div class="input-wrap has-prefix">
+          <span class="input-prefix">$</span>
+          <input type="number" id="gross-income" value="6000" min="0" step="100" oninput="syncRange('gross-income','r-income')">
+        </div>
+        <input type="range" id="r-income" min="1000" max="30000" value="6000" step="100" oninput="syncInput('r-income','gross-income')">
+        <div class="field-hint">Before taxes — your total paycheck amount</div>
+      </div>
+      <div class="field">
+        <label>Monthly Take-Home Pay</label>
+        <div class="input-wrap has-prefix">
+          <span class="input-prefix">$</span>
+          <input type="number" id="take-home" value="4500" min="0" step="100" oninput="syncRange('take-home','r-takehome')">
+        </div>
+        <input type="range" id="r-takehome" min="500" max="25000" value="4500" step="100" oninput="syncInput('r-takehome','take-home')">
+        <div class="field-hint">After taxes and deductions</div>
+      </div>
+    </div>
+
+    <div class="calc-grid three">
+      <div class="field">
+        <label>Monthly Rent / Mortgage</label>
+        <div class="input-wrap has-prefix">
+          <span class="input-prefix">$</span>
+          <input type="number" id="housing" value="1500" min="0" step="50">
+        </div>
+      </div>
+      <div class="field">
+        <label>Monthly Food & Groceries</label>
+        <div class="input-wrap has-prefix">
+          <span class="input-prefix">$</span>
+          <input type="number" id="food" value="500" min="0" step="50">
+        </div>
+      </div>
+      <div class="field">
+        <label>Transportation / mo</label>
+        <div class="input-wrap has-prefix">
+          <span class="input-prefix">$</span>
+          <input type="number" id="transport" value="300" min="0" step="50">
+        </div>
+      </div>
+    </div>
+
+    <div class="calc-grid three">
+      <div class="field">
+        <label>Utilities & Bills / mo</label>
+        <div class="input-wrap has-prefix">
+          <span class="input-prefix">$</span>
+          <input type="number" id="utilities" value="200" min="0" step="50">
+        </div>
+      </div>
+      <div class="field">
+        <label>Subscriptions & Entertainment</label>
+        <div class="input-wrap has-prefix">
+          <span class="input-prefix">$</span>
+          <input type="number" id="entertainment" value="150" min="0" step="50">
+        </div>
+      </div>
+      <div class="field">
+        <label>Other Monthly Expenses</label>
+        <div class="input-wrap has-prefix">
+          <span class="input-prefix">$</span>
+          <input type="number" id="other" value="200" min="0" step="50">
+        </div>
+      </div>
+    </div>
+
+    <div class="calc-grid">
+      <div class="field">
+        <label>401(k) / Retirement Contributions / mo</label>
+        <div class="input-wrap has-prefix">
+          <span class="input-prefix">$</span>
+          <input type="number" id="retirement-contrib" value="300" min="0" step="50">
+        </div>
+        <div class="field-hint">Pre-tax contributions count toward your savings rate</div>
+      </div>
+      <div class="field">
+        <label>Expected Annual Return</label>
+        <div class="input-wrap has-suffix">
+          <input type="number" id="return-rate" value="7" min="1" max="15" step="0.1" oninput="syncRange('return-rate','r-return')">
+          <span class="input-suffix">%</span>
+        </div>
+        <input type="range" id="r-return" min="1" max="15" value="7" step="0.1" oninput="syncInput('r-return','return-rate')">
+        <div class="field-hint">Historical S&P 500 avg ~7% inflation-adjusted</div>
+      </div>
+    </div>
+
+    <button class="calc-btn" onclick="calculate()">Calculate My Savings Rate →</button>
+
+    <div class="results" id="results">
+      <div style="border-top: 2px solid var(--border); margin: 28px 0 24px;"></div>
+
+      <div class="result-grid">
+        <div class="result-cell highlight">
+          <div class="result-label">Your Savings Rate</div>
+          <div class="result-value" id="res-rate">—</div>
+          <div class="result-sub" id="res-rate-basis">of gross income</div>
+        </div>
+        <div class="result-cell highlight">
+          <div class="result-label">Monthly Savings</div>
+          <div class="result-value" id="res-monthly-savings">—</div>
+          <div class="result-sub">Estimated per month</div>
+        </div>
+        <div class="result-cell">
+          <div class="result-label">Annual Savings</div>
+          <div class="result-value" id="res-annual">—</div>
+          <div class="result-sub">Per year</div>
+        </div>
+        <div class="result-cell">
+          <div class="result-label">Monthly Expenses</div>
+          <div class="result-value" id="res-expenses">—</div>
+          <div class="result-sub">Total spending</div>
+        </div>
+        <div class="result-cell">
+          <div class="result-label">10-Year Growth</div>
+          <div class="result-value" id="res-10yr">—</div>
+          <div class="result-sub" id="res-10yr-sub">At selected return</div>
+        </div>
+        <div class="result-cell">
+          <div class="result-label">Benchmark</div>
+          <div class="result-value" id="res-benchmark" style="font-size:1rem;">—</div>
+          <div class="result-sub">vs. recommended 15%</div>
+        </div>
+      </div>
+
+      <!-- SAVINGS RATE METER -->
+      <div class="meter-wrap">
+        <div class="meter-label-row">
+          <span class="meter-title">Your Savings Rate</span>
+          <span class="meter-badge" id="meter-badge">—</span>
+        </div>
+        <div class="meter-bar-bg">
+          <div class="meter-bar-fill" id="meter-fill" style="width:0%;background:var(--accent);"></div>
+        </div>
+        <div class="meter-benchmarks">
+          <span>0%</span>
+          <span>5% (US avg)</span>
+          <span>15% (recommended)</span>
+          <span>30%</span>
+          <span>50%+ (FIRE)</span>
+        </div>
+      </div>
+
+      <!-- PROJECTION TABLE -->
+      <div style="font-size:0.72rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;">Growth Projection</div>
+      <div class="proj-wrap">
+        <table class="proj" id="proj-table"></table>
+      </div>
+      <div style="font-size:0.72rem;color:var(--muted);margin-bottom:20px;">Assumes consistent monthly savings and annual compounding at selected return rate.</div>
+
+      <div class="cta-block">
+        <a href="https://tools.moneydecoded.net/savings-goal-calculator.html" class="blog-cta-block">
+          <div class="blog-cta-icon">🎯</div>
+          <div>
+            <div class="blog-cta-label">Related Tool</div>
+            <div class="blog-cta-title">Savings Goal Calculator — How long to reach your target?</div>
+          </div>
+        </a>
+        <a href="https://tools.moneydecoded.net/budget-calculator.html" class="blog-cta-block">
+          <div class="blog-cta-icon">📊</div>
+          <div>
+            <div class="blog-cta-label">Related Tool</div>
+            <div class="blog-cta-title">50/30/20 Budget Calculator — Optimize your spending split</div>
+          </div>
+        </a>
+        <a href="https://tools.moneydecoded.net/compound-interest-calculator.html" class="blog-cta-block">
+          <div class="blog-cta-icon">📈</div>
+          <div>
+            <div class="blog-cta-label">Related Tool</div>
+            <div class="blog-cta-title">Compound Interest Calculator — See your savings grow over time</div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <hr class="rule" />
+
+  <div class="sec-label">Why It Matters</div>
+  <div class="sec-title">Your Savings Rate Is the Most Important Number in Personal Finance</div>
+  <p class="sec-body">Most people focus on how much they earn. But research consistently shows that your savings rate — the percentage of income you keep — predicts financial outcomes better than income alone. Two people earning the same salary can have wildly different net worths after 20 years, entirely based on how much of that income they save and invest.</p>
+
+  <div class="stat-strip">
+    <div class="stat-cell">
+      <div class="stat-num">~5%</div>
+      <div class="stat-lbl">Avg U.S. personal savings rate (2025)</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-num">$0</div>
+      <div class="stat-lbl">Emergency savings for 37% of Americans</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-num">25×</div>
+      <div class="stat-lbl">Annual expenses needed for financial independence</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-num">43 yrs</div>
+      <div class="stat-lbl">To retire at 5% savings rate (from age 25)</div>
+    </div>
+  </div>
+
+  <div class="sec-label">How to Save More</div>
+  <div class="sec-title">Practical Ways to Increase Your Savings Rate</div>
+  <div class="tip-grid">
+    <div class="tip-card">
+      <div class="tip-icon">🤖</div>
+      <div class="tip-title">Automate Before You Spend</div>
+      <div class="tip-desc">Set up automatic transfers on payday. Saving what's "left over" rarely works — savings need to happen first, automatically.</div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-icon">📉</div>
+      <div class="tip-title">Attack Your Biggest Expense</div>
+      <div class="tip-desc">Housing and transportation are typically 50–60% of spending. Reducing either one by 10% has more impact than cutting 10 smaller categories.</div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-icon">📈</div>
+      <div class="tip-title">Save Every Raise</div>
+      <div class="tip-desc">When income goes up, resist lifestyle inflation. Routing even half of each raise directly to savings is one of the highest-leverage moves in personal finance.</div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-icon">🏦</div>
+      <div class="tip-title">Max Out Tax-Advantaged Accounts First</div>
+      <div class="tip-desc">401(k), IRA, and HSA contributions reduce taxable income while building wealth. This is effectively a guaranteed return equal to your marginal tax rate.</div>
+    </div>
+  </div>
+
+  <hr class="rule" />
+
+  <div class="sec-label">Common Questions</div>
+  <div class="sec-title">Savings Rate FAQ</div>
+  <p class="sec-body" style="margin-bottom:24px;"></p>
+
+  <div class="faq-list">
+    <div class="fi">
+      <div class="fi-q" onclick="faq(this)">Should I calculate savings rate on gross or net income? <span class="fi-arr">▾</span></div>
+      <div class="fi-a">Both methods are valid — just be consistent. Gross income (before taxes) gives a lower savings rate number but is the standard used in most financial independence communities. Net income (after taxes) gives a higher number and is more reflective of your actual cash flow situation. This calculator shows both.</div>
+    </div>
+    <div class="fi">
+      <div class="fi-q" onclick="faq(this)">Do 401(k) contributions count toward my savings rate? <span class="fi-arr">▾</span></div>
+      <div class="fi-a">Yes. Pre-tax 401(k) contributions reduce your taxable income and build wealth — they absolutely count. In fact, they're often the most efficient form of savings because they reduce your tax bill while saving for retirement. Employer matching contributions are bonus savings on top of your rate.</div>
+    </div>
+    <div class="fi">
+      <div class="fi-q" onclick="faq(this)">What savings rate do I need to retire early? <span class="fi-arr">▾</span></div>
+      <div class="fi-a">It depends on your current age and target. A rough guide: at a 10% savings rate, retirement takes ~43 years from when you start. At 25%, about 32 years. At 50%, around 17 years. At 75%, roughly 7 years. The math follows from the 4% safe withdrawal rule and assumes a 7% real investment return.</div>
+    </div>
+    <div class="fi">
+      <div class="fi-q" onclick="faq(this)">Is 20% savings rate good? <span class="fi-arr">▾</span></div>
+      <div class="fi-a">20% is excellent by most standards. Fidelity recommends saving 15% of gross income for retirement (including employer match). At 20%, you're ahead of the curve. The average American saves around 5%, so 20% puts you in a strong position for long-term financial security.</div>
+    </div>
+    <div class="fi">
+      <div class="fi-q" onclick="faq(this)">Should I prioritize paying off debt or saving? <span class="fi-arr">▾</span></div>
+      <div class="fi-a">It depends on the interest rate. If debt carries a rate higher than your expected investment return (typically 7%), paying it off first is usually the better move — it's a guaranteed return equal to the interest rate. Exception: always capture employer 401(k) matching first, as that's a 50–100% instant return that no debt payoff can beat.</div>
+    </div>
+  </div>
+
+</div>
+
+<div class="bottom-banner">
+  <h2>Ready to Put Your Savings<br><span>to Work?</span></h2>
+  <p>See how your savings rate translates into long-term wealth with our compound interest and savings goal calculators.</p>
+  <div class="bottom-btns">
+    <a href="https://tools.moneydecoded.net/compound-interest-calculator.html" class="btn-primary">📈 Compound Interest Calculator</a>
+    <a href="https://tools.moneydecoded.net/savings-goal-calculator.html" class="btn-ghost">🎯 Savings Goal Calculator</a>
+  </div>
+</div>
+
+<footer>
+  <p>
+    <a href="https://www.moneydecoded.net">MoneyDecoded</a> &nbsp;·&nbsp;
+    <a href="https://tools.moneydecoded.net">Financial Calculators</a> &nbsp;·&nbsp;
+    <a href="https://tools.moneydecoded.net/budget-calculator.html">Budget Calculator</a> &nbsp;·&nbsp;
+    <a href="https://www.moneydecoded.net/p/about.html">About</a> &nbsp;·&nbsp;
+    <a href="https://www.moneydecoded.net/p/privacy-policy.html">Privacy Policy</a>
+  </p>
+  <p style="margin-top:8px;">This calculator is for informational purposes only and does not constitute financial advice.</p>
+  <p style="margin-top:6px;">© 2026 MoneyDecoded. All rights reserved.</p>
+</footer>
+
+<script>
+function fmt(n) {
+  if (n >= 1e6) return '$' + (n/1e6).toFixed(2) + 'M';
+  return '$' + Math.round(n).toLocaleString('en-US');
+}
+function syncRange(inputId, rangeId) {
+  document.getElementById(rangeId).value = document.getElementById(inputId).value;
+}
+function syncInput(rangeId, inputId) {
+  document.getElementById(inputId).value = document.getElementById(rangeId).value;
+}
+function faq(el) { el.parentElement.classList.toggle('open'); }
+
+function getMeterColor(rate) {
+  if (rate < 5)  return '#c0392b';
+  if (rate < 10) return '#e67e22';
+  if (rate < 15) return '#f1c40f';
+  if (rate < 25) return '#2d9966';
+  return '#1a4f2e';
+}
+
+function getBenchmarkText(rate) {
+  if (rate < 5)  return '⚠️ Below avg';
+  if (rate < 10) return '📊 Near avg';
+  if (rate < 15) return '👍 Getting there';
+  if (rate < 25) return '✅ Above target';
+  return '🔥 Excellent';
+}
+
+function buildProjTable(monthlySavings, annualReturn) {
+  const r = annualReturn / 100;
+  let balance = 0;
+  let totalContrib = 0;
+  let html = `<thead><tr>
+    <th>Year</th><th>Annual Savings</th><th>Total Contributed</th><th>Investment Growth</th><th>Total Balance</th>
+  </tr></thead><tbody>`;
+  const milestones = [1, 5, 10, 15, 20, 25, 30];
+  for (const yr of milestones) {
+    // FV of annuity: PMT * [((1+r)^n - 1) / r]
+    const annualSavings = monthlySavings * 12;
+    totalContrib = annualSavings * yr;
+    balance = annualSavings * ((Math.pow(1 + r, yr) - 1) / r);
+    const growth = balance - totalContrib;
+    const isMilestone = yr === 10 || yr === 20 || yr === 30;
+    html += `<tr${isMilestone ? ' class="milestone"' : ''}><td>${yr} yr${yr > 1 ? 's' : ''}</td><td>${fmt(annualSavings)}/yr</td><td>${fmt(totalContrib)}</td><td>${fmt(growth)}</td><td>${fmt(balance)}</td></tr>`;
+  }
+  html += '</tbody>';
+  return html;
+}
+
+function calculate() {
+  const gross      = parseFloat(document.getElementById('gross-income').value) || 0;
+  const takeHome   = parseFloat(document.getElementById('take-home').value) || 0;
+  const housing    = parseFloat(document.getElementById('housing').value) || 0;
+  const food       = parseFloat(document.getElementById('food').value) || 0;
+  const transport  = parseFloat(document.getElementById('transport').value) || 0;
+  const utilities  = parseFloat(document.getElementById('utilities').value) || 0;
+  const entertain  = parseFloat(document.getElementById('entertainment').value) || 0;
+  const other      = parseFloat(document.getElementById('other').value) || 0;
+  const retContrib = parseFloat(document.getElementById('retirement-contrib').value) || 0;
+  const returnRate = parseFloat(document.getElementById('return-rate').value) || 7;
+
+  const totalExpenses = housing + food + transport + utilities + entertain + other;
+  const monthlySavings = takeHome - totalExpenses + retContrib;
+  const annualSavings  = monthlySavings * 12;
+  const savingsRateGross = gross > 0 ? (monthlySavings / gross) * 100 : 0;
+
+  // 10-year projection
+  const r = returnRate / 100;
+  const balance10 = annualSavings * ((Math.pow(1 + r, 10) - 1) / r);
+
+  document.getElementById('res-rate').textContent = savingsRateGross.toFixed(1) + '%';
+  document.getElementById('res-monthly-savings').textContent = fmt(Math.max(0, monthlySavings));
+  document.getElementById('res-annual').textContent = fmt(Math.max(0, annualSavings));
+  document.getElementById('res-expenses').textContent = fmt(totalExpenses);
+  document.getElementById('res-10yr').textContent = fmt(Math.max(0, balance10));
+  document.getElementById('res-10yr-sub').textContent = 'At ' + returnRate + '% annual return';
+  document.getElementById('res-benchmark').textContent = getBenchmarkText(savingsRateGross);
+
+  // Meter
+  const meterPct = Math.min(100, (savingsRateGross / 50) * 100);
+  document.getElementById('meter-fill').style.width = meterPct + '%';
+  document.getElementById('meter-fill').style.background = getMeterColor(savingsRateGross);
+  document.getElementById('meter-badge').textContent = savingsRateGross.toFixed(1) + '%';
+
+  // Projection table
+  document.getElementById('proj-table').innerHTML = buildProjTable(Math.max(0, monthlySavings), returnRate);
+
+  document.getElementById('results').classList.add('visible');
+  document.getElementById('results').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+</script>
+<script src="header.js"></script>
+</body>
+</html>
