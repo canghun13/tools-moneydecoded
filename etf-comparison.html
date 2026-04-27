@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ETF Comparison Tool 2026 — Compare ETFs by Return, Fees & Performance | MoneyDecoded</title>
+  <meta name="description" content="Free ETF comparison tool. Compare up to 4 ETFs by return, expense ratio, dividend yield and net performance. Updated 2026." />
+  <link rel="icon" href="/favicon.ico">
+  <link rel="canonical" href="https://tools.moneydecoded.net/etf-comparison.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="header.css">
+  <style>
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #f7f6f2;
+    --surface: #ffffff;
+    --border: #e8e6e0;
+    --text: #1a1917;
+    --muted: #8a8880;
+    --accent: #1a6b4a;
+    --accent-light: #e8f4ee;
+    --accent-mid: #2d9966;
+    --mono: 'DM Mono', monospace;
+    --sans: 'DM Sans', sans-serif;
+    --radius: 12px;
+    --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04);
+    --wise-blue: #163300;
+    --wise-green: #9fe870;
+  }
+
+  body {
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  header {
+    padding: 28px 40px 24px;
+    border-bottom: 1px solid var(--border);
+    background: var(--surface);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .logo-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+  .logo-text {
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: var(--muted);
+    flex: 1;
+  }
+  .logo-text span { color: var(--text); }
+
+  .blog-link {
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--accent);
+    text-decoration: none;
+    border: 1px solid var(--accent);
+    padding: 6px 14px;
+    border-radius: 100px;
+    transition: background 0.15s, color 0.15s;
+    white-space: nowrap;
+  }
+  .blog-link:hover {
+    background: var(--accent);
+    color: #fff;
+  }
+
+  nav {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 0 40px;
+    display: flex;
+    gap: 0;
+    overflow-x: auto;
+  }
+  nav button {
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--muted);
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    padding: 14px 20px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: color 0.15s, border-color 0.15s;
+  }
+  nav button:hover { color: var(--text); }
+  nav button.active {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+    font-weight: 500;
+  }
+
+  /* Remittance nav link — styled as button but navigates */
+  nav a.nav-link {
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--muted);
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    padding: 14px 20px;
+    cursor: pointer;
+    white-space: nowrap;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: color 0.15s, border-color 0.15s;
+  }
+  nav a.nav-link:hover { color: var(--text); }
+  nav a.nav-link .nav-badge {
+    font-size: 10px;
+    font-weight: 600;
+    background: var(--wise-green);
+    color: var(--wise-blue);
+    padding: 2px 6px;
+    border-radius: 100px;
+    letter-spacing: 0.03em;
+  }
+
+  main {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 40px 24px 80px;
+  }
+
+  .calc { display: none; }
+  .calc.active { display: block; }
+
+  .calc-header { margin-bottom: 32px; }
+  .calc-tag {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: var(--accent-light);
+    padding: 4px 10px;
+    border-radius: 100px;
+    margin-bottom: 12px;
+  }
+  .calc-title {
+    font-size: 26px;
+    font-weight: 300;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    line-height: 1.2;
+  }
+  .calc-desc {
+    margin-top: 8px;
+    font-size: 14px;
+    color: var(--muted);
+    font-weight: 300;
+  }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 28px;
+    box-shadow: var(--shadow);
+    margin-bottom: 16px;
+  }
+
+  .field-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+  .field-group.single { grid-template-columns: 1fr; }
+  .field-group.three { grid-template-columns: 1fr 1fr 1fr; }
+
+  .field label {
+    display: block;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 8px;
+  }
+  .input-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  .input-prefix, .input-suffix {
+    position: absolute;
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--muted);
+    pointer-events: none;
+  }
+  .input-prefix { left: 12px; }
+  .input-suffix { right: 12px; }
+
+  input[type="number"], input[type="text"], select {
+    width: 100%;
+    padding: 10px 14px;
+    font-family: var(--mono);
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--text);
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    outline: none;
+    transition: border-color 0.15s, background 0.15s;
+    -moz-appearance: textfield;
+  }
+  input[type="number"]::-webkit-outer-spin-button,
+  input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; }
+  input[type="number"]:focus, select:focus {
+    border-color: var(--accent-mid);
+    background: var(--surface);
+  }
+  .has-prefix input { padding-left: 28px; }
+  .has-suffix input { padding-right: 32px; }
+
+  .btn {
+    width: 100%;
+    padding: 13px;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-family: var(--sans);
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    letter-spacing: 0.01em;
+    transition: background 0.15s, transform 0.1s;
+    margin-top: 4px;
+  }
+  .btn:hover { background: #155c3e; }
+  .btn:active { transform: scale(0.99); }
+
+  .result-card {
+    background: var(--accent-light);
+    border: 1px solid #c8e8d8;
+    border-radius: var(--radius);
+    padding: 24px 28px;
+    margin-top: 16px;
+    display: none;
+  }
+  .result-card.visible { display: block; }
+  .result-label {
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin-bottom: 6px;
+  }
+  .result-main {
+    font-family: var(--mono);
+    font-size: 32px;
+    font-weight: 500;
+    color: var(--accent);
+    letter-spacing: -0.02em;
+    line-height: 1;
+    margin-bottom: 16px;
+  }
+  .result-breakdown {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 12px;
+    padding-top: 16px;
+    border-top: 1px solid #c8e8d8;
+  }
+  .result-item-label {
+    font-size: 11px;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 3px;
+    opacity: 0.7;
+  }
+  .result-item-value {
+    font-family: var(--mono);
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--accent);
+  }
+
+  /* ── Wise CTA ── */
+  .wise-cta {
+    display: none;
+    margin-top: 12px;
+    border-radius: var(--radius);
+    overflow: hidden;
+    text-decoration: none;
+    transition: transform 0.15s, box-shadow 0.15s;
+    box-shadow: var(--shadow);
+  }
+  .wise-cta:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.10);
+  }
+  .wise-cta.visible { display: block; }
+
+  .wise-cta-inner {
+    background: #163300;
+    padding: 18px 22px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .wise-logo {
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    background: #9fe870;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 500;
+    color: #163300;
+    letter-spacing: -0.02em;
+  }
+  .wise-cta-text { flex: 1; }
+  .wise-cta-label {
+    font-size: 11px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #9fe870;
+    margin-bottom: 3px;
+    opacity: 0.8;
+  }
+  .wise-cta-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: #ffffff;
+    line-height: 1.3;
+  }
+  .wise-cta-arrow {
+    font-size: 18px;
+    color: #9fe870;
+    flex-shrink: 0;
+  }
+  .wise-cta-sub {
+    background: #1e4200;
+    padding: 8px 22px;
+    font-size: 12px;
+    color: #9fe870;
+    opacity: 0.75;
+  }
+
+  /* Remittance promo banner — shown on all calc tabs */
+  .remittance-banner {
+    display: none;
+    margin-top: 12px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px 20px;
+    align-items: center;
+    gap: 14px;
+    text-decoration: none;
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+  .remittance-banner:hover {
+    border-color: var(--accent-mid);
+    box-shadow: var(--shadow);
+  }
+  .remittance-banner.visible { display: flex; }
+  .rb-icon { font-size: 20px; flex-shrink: 0; }
+  .rb-text { flex: 1; }
+  .rb-label {
+    font-size: 11px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    margin-bottom: 2px;
+  }
+  .rb-title {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text);
+    line-height: 1.3;
+  }
+  .rb-arrow { font-size: 16px; color: var(--accent); flex-shrink: 0; }
+
+  /* Blog CTA banner */
+  .blog-cta {
+    display: none;
+    margin-top: 12px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 18px 22px;
+    align-items: center;
+    gap: 16px;
+    text-decoration: none;
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+  .blog-cta:hover {
+    border-color: var(--accent-mid);
+    box-shadow: var(--shadow);
+  }
+  .blog-cta.visible { display: flex; }
+  .blog-cta-icon { font-size: 22px; flex-shrink: 0; }
+  .blog-cta-text { flex: 1; }
+  .blog-cta-label {
+    font-size: 11px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    margin-bottom: 3px;
+  }
+  .blog-cta-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text);
+    line-height: 1.3;
+  }
+  .blog-cta-arrow { font-size: 18px; color: var(--accent); flex-shrink: 0; }
+
+  /* ETF */
+  .etf-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: var(--mono);
+    font-size: 13px;
+    margin-top: 16px;
+  }
+  .etf-table th {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    font-weight: 500;
+    font-family: var(--sans);
+    padding: 8px 12px;
+    text-align: right;
+    border-bottom: 1px solid var(--border);
+  }
+  .etf-table th:first-child { text-align: left; }
+  .etf-table td {
+    padding: 12px 12px;
+    border-bottom: 1px solid var(--border);
+    text-align: right;
+  }
+  .etf-table td:first-child { text-align: left; font-family: var(--sans); font-weight: 500; }
+  .etf-table tr:last-child td { border-bottom: none; }
+  .etf-table .best { color: var(--accent); font-weight: 500; }
+  .etf-table .ticker {
+    display: inline-block;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 1px 7px;
+    font-size: 12px;
+    color: var(--muted);
+    margin-left: 4px;
+  }
+
+  .add-row-btn {
+    background: none;
+    border: 1px dashed var(--border);
+    border-radius: 8px;
+    padding: 10px;
+    width: 100%;
+    font-family: var(--sans);
+    font-size: 13px;
+    color: var(--muted);
+    cursor: pointer;
+    transition: border-color 0.15s, color 0.15s;
+    margin-top: 8px;
+  }
+  .add-row-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+  .etf-row { display: grid; grid-template-columns: 80px 1fr 1fr 1fr auto; gap: 10px; align-items: end; margin-bottom: 10px; }
+  .etf-row .remove-btn {
+    background: none;
+    border: none;
+    color: var(--muted);
+    cursor: pointer;
+    font-size: 16px;
+    padding: 10px 6px;
+    line-height: 1;
+    transition: color 0.15s;
+  }
+  .etf-row .remove-btn:hover { color: #c0392b; }
+
+  .divider { height: 1px; background: var(--border); margin: 24px 0; }
+
+  footer {
+    text-align: center;
+    padding: 24px;
+    font-size: 12px;
+    color: var(--muted);
+    border-top: 1px solid var(--border);
+    margin-top: 40px;
+  }
+  footer a { color: var(--accent); text-decoration: none; }
+
+  @media (max-width: 600px) {
+    header { padding: 20px 20px 16px; }
+    nav { padding: 0 20px; }
+    main { padding: 28px 16px 60px; }
+    .field-group { grid-template-columns: 1fr; }
+    .field-group.three { grid-template-columns: 1fr 1fr; }
+    .result-main { font-size: 26px; }
+    .etf-row { grid-template-columns: 70px 1fr 1fr; }
+    .etf-row .field:nth-child(4), .etf-row .remove-btn { display: none; }
+    .blog-cta { flex-direction: column; gap: 10px; }
+    .wise-cta-inner { gap: 12px; }
+    .remittance-banner { flex-direction: column; gap: 10px; }
+  }
+
+  </style>
+</head>
+<body>
+
+<script src="header.js"></script>
+
+<main>
+  <div class="calc active" id="calc-etf">
+    <div class="calc-header">
+      <div class="calc-tag">ETF Comparison</div>
+      <h1 class="calc-title">Which ETF performs<br>better after fees?</h1>
+      <p class="calc-desc">Compare up to 4 ETFs by return, expense ratio, and net performance.</p>
+    </div>
+    <div class="card">
+      <div style="margin-bottom:8px">
+        <div style="display:grid;grid-template-columns:80px 1fr 1fr 1fr auto;gap:10px;margin-bottom:6px">
+          <div style="font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:0.06em;color:var(--muted)">Ticker</div>
+          <div style="font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:0.06em;color:var(--muted)">Annual Return</div>
+          <div style="font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:0.06em;color:var(--muted)">Expense Ratio</div>
+          <div style="font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:0.06em;color:var(--muted)">Dividend Yield</div>
+          <div></div>
+        </div>
+        <div id="etf-rows">
+          <div class="etf-row">
+            <div class="field"><div class="input-wrap"><input type="text" placeholder="VOO" style="text-transform:uppercase"></div></div>
+            <div class="field"><div class="input-wrap has-suffix"><input type="number" value="10.2" step="0.1"><span class="input-suffix">%</span></div></div>
+            <div class="field"><div class="input-wrap has-suffix"><input type="number" value="0.03" step="0.01"><span class="input-suffix">%</span></div></div>
+            <div class="field"><div class="input-wrap has-suffix"><input type="number" value="1.4" step="0.1"><span class="input-suffix">%</span></div></div>
+            <button class="remove-btn" onclick="removeRow(this)">×</button>
+          </div>
+          <div class="etf-row">
+            <div class="field"><div class="input-wrap"><input type="text" placeholder="QQQ" style="text-transform:uppercase"></div></div>
+            <div class="field"><div class="input-wrap has-suffix"><input type="number" value="12.1" step="0.1"><span class="input-suffix">%</span></div></div>
+            <div class="field"><div class="input-wrap has-suffix"><input type="number" value="0.20" step="0.01"><span class="input-suffix">%</span></div></div>
+            <div class="field"><div class="input-wrap has-suffix"><input type="number" value="0.6" step="0.1"><span class="input-suffix">%</span></div></div>
+            <button class="remove-btn" onclick="removeRow(this)">×</button>
+          </div>
+          <div class="etf-row">
+            <div class="field"><div class="input-wrap"><input type="text" placeholder="VTI" style="text-transform:uppercase"></div></div>
+            <div class="field"><div class="input-wrap has-suffix"><input type="number" value="9.8" step="0.1"><span class="input-suffix">%</span></div></div>
+            <div class="field"><div class="input-wrap has-suffix"><input type="number" value="0.03" step="0.01"><span class="input-suffix">%</span></div></div>
+            <div class="field"><div class="input-wrap has-suffix"><input type="number" value="1.5" step="0.1"><span class="input-suffix">%</span></div></div>
+            <button class="remove-btn" onclick="removeRow(this)">×</button>
+          </div>
+        </div>
+        <button class="add-row-btn" onclick="addRow()">+ Add ETF</button>
+      </div>
+      <div class="divider"></div>
+      <div class="field-group">
+        <div class="field">
+          <label>Investment Amount</label>
+          <div class="input-wrap has-prefix">
+            <span class="input-prefix">$</span>
+            <input type="number" id="etf-amount" value="10000">
+          </div>
+        </div>
+        <div class="field">
+          <label>Time Horizon (years)</label>
+          <div class="input-wrap">
+            <input type="number" id="etf-years" value="10" min="1" max="50">
+          </div>
+        </div>
+      </div>
+      <button class="btn" onclick="calcETF()">Compare →</button>
+    </div>
+
+    <div class="result-card" id="etf-result" style="display:none">
+      <div class="result-label">Comparison Results</div>
+      <div id="etf-table-wrap"></div>
+    </div>
+
+    <a href="https://wise.prf.hn/click/camref:1110lEKgS" class="wise-cta" id="etf-wise" target="_blank" rel="noopener">
+      <div class="wise-cta-inner">
+        <div class="wise-logo">W</div>
+        <div class="wise-cta-text">
+          <div class="wise-cta-label">Sponsored · Wise</div>
+          <div class="wise-cta-title">Investing globally? Transfer funds internationally at the real exchange rate</div>
+        </div>
+        <div class="wise-cta-arrow">→</div>
+      </div>
+      <div class="wise-cta-sub">Mid-market rate · No hidden fees · 50+ currencies</div>
+    </a>
+
+    <a href="/remittance-compare.html" class="remittance-banner" id="etf-remittance">
+      <div class="rb-icon">🌍</div>
+      <div class="rb-text">
+        <div class="rb-label">Free tool</div>
+        <div class="rb-title">Buying global ETFs? Don't lose gains to FX fees — compare international transfer costs</div>
+      </div>
+      <div class="rb-arrow">→</div>
+    </a>
+
+
+
+    <a href="https://www.moneydecoded.net/search/label/Etfs" class="blog-cta" id="etf-cta">
+      <div class="blog-cta-icon">📊</div>
+      <div class="blog-cta-text">
+        <div class="blog-cta-label">From the blog</div>
+        <div class="blog-cta-title">ETF investing explained — how to pick the right fund for your goals</div>
+      </div>
+      <div class="blog-cta-arrow">→</div>
+    </a>
+  </div>
+</main>
+
+<footer>
+  Part of <a href="https://moneydecoded.net">moneydecoded.net</a> — for informational purposes only, not financial advice.
+</footer>
+
+<script>
+
+function fmt(n) {
+  if (n >= 1e6) return '$' + (n/1e6).toFixed(2) + 'M';
+  return '$' + n.toLocaleString('en-US', {minimumFractionDigits: 0, maximumFractionDigits: 0});
+}
+function fmtPct(n) { return (n >= 0 ? '+' : '') + n.toFixed(1) + '%'; }
+
+function switchTab(id, btn) {
+  document.querySelectorAll('.calc').forEach(c => c.classList.remove('active'));
+  document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+  document.getElementById('calc-' + id).classList.add('active');
+  btn.classList.add('active');
+}
+
+function showWise(id) {
+  const el = document.getElementById(id);
+  if (el) el.classList.add('visible');
+}
+
+function showRemittance(id) {
+  const el = document.getElementById(id);
+  if (el) el.classList.add('visible');
+}
+
+
+function calcCompound() {
+  const P = parseFloat(document.getElementById('ci-principal').value) || 0;
+  const m = parseFloat(document.getElementById('ci-monthly').value) || 0;
+  const r = parseFloat(document.getElementById('ci-rate').value) / 100;
+  const t = parseInt(document.getElementById('ci-years').value) || 1;
+  const n = parseInt(document.getElementById('ci-freq').value);
+
+  const rn = r / n;
+  const nt = n * t;
+  const FV_principal = P * Math.pow(1 + rn, nt);
+  const FV_contributions = m * (Math.pow(1 + rn, nt) - 1) / rn;
+  const FV = FV_principal + FV_contributions;
+  const invested = P + m * 12 * t;
+  const earned = FV - invested;
+  const growth = ((FV / invested) - 1) * 100;
+
+  document.getElementById('ci-fv').textContent = fmt(FV);
+  document.getElementById('ci-invested').textContent = fmt(invested);
+  document.getElementById('ci-earned').textContent = fmt(earned);
+  document.getElementById('ci-growth').textContent = fmtPct(growth);
+  document.getElementById('ci-result').classList.add('visible');
+  showWise('ci-wise');
+  showRemittance('ci-remittance');
+
+  document.getElementById('ci-cta').classList.add('visible');
+}
+
+function calcLoan() {
+  const P = parseFloat(document.getElementById('loan-amount').value) || 0;
+  const r = parseFloat(document.getElementById('loan-rate').value) / 100 / 12;
+  const n = parseInt(document.getElementById('loan-years').value) * 12;
+  const extra = parseFloat(document.getElementById('loan-extra').value) || 0;
+
+  const base = r === 0 ? P / n : P * r * Math.pow(1+r, n) / (Math.pow(1+r, n) - 1);
+  const monthly = base + extra;
+
+  let balance = P, months = 0, totalPaid = 0;
+  while (balance > 0 && months < 600) {
+    const interest = balance * r;
+    const payment = Math.min(monthly, balance + interest);
+    balance = balance + interest - payment;
+    totalPaid += payment;
+    months++;
+  }
+  const totalInterest = totalPaid - P;
+  const totalBase = base * n;
+  const savedInterest = (totalBase - P) - totalInterest;
+
+  const payoffDate = new Date();
+  payoffDate.setMonth(payoffDate.getMonth() + months);
+  const payoffStr = payoffDate.toLocaleDateString('en-US', {month:'short', year:'numeric'});
+
+  document.getElementById('loan-monthly').textContent = fmt(monthly);
+  document.getElementById('loan-total').textContent = fmt(totalPaid);
+  document.getElementById('loan-interest').textContent = fmt(totalInterest);
+  document.getElementById('loan-payoff').textContent = payoffStr;
+  document.getElementById('loan-saved').textContent = extra > 0 ? fmt(savedInterest) : '—';
+  document.getElementById('loan-result').classList.add('visible');
+  showWise('loan-wise');
+  showRemittance('loan-remittance');
+
+  document.getElementById('loan-cta').classList.add('visible');
+}
+
+function calcSavings() {
+  const goal = parseFloat(document.getElementById('sv-goal').value) || 0;
+  const current = parseFloat(document.getElementById('sv-current').value) || 0;
+  const years = parseInt(document.getElementById('sv-years').value) || 1;
+  const rate = parseFloat(document.getElementById('sv-rate').value) / 100;
+
+  const n = years * 12;
+  const r = rate / 12;
+  const FV_current = current * Math.pow(1 + r, n);
+  const remaining = goal - FV_current;
+  const monthly = remaining <= 0 ? 0 : (remaining * r) / (Math.pow(1+r, n) - 1);
+
+  const contributed = current + monthly * n;
+  const finalAmount = FV_current + (r === 0 ? monthly * n : monthly * (Math.pow(1+r,n)-1)/r);
+  const returns = finalAmount - contributed;
+
+  document.getElementById('sv-monthly').textContent = monthly <= 0 ? 'Already on track!' : fmt(monthly);
+  document.getElementById('sv-contributed').textContent = fmt(contributed);
+  document.getElementById('sv-returns').textContent = fmt(Math.max(0, returns));
+  document.getElementById('sv-final').textContent = fmt(finalAmount);
+  document.getElementById('sv-result').classList.add('visible');
+  showWise('sv-wise');
+  showRemittance('sv-remittance');
+
+  document.getElementById('sv-cta').classList.add('visible');
+}
+
+function addRow() {
+  const rows = document.getElementById('etf-rows');
+  if (rows.children.length >= 4) return;
+  const div = document.createElement('div');
+  div.className = 'etf-row';
+  div.innerHTML = `
+    <div class="field"><div class="input-wrap"><input type="text" placeholder="SPY" style="text-transform:uppercase"></div></div>
+    <div class="field"><div class="input-wrap has-suffix"><input type="number" value="9.5" step="0.1"><span class="input-suffix">%</span></div></div>
+    <div class="field"><div class="input-wrap has-suffix"><input type="number" value="0.09" step="0.01"><span class="input-suffix">%</span></div></div>
+    <div class="field"><div class="input-wrap has-suffix"><input type="number" value="1.2" step="0.1"><span class="input-suffix">%</span></div></div>
+    <button class="remove-btn" onclick="removeRow(this)">×</button>`;
+  rows.appendChild(div);
+}
+
+function removeRow(btn) {
+  const rows = document.getElementById('etf-rows');
+  if (rows.children.length <= 2) return;
+  btn.closest('.etf-row').remove();
+}
+
+function calcETF() {
+  const amount = parseFloat(document.getElementById('etf-amount').value) || 10000;
+  const years = parseInt(document.getElementById('etf-years').value) || 10;
+  const rows = document.querySelectorAll('#etf-rows .etf-row');
+
+  const etfs = Array.from(rows).map(row => {
+    const inputs = row.querySelectorAll('input');
+    return {
+      ticker: inputs[0].value.toUpperCase() || '—',
+      ret: parseFloat(inputs[1].value) / 100 || 0,
+      exp: parseFloat(inputs[2].value) / 100 || 0,
+      div: parseFloat(inputs[3].value) / 100 || 0,
+    };
+  });
+
+  etfs.forEach(e => {
+    e.net = e.ret - e.exp;
+    e.fv = amount * Math.pow(1 + e.net, years);
+    e.gain = e.fv - amount;
+    e.total = e.net + e.div;
+  });
+
+  const bestFV = Math.max(...etfs.map(e => e.fv));
+
+  let html = `<table class="etf-table">
+    <thead><tr>
+      <th>ETF</th><th>Net Return</th><th>Total Yield</th><th>Future Value</th><th>Gain</th>
+    </tr></thead><tbody>`;
+
+  etfs.forEach(e => {
+    const best = e.fv === bestFV;
+    html += `<tr>
+      <td>${e.ticker}<span class="ticker">${(e.exp*100).toFixed(2)}% fee</span></td>
+      <td class="${best?'best':''}">${(e.net*100).toFixed(2)}%</td>
+      <td class="${best?'best':''}">${(e.total*100).toFixed(2)}%</td>
+      <td class="${best?'best':''}">${fmt(e.fv)}${best?' ★':''}</td>
+      <td class="${best?'best':''}">${fmt(e.gain)}</td>
+    </tr>`;
+  });
+  html += '</tbody></table>';
+
+  document.getElementById('etf-table-wrap').innerHTML = html;
+  document.getElementById('etf-result').style.display = 'block';
+  showWise('etf-wise');
+  showRemittance('etf-remittance');
+
+  document.getElementById('etf-cta').classList.add('visible');
+}
+
+</script>
+</body>
+</html>
