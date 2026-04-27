@@ -40,19 +40,6 @@
     line-height: 1.6;
   }
 
-  header {
-    padding: 28px 40px 24px;
-    border-bottom: 1px solid var(--border);
-    background: var(--surface);
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-  .logo-dot {
-    width: 8px; height: 8px;
-    border-radius: 50%;
-    background: var(--accent);
-  }
   .logo-text {
     font-family: var(--mono);
     font-size: 13px;
@@ -80,14 +67,6 @@
     color: #fff;
   }
 
-  nav {
-    background: var(--surface);
-    border-bottom: 1px solid var(--border);
-    padding: 0 40px;
-    display: flex;
-    gap: 0;
-    overflow-x: auto;
-  }
   nav button {
     font-family: var(--sans);
     font-size: 13px;
@@ -109,33 +88,6 @@
   }
 
   /* Remittance nav link — styled as button but navigates */
-  nav a.nav-link {
-    font-family: var(--sans);
-    font-size: 13px;
-    font-weight: 400;
-    color: var(--muted);
-    background: none;
-    border: none;
-    border-bottom: 2px solid transparent;
-    padding: 14px 20px;
-    cursor: pointer;
-    white-space: nowrap;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    transition: color 0.15s, border-color 0.15s;
-  }
-  nav a.nav-link:hover { color: var(--text); }
-  nav a.nav-link .nav-badge {
-    font-size: 10px;
-    font-weight: 600;
-    background: var(--wise-green);
-    color: var(--wise-blue);
-    padding: 2px 6px;
-    border-radius: 100px;
-    letter-spacing: 0.03em;
-  }
 
   main {
     max-width: 720px;
@@ -524,7 +476,6 @@
   footer a { color: var(--accent); text-decoration: none; }
 
   @media (max-width: 600px) {
-    header { padding: 20px 20px 16px; }
     nav { padding: 0 20px; }
     main { padding: 28px 16px 60px; }
     .field-group { grid-template-columns: 1fr; }
