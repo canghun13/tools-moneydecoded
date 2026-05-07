@@ -13,11 +13,6 @@
     :root{--bg:#f7f5f0;--paper:#fff;--ink:#1a1a1a;--ink2:#4a4a4a;--muted:#888;--border:#e2ddd6;--accent:#1a4f2e;--accent-l:#e8f5ee;--accent-mid:#2d9966;--wise:#9fe870;--wise-dk:#163300;--rule:#d5cfc6;--mono:'DM Mono',monospace;}
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
     body{background:var(--bg);color:var(--ink);font-family:'DM Sans',sans-serif;font-size:15px;line-height:1.7;}
-    .disclosure{background:#fffbea;border-bottom:1px solid #e5d96a;padding:8px 20px;font-size:.72rem;color:#7a6a00;text-align:center;}
-    .nav{background:var(--ink);padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:52px;}
-    .nav-logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.1rem;color:#fff;text-decoration:none;}
-    .nav-logo span{color:var(--wise);}
-    .nav-link{font-size:.8rem;color:#aaa;text-decoration:none;transition:color .2s;}
     .nav-link:hover{color:#fff;}
     .hero{max-width:960px;margin:0 auto;padding:56px 24px 40px;display:grid;grid-template-columns:1fr 300px;gap:48px;align-items:start;}
     @media(max-width:720px){.hero{grid-template-columns:1fr}.hero-aside{display:none}}
@@ -83,13 +78,11 @@
     .info-box{background:var(--accent-l);border:1.5px solid var(--accent);border-radius:4px;padding:16px 20px;font-size:.85rem;color:var(--ink2);margin-bottom:20px;}
     .info-box strong{color:var(--accent);}
     
-    footer{background:var(--ink);color:#666;text-align:center;padding:32px 24px;font-size:.78rem;}
-    footer a{color:#888;text-decoration:none;}
   </style>
 </head>
 <body>
 
-<div class="disclosure">This calculator provides estimates only. Actual withholding may vary. Consult a tax professional for personalized advice.</div>
+
 
 
 
@@ -324,7 +317,15 @@
 </div>
 
 <footer>
-  <p>© 2026 MoneyDecoded · <a href="https://www.moneydecoded.net/p/privacy-policy.html">Privacy Policy</a> · For informational purposes only. Not tax advice.</p>
+  <p>
+    <a href="https://www.moneydecoded.net">MoneyDecoded</a> &nbsp;·&nbsp;
+    <a href="https://tools.moneydecoded.net">Financial Calculators</a> &nbsp;·&nbsp;
+    <a href="https://tools.moneydecoded.net/remittance-compare.html">Wire Transfer Tool</a> &nbsp;·&nbsp;
+    <a href="https://www.moneydecoded.net/p/about.html">About</a> &nbsp;·&nbsp;
+    <a href="https://www.moneydecoded.net/p/privacy-policy.html">Privacy Policy</a>
+  </p>
+  <p style="margin-top:8px;">This calculator is for informational purposes only and does not constitute financial advice.</p>
+  <p style="margin-top:6px;">© 2026 MoneyDecoded. All rights reserved.</p>
 </footer>
 
 <script>
