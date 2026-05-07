@@ -15,6 +15,7 @@
     { label: 'Tax Bracket',       href: 'tax-bracket-calculator.html' },
     { label: '50/30/20 Budget',   href: 'budget-calculator.html' },
     { label: 'Savings Rate',       href: 'savings-rate-calculator.html' },
+    { label: 'Paycheck',          href: 'paycheck-calculator.html' },
   ];
 
   const COMPARE = [
