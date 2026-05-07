@@ -318,7 +318,7 @@ header {
   .md-hamburger { display: flex; margin-left: auto; }
 }
 
-/* Section prose — content blocks on tool pages */
+/* Section prose */
 .section-prose{max-width:960px;margin:0 auto;padding:0 24px 60px;}
 .section-prose h2{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;margin:32px 0 12px;letter-spacing:-.5px;}
 .section-prose p{color:#4a4a4a;margin-bottom:16px;line-height:1.75;font-size:.95rem;}
