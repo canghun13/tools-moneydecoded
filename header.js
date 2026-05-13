@@ -6,6 +6,7 @@
     { label: '401(k)',            href: '401k-calculator.html' },
     { label: 'Compound Interest', href: 'compound-interest-calculator.html' },
     { label: 'Loan Repayment',    href: 'loan-repayment-calculator.html' },
+    { label: 'Student Loan',      href: 'student-loan-calculator.html' },
     { label: 'Savings Goal',      href: 'savings-goal-calculator.html' },
     { label: 'Inflation',         href: 'inflation-calculator.html' },
     { label: 'Net Worth',         href: 'net-worth-calculator.html' },
