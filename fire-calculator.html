@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FIRE Calculator 2026 — How Much Do You Need to Retire Early? | MoneyDecoded</title>
+  <meta name="description" content="Free FIRE calculator. Find your Financial Independence number, retirement age, and how long your savings will last. Updated 2026." />
+  <link rel="icon" href="/favicon.ico">
+  <link rel="canonical" href="https://tools.moneydecoded.net/fire-calculator.html" />
+  <meta property="og:title" content="FIRE Calculator 2026 — How Much Do You Need to Retire Early? | MoneyDecoded" />
+  <meta property="og:description" content="Free FIRE calculator. Find your Financial Independence number, retirement age, and how long your savings will last. Updated 2026." />
+  <meta property="og:url" content="https://tools.moneydecoded.net/fire-calculator.html" />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="header.css">
+  <style>
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #f7f6f2;
+    --surface: #ffffff;
+    --border: #e8e6e0;
+    --text: #1a1917;
+    --muted: #8a8880;
+    --accent: #1a6b4a;
+    --accent-light: #e8f4ee;
+    --accent-mid: #2d9966;
+    --mono: 'DM Mono', monospace;
+    --sans: 'DM Sans', sans-serif;
+    --radius: 12px;
+    --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04);
+  }
+
+  body {
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  main {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 40px 24px 80px;
+  }
+
+  .calc-header { margin-bottom: 32px; }
+  .calc-tag {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: var(--accent-light);
+    padding: 4px 10px;
+    border-radius: 100px;
+    margin-bottom: 12px;
+  }
+  .calc-title {
+    font-size: 26px;
+    font-weight: 300;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    line-height: 1.2;
+  }
+  .calc-desc {
+    margin-top: 8px;
+    font-size: 14px;
+    color: var(--muted);
+    font-weight: 300;
+  }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 28px;
+    box-shadow: var(--shadow);
+    margin-bottom: 16px;
+  }
+
+  .field-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+  .field-group.three { grid-template-columns: 1fr 1fr 1fr; }
+
+  .field label {
+    display: block;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 8px;
+  }
+  .input-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  .input-prefix, .input-suffix {
+    position: absolute;
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--muted);
+    pointer-events: none;
+  }
+  .input-prefix { left: 12px; }
+  .input-suffix { right: 12px; }
+
+  input[type="number"], select {
+    width: 100%;
+    padding: 10px 14px;
+    font-family: var(--mono);
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--text);
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    outline: none;
+    transition: border-color 0.15s, background 0.15s;
+    -moz-appearance: textfield;
+  }
+  input[type="number"]::-webkit-outer-spin-button,
+  input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; }
+  input[type="number"]:focus { border-color: var(--accent-mid); background: var(--surface); }
+  .has-prefix input { padding-left: 28px; }
+  .has-suffix input { padding-right: 32px; }
+
+  .btn {
+    width: 100%;
+    padding: 13px;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-family: var(--sans);
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    letter-spacing: 0.01em;
+    transition: background 0.15s, transform 0.1s;
+    margin-top: 4px;
+  }
+  .btn:hover { background: #155c3e; }
+  .btn:active { transform: scale(0.99); }
+
+  .result-card {
+    background: var(--accent-light);
+    border: 1px solid #c8e8d8;
+    border-radius: var(--radius);
+    padding: 24px 28px;
+    margin-top: 16px;
+    display: none;
+  }
+  .result-card.visible { display: block; }
+  .result-label {
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin-bottom: 6px;
+  }
+  .result-main {
+    font-family: var(--mono);
+    font-size: 32px;
+    font-weight: 500;
+    color: var(--accent);
+    letter-spacing: -0.02em;
+    line-height: 1;
+    margin-bottom: 16px;
+  }
+  .result-breakdown {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 12px;
+    padding-top: 16px;
+    border-top: 1px solid #c8e8d8;
+  }
+  .result-item-label {
+    font-size: 11px;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 3px;
+    opacity: 0.7;
+  }
+  .result-item-value {
+    font-family: var(--mono);
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--accent);
+  }
+
+  .progress-wrap {
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid #c8e8d8;
+  }
+  .progress-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: var(--accent);
+    opacity: 0.8;
+    margin-bottom: 8px;
+  }
+  .progress-bar-bg {
+    height: 8px;
+    background: rgba(26,107,74,0.15);
+    border-radius: 100px;
+    overflow: hidden;
+  }
+  .progress-bar-fill {
+    height: 100%;
+    background: var(--accent);
+    border-radius: 100px;
+    transition: width 0.5s ease;
+  }
+
+  .blog-cta {
+    display: none;
+    margin-top: 12px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 18px 22px;
+    align-items: center;
+    gap: 16px;
+    text-decoration: none;
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+  .blog-cta:hover { border-color: var(--accent-mid); box-shadow: var(--shadow); }
+  .blog-cta.visible { display: flex; }
+  .blog-cta-icon { font-size: 22px; flex-shrink: 0; }
+  .blog-cta-text { flex: 1; }
+  .blog-cta-label {
+    font-size: 11px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    margin-bottom: 3px;
+  }
+  .blog-cta-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text);
+    line-height: 1.3;
+  }
+  .blog-cta-arrow { font-size: 18px; color: var(--accent); flex-shrink: 0; }
+
+  .wise-cta {
+    display: none;
+    margin-top: 12px;
+    border-radius: var(--radius);
+    overflow: hidden;
+    text-decoration: none;
+    transition: transform 0.15s, box-shadow 0.15s;
+    box-shadow: var(--shadow);
+  }
+  .wise-cta:hover { transform: translateY(-1px); box-shadow: 0 4px 20px rgba(0,0,0,0.10); }
+  .wise-cta.visible { display: block; }
+  .wise-cta-inner {
+    background: #163300;
+    padding: 18px 22px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .wise-logo {
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    background: #9fe870;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 500;
+    color: #163300;
+  }
+  .wise-cta-text { flex: 1; }
+  .wise-cta-label { font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; color: #9fe870; margin-bottom: 3px; opacity: 0.8; }
+  .wise-cta-title { font-size: 14px; font-weight: 500; color: #ffffff; line-height: 1.3; }
+  .wise-cta-arrow { font-size: 18px; color: #9fe870; flex-shrink: 0; }
+  .wise-cta-sub { background: #1e4200; padding: 8px 22px; font-size: 12px; color: #9fe870; opacity: 0.75; }
+
+  footer {
+    text-align: center;
+    padding: 24px;
+    font-size: 12px;
+    color: var(--muted);
+    border-top: 1px solid var(--border);
+    margin-top: 40px;
+  }
+  footer a { color: var(--accent); text-decoration: none; }
+
+  @media (max-width: 600px) {
+    main { padding: 28px 16px 60px; }
+    .field-group { grid-template-columns: 1fr; }
+    .field-group.three { grid-template-columns: 1fr 1fr; }
+    .result-main { font-size: 26px; }
+    .result-breakdown { grid-template-columns: 1fr 1fr; }
+  }
+
+  </style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-4S5PXFNZWR"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-4S5PXFNZWR');
+</script>
+</head>
+<body>
+
+<main>
+  <div class="calc-header">
+    <div class="calc-tag">FIRE Calculator</div>
+    <h1 class="calc-title">How much do you need<br>to retire early?</h1>
+    <p class="calc-desc">Find your Financial Independence number and how many years until you can retire.</p>
+  </div>
+
+  <div class="card">
+    <div class="field-group">
+      <div class="field">
+        <label>Current Age</label>
+        <div class="input-wrap">
+          <input type="number" id="fire-age" value="30" min="18" max="70">
+        </div>
+      </div>
+      <div class="field">
+        <label>Target Retirement Age</label>
+        <div class="input-wrap">
+          <input type="number" id="fire-retire-age" value="50" min="25" max="80">
+        </div>
+      </div>
+    </div>
+    <div class="field-group">
+      <div class="field">
+        <label>Current Savings</label>
+        <div class="input-wrap has-prefix">
+          <span class="input-prefix">$</span>
+          <input type="number" id="fire-savings" value="50000" min="0">
+        </div>
+      </div>
+      <div class="field">
+        <label>Monthly Savings</label>
+        <div class="input-wrap has-prefix">
+          <span class="input-prefix">$</span>
+          <input type="number" id="fire-monthly" value="2000" min="0">
+        </div>
+      </div>
+    </div>
+    <div class="field-group">
+      <div class="field">
+        <label>Annual Expenses in Retirement</label>
+        <div class="input-wrap has-prefix">
+          <span class="input-prefix">$</span>
+          <input type="number" id="fire-expenses" value="48000" min="0">
+        </div>
+      </div>
+      <div class="field">
+        <label>Expected Annual Return</label>
+        <div class="input-wrap has-suffix">
+          <input type="number" id="fire-return" value="7" min="0" max="20" step="0.1">
+          <span class="input-suffix">%</span>
+        </div>
+      </div>
+    </div>
+    <div class="field-group">
+      <div class="field">
+        <label>Withdrawal Rate</label>
+        <div class="input-wrap has-suffix">
+          <input type="number" id="fire-wr" value="4" min="1" max="10" step="0.1">
+          <span class="input-suffix">%</span>
+        </div>
+      </div>
+      <div class="field">
+        <label>Inflation Rate</label>
+        <div class="input-wrap has-suffix">
+          <input type="number" id="fire-inflation" value="3" min="0" max="10" step="0.1">
+          <span class="input-suffix">%</span>
+        </div>
+      </div>
+    </div>
+    <button class="btn" onclick="calcFIRE()">Calculate →</button>
+  </div>
+
+  <div class="result-card" id="fire-result">
+    <div class="result-label">Your FIRE Number</div>
+    <div class="result-main" id="fire-number">—</div>
+    <div class="result-breakdown">
+      <div class="result-item">
+        <div class="result-item-label">Years to FIRE</div>
+        <div class="result-item-value" id="fire-years">—</div>
+      </div>
+      <div class="result-item">
+        <div class="result-item-label">FIRE Age</div>
+        <div class="result-item-value" id="fire-age-result">—</div>
+      </div>
+      <div class="result-item">
+        <div class="result-item-label">Projected Portfolio</div>
+        <div class="result-item-value" id="fire-projected">—</div>
+      </div>
+      <div class="result-item">
+        <div class="result-item-label">Monthly in Retirement</div>
+        <div class="result-item-value" id="fire-monthly-ret">—</div>
+      </div>
+    </div>
+    <div class="progress-wrap">
+      <div class="progress-label">
+        <span>Progress to FIRE</span>
+        <span id="fire-pct">0%</span>
+      </div>
+      <div class="progress-bar-bg">
+        <div class="progress-bar-fill" id="fire-bar" style="width:0%"></div>
+      </div>
+    </div>
+  </div>
+
+  <a href="https://wise.prf.hn/click/camref:1110lEKgS" class="wise-cta" id="fire-wise" target="_blank" rel="noopener">
+    <div class="wise-cta-inner">
+      <div class="wise-logo">W</div>
+      <div class="wise-cta-text">
+        <div class="wise-cta-label">Sponsored · Wise</div>
+        <div class="wise-cta-title">Hold and grow savings in 50+ currencies — no hidden fees</div>
+      </div>
+      <div class="wise-cta-arrow">→</div>
+    </div>
+    <div class="wise-cta-sub">Mid-market rate · No hidden fees · 50+ currencies</div>
+  </a>
+
+  <a href="https://www.moneydecoded.net/search/label/Retirement" class="blog-cta" id="fire-cta">
+    <div class="blog-cta-icon">🎯</div>
+    <div class="blog-cta-text">
+      <div class="blog-cta-label">From the blog</div>
+      <div class="blog-cta-title">How much do you actually need to retire? The real math explained</div>
+    </div>
+    <div class="blog-cta-arrow">→</div>
+  </a>
+</main>
+
+<div class="section-prose">
+  <h2>What Is the FIRE Number?</h2>
+  <p>Your FIRE number is the total portfolio value you need to retire and live off investment returns indefinitely. It's calculated by dividing your annual expenses by your withdrawal rate. At a 4% withdrawal rate — the most commonly used benchmark — you need 25x your annual expenses. If you spend $48,000 per year, your FIRE number is $1,200,000.</p>
+
+  <h2>The 4% Rule Explained</h2>
+  <p>The 4% rule comes from the Trinity Study, which found that withdrawing 4% of your portfolio per year — adjusted for inflation — has historically lasted 30+ years in almost all market conditions. It's a starting point, not a guarantee. Early retirees with 40+ year horizons often use a more conservative 3–3.5% rate to reduce sequence-of-returns risk.</p>
+
+  <h2>FIRE Variants: Which One Fits You?</h2>
+  <p>Lean FIRE targets a very low annual spend (under $40,000), requiring a smaller portfolio but a more frugal lifestyle. Fat FIRE targets $100,000+ per year in retirement spending, requiring $2.5M–$3M+ at a 4% rate. Barista FIRE means reaching partial financial independence and supplementing with part-time income, so you don't need the full FIRE number before leaving your main career.</p>
+
+  <h2>How Your Savings Rate Drives Everything</h2>
+  <p>The single biggest lever in early retirement is your savings rate — the percentage of income you save each month. A 10% savings rate means roughly 40+ years to FIRE. A 50% savings rate means roughly 17 years. A 70% savings rate means under 10 years. The math is non-linear: doubling your savings rate more than doubles your speed to FIRE, because you're also reducing the expenses you need to cover in retirement. See our <a href="savings-rate-calculator.html">Savings Rate Calculator</a> to find yours.</p>
+</div>
+
+<footer>
+  Part of <a href="https://moneydecoded.net">moneydecoded.net</a> — for informational purposes only, not financial advice.
+</footer>
+
+<script>
+function fmt(n) {
+  if (n >= 1e6) return '$' + (n/1e6).toFixed(2) + 'M';
+  return '$' + n.toLocaleString('en-US', {minimumFractionDigits: 0, maximumFractionDigits: 0});
+}
+
+function calcFIRE() {
+  const currentAge   = parseInt(document.getElementById('fire-age').value) || 30;
+  const savings      = parseFloat(document.getElementById('fire-savings').value) || 0;
+  const monthly      = parseFloat(document.getElementById('fire-monthly').value) || 0;
+  const expenses     = parseFloat(document.getElementById('fire-expenses').value) || 48000;
+  const returnRate   = parseFloat(document.getElementById('fire-return').value) / 100;
+  const wr           = parseFloat(document.getElementById('fire-wr').value) / 100;
+  const inflation    = parseFloat(document.getElementById('fire-inflation').value) / 100;
+
+  const fireNumber   = expenses / wr;
+  const realReturn   = (1 + returnRate) / (1 + inflation) - 1;
+  const r            = realReturn / 12;
+  const monthlyContrib = monthly;
+
+  // Find years until portfolio hits FIRE number
+  let portfolio = savings;
+  let months = 0;
+  const maxMonths = 600;
+  while (portfolio < fireNumber && months < maxMonths) {
+    portfolio = portfolio * (1 + r) + monthlyContrib;
+    months++;
+  }
+
+  const yearsToFire  = months / 12;
+  const fireAge      = currentAge + Math.ceil(yearsToFire);
+  const projectedAge = parseInt(document.getElementById('fire-retire-age').value) || 50;
+  const yearsAvail   = projectedAge - currentAge;
+
+  // Projected portfolio at target retirement age
+  const monthsTarget = yearsAvail * 12;
+  let projPortfolio  = savings;
+  for (let i = 0; i < monthsTarget; i++) {
+    projPortfolio = projPortfolio * (1 + r) + monthlyContrib;
+  }
+
+  const monthlyRet   = (fireNumber * wr) / 12;
+  const pct          = Math.min(100, Math.round((savings / fireNumber) * 100));
+
+  document.getElementById('fire-number').textContent    = fmt(fireNumber);
+  document.getElementById('fire-years').textContent     = months >= maxMonths ? '40+ yrs' : yearsToFire.toFixed(1) + ' yrs';
+  document.getElementById('fire-age-result').textContent = months >= maxMonths ? '70+' : fireAge;
+  document.getElementById('fire-projected').textContent = fmt(projPortfolio);
+  document.getElementById('fire-monthly-ret').textContent = fmt(monthlyRet) + '/mo';
+  document.getElementById('fire-pct').textContent       = pct + '%';
+  document.getElementById('fire-bar').style.width       = pct + '%';
+  document.getElementById('fire-result').classList.add('visible');
+  document.getElementById('fire-wise').classList.add('visible');
+  document.getElementById('fire-cta').classList.add('visible');
+}
+</script>
+<script src="header.js"></script>
+</body>
+</html>

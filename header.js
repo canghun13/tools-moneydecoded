@@ -17,6 +17,7 @@
     { label: '50/30/20 Budget',   href: 'budget-calculator.html' },
     { label: 'Savings Rate',       href: 'savings-rate-calculator.html' },
     { label: 'Paycheck',          href: 'paycheck-calculator.html' },
+    { label: 'FIRE / Early Retire', href: 'fire-calculator.html' },
   ];
 
   const COMPARE = [
