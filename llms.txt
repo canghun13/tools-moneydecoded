@@ -1,0 +1,35 @@
+# MoneyDecoded Tools
+
+> Free financial calculators and comparison tools for Americans. No sign-up required. Tools cover mortgage, retirement, budgeting, debt payoff, savings, taxes, and international money transfers.
+
+MoneyDecoded Tools (tools.moneydecoded.net) is a collection of 20 free financial calculators and comparison pages designed to help Americans make smarter money decisions. Each tool includes a plain-English guide explaining the underlying concepts.
+
+## Calculators
+
+- [Mortgage Calculator](https://tools.moneydecoded.net/mortgage-calculator.html): Calculate monthly mortgage payment, total interest, and full amortization schedule.
+- [401(k) Calculator](https://tools.moneydecoded.net/401k-calculator.html): Project 401(k) growth at retirement based on salary, contribution rate, employer match, and expected return.
+- [Compound Interest Calculator](https://tools.moneydecoded.net/compound-interest-calculator.html): See how investments grow with regular contributions and compounding over time.
+- [Loan Repayment Calculator](https://tools.moneydecoded.net/loan-repayment-calculator.html): Find monthly payment, total interest, and payoff date for any loan.
+- [Student Loan Calculator](https://tools.moneydecoded.net/student-loan-calculator.html): Calculate student loan monthly payments and total interest paid.
+- [Savings Goal Calculator](https://tools.moneydecoded.net/savings-goal-calculator.html): Find out how much to save each month to reach a specific savings target.
+- [Rent vs Buy Calculator](https://tools.moneydecoded.net/rent-vs-buy-calculator.html): Compare the true cost of renting versus buying a home.
+- [Debt Payoff Calculator](https://tools.moneydecoded.net/debt-payoff-calculator.html): Compare avalanche vs snowball debt payoff methods and find your payoff date.
+- [Emergency Fund Calculator](https://tools.moneydecoded.net/emergency-fund-calculator.html): Calculate how much to keep in an emergency fund based on expenses and job security.
+- [Budget Calculator](https://tools.moneydecoded.net/budget-calculator.html): Apply the 50/30/20 rule to split income between needs, wants, and savings.
+- [Tax Bracket Calculator](https://tools.moneydecoded.net/tax-bracket-calculator.html): Estimate federal income tax and find your effective tax rate for 2025-2026.
+- [Inflation Calculator](https://tools.moneydecoded.net/inflation-calculator.html): See how much purchasing power money has lost over time using CPI data through 2026.
+- [Savings Rate Calculator](https://tools.moneydecoded.net/savings-rate-calculator.html): Calculate what percentage of income you are currently saving.
+- [Net Worth Calculator](https://tools.moneydecoded.net/net-worth-calculator.html): Calculate total net worth by entering assets and liabilities.
+- [Paycheck Calculator](https://tools.moneydecoded.net/paycheck-calculator.html): See take-home pay after federal tax, state tax, Social Security, and Medicare deductions.
+- [FIRE Calculator](https://tools.moneydecoded.net/fire-calculator.html): Find your Financial Independence number and projected retirement age.
+
+## Compare & Rates
+
+- [Best High-Yield Savings Accounts](https://tools.moneydecoded.net/best-hysa-rates.html): Compare top HYSA rates in 2026, FDIC-insured accounts earning up to 5.00% APY.
+- [Best CD Rates](https://tools.moneydecoded.net/best-cd-rates.html): Compare the best certificate of deposit rates from top banks across 6-month, 1-year, 2-year, and 5-year terms.
+- [ETF Comparison Tool](https://tools.moneydecoded.net/etf-comparison.html): Compare up to 4 ETFs by return, expense ratio, dividend yield, and net performance.
+- [International Money Transfer Comparison](https://tools.moneydecoded.net/remittance-compare.html): Compare Wise vs banks vs fintech for the cheapest way to send money internationally.
+
+## Blog
+
+- [MoneyDecoded Blog](https://www.moneydecoded.net): Plain-English guides on personal finance topics including retirement, budgeting, debt, investing, and taxes.
