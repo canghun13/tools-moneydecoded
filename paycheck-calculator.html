@@ -87,7 +87,40 @@
     footer a { color: var(--accent); text-decoration: none; }
     footer a:hover { text-decoration: underline; }
     footer p + p { margin-top: 6px; }
-  </style>
+  
+.related-guides {
+  margin-top: 2em;
+  padding: 1.2em 1.5em;
+  background: #f8faf9;
+  border-left: 3px solid #1a6b4a;
+  border-radius: 4px;
+}
+.related-guides h3 {
+  font-size: 13px;
+  font-weight: 600;
+  color: #1a6b4a;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin: 0 0 0.8em 0;
+}
+.related-guides ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.related-guides ul li {
+  margin-bottom: 0.5em;
+}
+.related-guides ul li a {
+  color: #1a1917;
+  font-size: 14px;
+  text-decoration: none;
+  border-bottom: 1px solid #c8e8d8;
+}
+.related-guides ul li a:hover {
+  color: #1a6b4a;
+}
+</style>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -520,6 +553,12 @@
     document.getElementById('effectiveRate').textContent = fmtPct(effectiveRate) + ' effective rate';
   }
 </script>
+<div class="related-guides">
+  <h3>Related Guides</h3>
+  <ul>
+    <li><a href="https://www.moneydecoded.net/2026/05/how-to-calculate-your-paycheck-what-all.html">How to Calculate Your Paycheck: What All Those Deductions Actually Mean</a></li>
+  </ul>
+</div>
 <footer>
   <p>
     <a href="https://www.moneydecoded.net">MoneyDecoded</a> &nbsp;·&nbsp;
