@@ -121,6 +121,11 @@
   color: #1a6b4a;
 }
 
+    /* CONTENT SECTIONS */
+    hr.rule { border: none; border-top: 2px solid var(--ink); margin: 48px 0; }
+    .sec-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
+    .sec-title { font-family: 'Playfair Display', serif; font-weight: 900; font-size: clamp(1.3rem, 3vw, 1.8rem); letter-spacing: -0.5px; margin-bottom: 10px; }
+    .sec-body { color: var(--ink2); font-size: 0.9rem; line-height: 1.75; margin-bottom: 20px; }
     .faq-list { display: flex; flex-direction: column; gap: 0; border: 2px solid var(--ink); border-radius: 4px; overflow: hidden; margin-bottom: 0; box-shadow: 5px 5px 0 var(--ink); }
     .fi { border-bottom: 1px solid var(--border); }
     .fi:last-child { border-bottom: none; }
@@ -130,14 +135,7 @@
     .fi.open .fi-arr { transform: rotate(180deg); }
     .fi-a { display: none; padding: 0 20px 16px; font-size: 0.85rem; color: var(--ink2); line-height: 1.7; background: var(--paper); }
     .fi.open .fi-a { display: block; }
-
-  
-    hr.rule { border: none; border-top: 2px solid var(--ink); margin: 48px 0; }
-    .sec-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
-    .sec-title { font-family: 'Playfair Display', serif; font-weight: 900; font-size: clamp(1.3rem, 3vw, 1.8rem); letter-spacing: -0.5px; margin-bottom: 10px; }
-    .sec-body { color: var(--ink2); font-size: 0.9rem; line-height: 1.75; margin-bottom: 20px; }
-
-  </style>
+</style>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -164,7 +162,7 @@
       "name": "Why is my take-home pay so much less than my salary?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Multiple deductions reduce gross pay to net pay: federal income tax withholding (based on your W-4), FICA taxes (7.65% for Social Security and Medicare), state income taxes (0–13.3% depending on state), and pre-tax benefits like 401(k) contributions and health insurance premiums. A $75,000 salary typically yields $55,000–$58,000 in take-home pay after all deductions."
+        "text": "Multiple deductions reduce gross pay: federal income tax withholding, FICA taxes (7.65% for Social Security and Medicare), state income taxes (0-13.3% depending on state), and pre-tax benefits like 401(k) and health insurance. A $75,000 salary typically yields $55,000-$58,000 in take-home pay."
       }
     },
     {
@@ -172,7 +170,7 @@
       "name": "What are FICA taxes and how are they calculated?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "FICA taxes fund Social Security and Medicare. For 2025, you pay 6.2% for Social Security (on wages up to $176,100) and 1.45% for Medicare — a combined 7.65%. Your employer matches this amount. High earners pay an additional 0.9% Medicare surtax on wages above $200,000 (single) or $250,000 (married filing jointly). FICA is calculated on gross wages before most pre-tax deductions."
+        "text": "FICA taxes fund Social Security and Medicare. For 2025, you pay 6.2% for Social Security (on wages up to $176,100) and 1.45% for Medicare — a combined 7.65%. Your employer matches this amount. High earners pay an additional 0.9% Medicare surtax above $200,000."
       }
     },
     {
@@ -180,7 +178,7 @@
       "name": "How does my W-4 affect my take-home pay?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Your W-4 tells your employer how much federal income tax to withhold from each paycheck. Higher withholding means less take-home pay but reduces or eliminates a tax bill in April. Lower withholding means more money per paycheck but may result in a tax bill or underpayment penalty. The goal is to match your actual tax liability as closely as possible throughout the year."
+        "text": "Your W-4 tells your employer how much federal income tax to withhold. Higher withholding means less take-home pay but reduces a tax bill in April. Lower withholding means more per paycheck but may result in a tax bill or underpayment penalty."
       }
     },
     {
@@ -188,7 +186,7 @@
       "name": "What is the difference between pre-tax and post-tax deductions?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Pre-tax deductions (traditional 401k, health insurance, FSA, HSA) reduce your taxable income. A $500/month 401(k) contribution at 22% marginal rate only reduces take-home pay by $390 — the tax savings cover the rest. Post-tax deductions (Roth 401k, most supplemental insurance) come out after taxes and don't reduce taxable income. Understanding which bucket each deduction falls into helps you see the true after-tax cost."
+        "text": "Pre-tax deductions (traditional 401k, health insurance, FSA) reduce your taxable income. A $500/month 401(k) contribution at 22% marginal rate only reduces take-home pay by $390. Post-tax deductions (Roth 401k) come out after taxes and don't reduce taxable income."
       }
     },
     {
@@ -196,7 +194,7 @@
       "name": "Which states have no income tax?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Nine states have no state income tax on wages: Alaska, Florida, Nevada, New Hampshire, South Dakota, Tennessee, Texas, Washington, and Wyoming. California has the highest top marginal rate at 13.3%. For high earners, the difference between a high-tax state and a no-tax state can be $20,000–$50,000+ per year in take-home pay — an increasingly significant factor in relocation decisions."
+        "text": "Nine states have no state income tax on wages: Alaska, Florida, Nevada, New Hampshire, South Dakota, Tennessee, Texas, Washington, and Wyoming. California has the highest top rate at 13.3%. For high earners, this difference can be $20,000-$50,000+ per year in take-home pay."
       }
     }
   ]
@@ -419,35 +417,33 @@
 </div>
 
 
+<div style="max-width:860px;margin:0 auto;padding:0 24px;">
   <hr class="rule" />
-
   <div class="sec-label">Common Questions</div>
   <div class="sec-title">Paycheck Calculator FAQ</div>
   <p class="sec-body" style="margin-bottom:24px;"></p>
-
   <div class="faq-list">
     <div class="fi">
       <div class="fi-q" onclick="faq(this)">Why is my take-home pay so much less than my salary? <span class="fi-arr">▾</span></div>
-      <div class="fi-a">Multiple deductions reduce gross pay to net pay: federal income tax withholding (based on your W-4), FICA taxes (7.65% for Social Security and Medicare), state income taxes (0–13.3% depending on state), and pre-tax benefits like 401(k) contributions and health insurance premiums. A $75,000 salary typically yields $55,000–$58,000 in take-home pay after all deductions.</div>
+      <div class="fi-a">Multiple deductions reduce gross pay: federal income tax withholding, FICA taxes (7.65% for Social Security and Medicare), state income taxes (0-13.3% depending on state), and pre-tax benefits like 401(k) and health insurance. A $75,000 salary typically yields $55,000-$58,000 in take-home pay.</div>
     </div>
     <div class="fi">
       <div class="fi-q" onclick="faq(this)">What are FICA taxes and how are they calculated? <span class="fi-arr">▾</span></div>
-      <div class="fi-a">FICA taxes fund Social Security and Medicare. For 2025, you pay 6.2% for Social Security (on wages up to $176,100) and 1.45% for Medicare — a combined 7.65%. Your employer matches this amount. High earners pay an additional 0.9% Medicare surtax on wages above $200,000 (single) or $250,000 (married filing jointly). FICA is calculated on gross wages before most pre-tax deductions.</div>
+      <div class="fi-a">FICA taxes fund Social Security and Medicare. For 2025, you pay 6.2% for Social Security (on wages up to $176,100) and 1.45% for Medicare — a combined 7.65%. Your employer matches this amount. High earners pay an additional 0.9% Medicare surtax above $200,000.</div>
     </div>
     <div class="fi">
       <div class="fi-q" onclick="faq(this)">How does my W-4 affect my take-home pay? <span class="fi-arr">▾</span></div>
-      <div class="fi-a">Your W-4 tells your employer how much federal income tax to withhold from each paycheck. Higher withholding means less take-home pay but reduces or eliminates a tax bill in April. Lower withholding means more money per paycheck but may result in a tax bill or underpayment penalty. The goal is to match your actual tax liability as closely as possible throughout the year.</div>
+      <div class="fi-a">Your W-4 tells your employer how much federal income tax to withhold. Higher withholding means less take-home pay but reduces a tax bill in April. Lower withholding means more per paycheck but may result in a tax bill or underpayment penalty.</div>
     </div>
     <div class="fi">
       <div class="fi-q" onclick="faq(this)">What is the difference between pre-tax and post-tax deductions? <span class="fi-arr">▾</span></div>
-      <div class="fi-a">Pre-tax deductions (traditional 401k, health insurance, FSA, HSA) reduce your taxable income. A $500/month 401(k) contribution at 22% marginal rate only reduces take-home pay by $390 — the tax savings cover the rest. Post-tax deductions (Roth 401k, most supplemental insurance) come out after taxes and don't reduce taxable income. Understanding which bucket each deduction falls into helps you see the true after-tax cost.</div>
+      <div class="fi-a">Pre-tax deductions (traditional 401k, health insurance, FSA) reduce your taxable income. A $500/month 401(k) contribution at 22% marginal rate only reduces take-home pay by $390. Post-tax deductions (Roth 401k) come out after taxes and don't reduce taxable income.</div>
     </div>
     <div class="fi">
       <div class="fi-q" onclick="faq(this)">Which states have no income tax? <span class="fi-arr">▾</span></div>
-      <div class="fi-a">Nine states have no state income tax on wages: Alaska, Florida, Nevada, New Hampshire, South Dakota, Tennessee, Texas, Washington, and Wyoming. California has the highest top marginal rate at 13.3%. For high earners, the difference between a high-tax state and a no-tax state can be $20,000–$50,000+ per year in take-home pay — an increasingly significant factor in relocation decisions.</div>
+      <div class="fi-a">Nine states have no state income tax on wages: Alaska, Florida, Nevada, New Hampshire, South Dakota, Tennessee, Texas, Washington, and Wyoming. California has the highest top rate at 13.3%. For high earners, this difference can be $20,000-$50,000+ per year in take-home pay.</div>
     </div>
   </div>
-
 </div>
 
 <div class="section-prose">
@@ -667,7 +663,9 @@
   <p style="margin-top:8px;">This calculator is for informational purposes only and does not constitute financial advice.</p>
   <p style="margin-top:6px;">© 2026 MoneyDecoded. All rights reserved.</p>
 </footer>
-<script>function faq(el) { el.parentElement.classList.toggle('open'); }</script>
 <script src="header.js"></script>
+<script>
+function faq(el) { el.parentElement.classList.toggle('open'); }
+</script>
 </body>
 </html>

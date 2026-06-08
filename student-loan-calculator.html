@@ -357,6 +357,11 @@
   color: #1a6b4a;
 }
 
+    /* CONTENT SECTIONS */
+    hr.rule { border: none; border-top: 2px solid var(--ink); margin: 48px 0; }
+    .sec-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
+    .sec-title { font-family: 'Playfair Display', serif; font-weight: 900; font-size: clamp(1.3rem, 3vw, 1.8rem); letter-spacing: -0.5px; margin-bottom: 10px; }
+    .sec-body { color: var(--ink2); font-size: 0.9rem; line-height: 1.75; margin-bottom: 20px; }
     .faq-list { display: flex; flex-direction: column; gap: 0; border: 2px solid var(--ink); border-radius: 4px; overflow: hidden; margin-bottom: 0; box-shadow: 5px 5px 0 var(--ink); }
     .fi { border-bottom: 1px solid var(--border); }
     .fi:last-child { border-bottom: none; }
@@ -366,14 +371,7 @@
     .fi.open .fi-arr { transform: rotate(180deg); }
     .fi-a { display: none; padding: 0 20px 16px; font-size: 0.85rem; color: var(--ink2); line-height: 1.7; background: var(--paper); }
     .fi.open .fi-a { display: block; }
-
-  
-    hr.rule { border: none; border-top: 2px solid var(--ink); margin: 48px 0; }
-    .sec-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
-    .sec-title { font-family: 'Playfair Display', serif; font-weight: 900; font-size: clamp(1.3rem, 3vw, 1.8rem); letter-spacing: -0.5px; margin-bottom: 10px; }
-    .sec-body { color: var(--ink2); font-size: 0.9rem; line-height: 1.75; margin-bottom: 20px; }
-
-  </style>
+</style>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-4S5PXFNZWR"></script>
 <script>
@@ -392,7 +390,7 @@
       "name": "What is the difference between federal and private student loans?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Federal loans have fixed rates set by Congress and include protections like income-driven repayment, deferment, and forgiveness programs. Private loans are based on creditworthiness and have no federal protections. Exhaust federal loan eligibility before turning to private loans."
+        "text": "Federal loans have fixed rates set by Congress and include protections like income-driven repayment, deferment, and forgiveness programs. Private loans are based on creditworthiness with no federal protections. Exhaust federal loan eligibility before turning to private loans."
       }
     },
     {
@@ -400,7 +398,7 @@
       "name": "What are income-driven repayment plans?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "IDR plans cap your monthly payment at 5–10% of discretionary income and forgive remaining balances after 20–25 years. For public service workers, PSLF forgives balances after 10 years of qualifying payments under an IDR plan."
+        "text": "IDR plans cap your monthly payment at 5-10% of discretionary income and forgive remaining balances after 20-25 years. For public service workers, PSLF forgives balances after 10 years of qualifying payments under an IDR plan."
       }
     },
     {
@@ -408,7 +406,7 @@
       "name": "Should I pay off student loans or invest?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "If your loan rate is below 5–6%, investing in index funds (historically ~7% after inflation) may be the better choice. Above 7%, paying off debt first usually wins. Tax-advantaged investing (401k match, Roth IRA) often wins at any rate due to tax benefits."
+        "text": "If your loan rate is below 5-6%, investing in index funds (historically ~7% after inflation) may be the better choice. Above 7%, paying off debt first usually wins. Tax-advantaged investing (401k match, Roth IRA) often wins at any rate due to tax benefits."
       }
     },
     {
@@ -526,35 +524,33 @@
 </main>
 
 
+<div style="max-width:860px;margin:0 auto;padding:0 24px;">
   <hr class="rule" />
-
   <div class="sec-label">Common Questions</div>
   <div class="sec-title">Student Loan Calculator FAQ</div>
   <p class="sec-body" style="margin-bottom:24px;"></p>
-
   <div class="faq-list">
     <div class="fi">
       <div class="fi-q" onclick="faq(this)">What is the difference between federal and private student loans? <span class="fi-arr">▾</span></div>
-      <div class="fi-a">Federal loans are issued by the Department of Education at fixed rates set by Congress, with built-in protections including income-driven repayment plans, deferment, forbearance, and potential forgiveness programs. Private loans are issued by banks and credit unions at variable or fixed rates based on creditworthiness, with no federal protections. Exhaust federal loan eligibility before turning to private loans.</div>
+      <div class="fi-a">Federal loans have fixed rates set by Congress and include protections like income-driven repayment, deferment, and forgiveness programs. Private loans are based on creditworthiness with no federal protections. Exhaust federal loan eligibility before turning to private loans.</div>
     </div>
     <div class="fi">
       <div class="fi-q" onclick="faq(this)">What are income-driven repayment plans? <span class="fi-arr">▾</span></div>
-      <div class="fi-a">Income-driven repayment (IDR) plans cap your monthly payment at a percentage of your discretionary income — typically 5–10% — and forgive any remaining balance after 20–25 years. Plans include SAVE, IBR, PAYE, and ICR. IDR plans significantly lower monthly payments but increase total interest paid over time. For public service workers, PSLF forgives balances after 10 years of qualifying payments under an IDR plan.</div>
+      <div class="fi-a">IDR plans cap your monthly payment at 5-10% of discretionary income and forgive remaining balances after 20-25 years. For public service workers, PSLF forgives balances after 10 years of qualifying payments under an IDR plan.</div>
     </div>
     <div class="fi">
-      <div class="fi-q" onclick="faq(this)">Should I pay off student loans or invest the extra money? <span class="fi-arr">▾</span></div>
-      <div class="fi-a">The math depends on your interest rate. If your loans are below 5–6%, the expected long-term return on index fund investing (historically ~7% after inflation) likely exceeds the guaranteed return on debt payoff. At rates above 7%, paying off debt first is usually the better choice. Tax-advantaged investing (401k match, Roth IRA) often wins at any rate due to the tax benefits.</div>
+      <div class="fi-q" onclick="faq(this)">Should I pay off student loans or invest? <span class="fi-arr">▾</span></div>
+      <div class="fi-a">If your loan rate is below 5-6%, investing in index funds (historically ~7% after inflation) may be the better choice. Above 7%, paying off debt first usually wins. Tax-advantaged investing (401k match, Roth IRA) often wins at any rate due to tax benefits.</div>
     </div>
     <div class="fi">
       <div class="fi-q" onclick="faq(this)">How much does loan term length affect total cost? <span class="fi-arr">▾</span></div>
-      <div class="fi-a">Significantly. On a $40,000 loan at 6.5%, the standard 10-year plan costs roughly $14,000 in total interest. An extended 20-year plan at the same rate costs nearly $31,000 in interest — more than twice as much. Even small extra monthly payments can dramatically reduce total interest and cut years off the repayment term.</div>
+      <div class="fi-a">On a $40,000 loan at 6.5%, the standard 10-year plan costs about $14,000 in total interest. A 20-year plan costs nearly $31,000. Even small extra monthly payments dramatically reduce total interest and cut years off the repayment term.</div>
     </div>
     <div class="fi">
       <div class="fi-q" onclick="faq(this)">Should I refinance my federal student loans? <span class="fi-arr">▾</span></div>
-      <div class="fi-a">Refinancing federal loans into a private loan can lower your interest rate, but it permanently strips away federal protections: income-driven repayment, deferment, forbearance, and PSLF eligibility. Once refinanced, there's no going back. For borrowers pursuing PSLF or with unstable income, refinancing is almost never worth it. For high earners with stable jobs and no plans to use federal protections, it can save thousands.</div>
+      <div class="fi-a">Refinancing into a private loan can lower your rate but permanently removes federal protections including IDR plans and PSLF eligibility. For borrowers pursuing PSLF or with unstable income, refinancing is almost never worth it.</div>
     </div>
   </div>
-
 </div>
 
 <div class="section-prose">
@@ -644,7 +640,9 @@ function calcStudentLoan() {
   document.getElementById('sl-cta').classList.add('visible');
 }
 </script>
-<script>function faq(el) { el.parentElement.classList.toggle('open'); }</script>
 <script src="header.js"></script>
+<script>
+function faq(el) { el.parentElement.classList.toggle('open'); }
+</script>
 </body>
 </html>

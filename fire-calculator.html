@@ -351,6 +351,11 @@
   color: #1a6b4a;
 }
 
+    /* CONTENT SECTIONS */
+    hr.rule { border: none; border-top: 2px solid var(--ink); margin: 48px 0; }
+    .sec-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
+    .sec-title { font-family: 'Playfair Display', serif; font-weight: 900; font-size: clamp(1.3rem, 3vw, 1.8rem); letter-spacing: -0.5px; margin-bottom: 10px; }
+    .sec-body { color: var(--ink2); font-size: 0.9rem; line-height: 1.75; margin-bottom: 20px; }
     .faq-list { display: flex; flex-direction: column; gap: 0; border: 2px solid var(--ink); border-radius: 4px; overflow: hidden; margin-bottom: 0; box-shadow: 5px 5px 0 var(--ink); }
     .fi { border-bottom: 1px solid var(--border); }
     .fi:last-child { border-bottom: none; }
@@ -360,64 +365,9 @@
     .fi.open .fi-arr { transform: rotate(180deg); }
     .fi-a { display: none; padding: 0 20px 16px; font-size: 0.85rem; color: var(--ink2); line-height: 1.7; background: var(--paper); }
     .fi.open .fi-a { display: block; }
-
-  
-    hr.rule { border: none; border-top: 2px solid var(--ink); margin: 48px 0; }
-    .sec-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
-    .sec-title { font-family: 'Playfair Display', serif; font-weight: 900; font-size: clamp(1.3rem, 3vw, 1.8rem); letter-spacing: -0.5px; margin-bottom: 10px; }
-    .sec-body { color: var(--ink2); font-size: 0.9rem; line-height: 1.75; margin-bottom: 20px; }
-
-  </style>
+</style>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-4S5PXFNZWR"></script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "What is the 4% rule and is it still valid?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "The 4% rule comes from the Trinity Study, which found that withdrawing 4% of a portfolio annually — adjusted for inflation — sustained a portfolio through 30+ years in virtually all historical U.S. market scenarios. For very early retirees with 40–50 year horizons, many researchers recommend a more conservative 3–3.5% withdrawal rate to account for longer time periods and sequence-of-returns risk."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "How do I calculate my FIRE number?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Your FIRE number is your annual expenses divided by your withdrawal rate. Using the 4% rule: FIRE Number = Annual Expenses × 25. If you spend $50,000/year, your FIRE number is $1,250,000. If you prefer a more conservative 3.5% withdrawal rate, it's Annual Expenses × 28.6 = $1,430,000. Enter your numbers in the calculator above to see your personalized estimate."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What is the difference between Lean FIRE, Fat FIRE, and Barista FIRE?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Lean FIRE targets a frugal lifestyle with annual expenses under $30,000–$40,000, requiring a smaller portfolio but more lifestyle constraints. Fat FIRE targets $100,000+ in annual spending, requiring $2.5M–$3M+ at a 4% withdrawal rate. Barista FIRE is a hybrid: reach partial financial independence and supplement with flexible part-time work so you don't need the full FIRE number."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What investment strategy do most FIRE practitioners use?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Most FIRE practitioners invest primarily in low-cost index funds — typically a combination of U.S. total market, international stocks, and bonds. The standard allocation during accumulation is 80–100% stocks for maximum growth. Approaching early retirement, many shift to 60–70% stocks to reduce sequence-of-returns risk. Tax-advantaged accounts (401k, IRA, Roth) are maximized first."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What is sequence-of-returns risk and how do I manage it?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Sequence-of-returns risk is the danger that a major market downturn early in your retirement severely depletes your portfolio before it recovers. A 40% decline in year one has a much larger long-term impact than the same decline in year 20. Common mitigation strategies include a lower withdrawal rate (3–3.5%), keeping 1–2 years of expenses in cash, and maintaining flexibility to reduce spending or earn income during downturns."
-      }
-    }
-  ]
-}
-</script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -438,6 +388,54 @@
   },
   "description": "Free FIRE calculator. Find your Financial Independence number, retirement age, and how long your savings will last. Updated 2026.",
   "url": "https://tools.moneydecoded.net/fire-calculator.html"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the 4% rule and is it still valid?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The 4% rule comes from the Trinity Study, which found that withdrawing 4% of a portfolio annually sustained a portfolio through 30+ years in virtually all historical U.S. market scenarios. For very early retirees with 40-50 year horizons, many researchers recommend a more conservative 3-3.5% withdrawal rate."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I calculate my FIRE number?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Your FIRE number is your annual expenses multiplied by 25 (using the 4% rule). If you spend $50,000/year, your FIRE number is $1,250,000. For a more conservative 3.5% withdrawal rate, multiply annual expenses by 28.6."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between Lean FIRE, Fat FIRE, and Barista FIRE?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Lean FIRE targets annual expenses under $30,000-$40,000 with a smaller portfolio. Fat FIRE targets $100,000+ in annual spending, requiring $2.5M-$3M+. Barista FIRE is a hybrid: reach partial financial independence and supplement with flexible part-time work."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What investment strategy do most FIRE practitioners use?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Most FIRE practitioners invest primarily in low-cost index funds — typically U.S. total market, international stocks, and bonds. Tax-advantaged accounts (401k, IRA, Roth) are maximized first for the compounding advantages."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is sequence-of-returns risk?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sequence-of-returns risk is the danger that a major market downturn early in retirement severely depletes your portfolio. Common mitigation strategies include a lower withdrawal rate (3-3.5%), keeping 1-2 years of expenses in cash, and maintaining flexibility to reduce spending during downturns."
+      }
+    }
+  ]
 }
 </script>
 </head>
@@ -571,35 +569,33 @@
 </main>
 
 
+<div style="max-width:860px;margin:0 auto;padding:0 24px;">
   <hr class="rule" />
-
   <div class="sec-label">Common Questions</div>
   <div class="sec-title">FIRE Calculator FAQ</div>
   <p class="sec-body" style="margin-bottom:24px;"></p>
-
   <div class="faq-list">
     <div class="fi">
       <div class="fi-q" onclick="faq(this)">What is the 4% rule and is it still valid? <span class="fi-arr">▾</span></div>
-      <div class="fi-a">The 4% rule comes from the Trinity Study, which found that withdrawing 4% of a portfolio annually — adjusted for inflation — sustained a portfolio through 30+ years in virtually all historical U.S. market scenarios. For very early retirees with 40–50 year horizons, many researchers recommend a more conservative 3–3.5% withdrawal rate to account for longer time periods and sequence-of-returns risk.</div>
+      <div class="fi-a">The 4% rule comes from the Trinity Study, which found that withdrawing 4% of a portfolio annually sustained a portfolio through 30+ years in virtually all historical U.S. market scenarios. For very early retirees with 40-50 year horizons, many researchers recommend a more conservative 3-3.5% withdrawal rate.</div>
     </div>
     <div class="fi">
       <div class="fi-q" onclick="faq(this)">How do I calculate my FIRE number? <span class="fi-arr">▾</span></div>
-      <div class="fi-a">Your FIRE number is your annual expenses divided by your withdrawal rate. Using the 4% rule: FIRE Number = Annual Expenses × 25. If you spend $50,000/year, your FIRE number is $1,250,000. If you prefer a more conservative 3.5% withdrawal rate, it's Annual Expenses × 28.6 = $1,430,000. Enter your numbers in the calculator above to see your personalized estimate.</div>
+      <div class="fi-a">Your FIRE number is your annual expenses multiplied by 25 (using the 4% rule). If you spend $50,000/year, your FIRE number is $1,250,000. For a more conservative 3.5% withdrawal rate, multiply annual expenses by 28.6.</div>
     </div>
     <div class="fi">
       <div class="fi-q" onclick="faq(this)">What is the difference between Lean FIRE, Fat FIRE, and Barista FIRE? <span class="fi-arr">▾</span></div>
-      <div class="fi-a">Lean FIRE targets a frugal lifestyle with annual expenses under $30,000–$40,000, requiring a smaller portfolio but more lifestyle constraints. Fat FIRE targets $100,000+ in annual spending, requiring $2.5M–$3M+ at a 4% withdrawal rate. Barista FIRE is a hybrid: reach partial financial independence and supplement with flexible part-time work so you don't need the full FIRE number.</div>
+      <div class="fi-a">Lean FIRE targets annual expenses under $30,000-$40,000 with a smaller portfolio. Fat FIRE targets $100,000+ in annual spending, requiring $2.5M-$3M+. Barista FIRE is a hybrid: reach partial financial independence and supplement with flexible part-time work.</div>
     </div>
     <div class="fi">
       <div class="fi-q" onclick="faq(this)">What investment strategy do most FIRE practitioners use? <span class="fi-arr">▾</span></div>
-      <div class="fi-a">Most FIRE practitioners invest primarily in low-cost index funds — typically a combination of U.S. total market, international stocks, and bonds. The standard allocation during accumulation is 80–100% stocks for maximum growth. Approaching early retirement, many shift to 60–70% stocks to reduce sequence-of-returns risk. Tax-advantaged accounts (401k, IRA, Roth) are maximized first.</div>
+      <div class="fi-a">Most FIRE practitioners invest primarily in low-cost index funds — typically U.S. total market, international stocks, and bonds. Tax-advantaged accounts (401k, IRA, Roth) are maximized first for the compounding advantages.</div>
     </div>
     <div class="fi">
-      <div class="fi-q" onclick="faq(this)">What is sequence-of-returns risk and how do I manage it? <span class="fi-arr">▾</span></div>
-      <div class="fi-a">Sequence-of-returns risk is the danger that a major market downturn early in your retirement severely depletes your portfolio before it recovers. A 40% decline in year one has a much larger long-term impact than the same decline in year 20. Common mitigation strategies include a lower withdrawal rate (3–3.5%), keeping 1–2 years of expenses in cash, and maintaining flexibility to reduce spending or earn income during downturns.</div>
+      <div class="fi-q" onclick="faq(this)">What is sequence-of-returns risk? <span class="fi-arr">▾</span></div>
+      <div class="fi-a">Sequence-of-returns risk is the danger that a major market downturn early in retirement severely depletes your portfolio. Common mitigation strategies include a lower withdrawal rate (3-3.5%), keeping 1-2 years of expenses in cash, and maintaining flexibility to reduce spending during downturns.</div>
     </div>
   </div>
-
 </div>
 
 <div class="section-prose">
@@ -687,7 +683,9 @@ function calcFIRE() {
   document.getElementById('fire-cta').classList.add('visible');
 }
 </script>
-<script>function faq(el) { el.parentElement.classList.toggle('open'); }</script>
 <script src="header.js"></script>
+<script>
+function faq(el) { el.parentElement.classList.toggle('open'); }
+</script>
 </body>
 </html>

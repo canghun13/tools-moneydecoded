@@ -526,6 +526,11 @@
   color: #1a6b4a;
 }
 
+    /* CONTENT SECTIONS */
+    hr.rule { border: none; border-top: 2px solid var(--ink); margin: 48px 0; }
+    .sec-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
+    .sec-title { font-family: 'Playfair Display', serif; font-weight: 900; font-size: clamp(1.3rem, 3vw, 1.8rem); letter-spacing: -0.5px; margin-bottom: 10px; }
+    .sec-body { color: var(--ink2); font-size: 0.9rem; line-height: 1.75; margin-bottom: 20px; }
     .faq-list { display: flex; flex-direction: column; gap: 0; border: 2px solid var(--ink); border-radius: 4px; overflow: hidden; margin-bottom: 0; box-shadow: 5px 5px 0 var(--ink); }
     .fi { border-bottom: 1px solid var(--border); }
     .fi:last-child { border-bottom: none; }
@@ -535,14 +540,7 @@
     .fi.open .fi-arr { transform: rotate(180deg); }
     .fi-a { display: none; padding: 0 20px 16px; font-size: 0.85rem; color: var(--ink2); line-height: 1.7; background: var(--paper); }
     .fi.open .fi-a { display: block; }
-
-  
-    hr.rule { border: none; border-top: 2px solid var(--ink); margin: 48px 0; }
-    .sec-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
-    .sec-title { font-family: 'Playfair Display', serif; font-weight: 900; font-size: clamp(1.3rem, 3vw, 1.8rem); letter-spacing: -0.5px; margin-bottom: 10px; }
-    .sec-body { color: var(--ink2); font-size: 0.9rem; line-height: 1.75; margin-bottom: 20px; }
-
-  </style>
+</style>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-4S5PXFNZWR"></script>
 <script>
@@ -702,35 +700,33 @@
 </main>
 
 
+<div style="max-width:860px;margin:0 auto;padding:0 24px;">
   <hr class="rule" />
-
   <div class="sec-label">Common Questions</div>
   <div class="sec-title">ETF Comparison FAQ</div>
   <p class="sec-body" style="margin-bottom:24px;"></p>
-
   <div class="faq-list">
     <div class="fi">
       <div class="fi-q" onclick="faq(this)">What is an expense ratio and why does it matter? <span class="fi-arr">▾</span></div>
-      <div class="fi-a">The expense ratio is the annual fee charged by an ETF as a percentage of assets under management. A 0.03% expense ratio on $10,000 costs $3/year. A 0.75% ratio costs $75/year. At 7% annual return over 30 years, that difference compounds into roughly $30,000 on a $10,000 investment. Low expense ratios are one of the strongest predictors of long-term ETF performance.</div>
+      <div class="fi-a">The expense ratio is the annual fee charged by an ETF as a percentage of assets. At 7% annual return over 30 years, the difference between a 0.03% and 0.75% expense ratio compounds into roughly $30,000 on a $10,000 investment. Low expense ratios are one of the strongest predictors of long-term ETF performance.</div>
     </div>
     <div class="fi">
       <div class="fi-q" onclick="faq(this)">What is the difference between an index ETF and an active ETF? <span class="fi-arr">▾</span></div>
-      <div class="fi-a">Index ETFs passively track a benchmark — they buy all or a representative sample of securities in an index like the S&P 500. Active ETFs have managers making buy/sell decisions to try to outperform the benchmark. Research consistently shows that over 90% of active large-cap managers underperform their benchmark index over 20 years, especially after fees. Most long-term investors are better served by low-cost index ETFs.</div>
+      <div class="fi-a">Index ETFs passively track a benchmark. Active ETFs have managers making buy/sell decisions to try to outperform. Research consistently shows that over 90% of active large-cap managers underperform their benchmark over 20 years after fees.</div>
     </div>
     <div class="fi">
-      <div class="fi-q" onclick="faq(this)">What is tracking error and how much should I care? <span class="fi-arr">▾</span></div>
-      <div class="fi-a">Tracking error measures how closely an ETF's returns match its benchmark index. A tracking error of 0.05% is negligible; 0.5% or more is worth investigating. Causes include fees, sampling methods, and dividend reinvestment timing. For broad market ETFs from major providers like Vanguard, iShares, or Schwab, tracking error is typically minimal and not a primary concern.</div>
-    </div>
-    <div class="fi">
-      <div class="fi-q" onclick="faq(this)">How do I evaluate ETF liquidity? <span class="fi-arr">▾</span></div>
-      <div class="fi-a">ETF liquidity has two layers: the daily trading volume of the ETF shares themselves, and the liquidity of the underlying holdings. High-volume ETFs like SPY or VTI have extremely tight bid-ask spreads — fractions of a penny. Low-volume specialized ETFs may have wider spreads that add cost to every trade. For long-term investors who trade infrequently, liquidity matters less than for active traders.</div>
+      <div class="fi-q" onclick="faq(this)">What is tracking error? <span class="fi-arr">▾</span></div>
+      <div class="fi-a">Tracking error measures how closely an ETF's returns match its benchmark index. For broad market ETFs from major providers like Vanguard, iShares, or Schwab, tracking error is typically minimal and not a primary concern for long-term investors.</div>
     </div>
     <div class="fi">
       <div class="fi-q" onclick="faq(this)">Should I use sector ETFs or broad market ETFs? <span class="fi-arr">▾</span></div>
-      <div class="fi-a">Broad market ETFs provide maximum diversification at minimum cost — they're the recommended core for most portfolios. Sector ETFs concentrate exposure in one industry (technology, healthcare, energy) and increase single-sector risk. If a sector underperforms, you bear that loss with no offset from other sectors. Most financial advisors recommend sector ETFs as small tactical additions, not as core holdings.</div>
+      <div class="fi-a">Broad market ETFs provide maximum diversification at minimum cost and are the recommended core for most portfolios. Sector ETFs concentrate exposure in one industry and increase single-sector risk. Most advisors recommend sector ETFs as small tactical additions, not core holdings.</div>
+    </div>
+    <div class="fi">
+      <div class="fi-q" onclick="faq(this)">How do I evaluate ETF liquidity? <span class="fi-arr">▾</span></div>
+      <div class="fi-a">High-volume ETFs like SPY or VTI have extremely tight bid-ask spreads. Low-volume specialized ETFs may have wider spreads that add cost to every trade. For long-term investors who trade infrequently, liquidity matters less than for active traders.</div>
     </div>
   </div>
-
 </div>
 
 <div class="section-prose">
@@ -947,7 +943,9 @@ function calcETF() {
 }
 
 </script>
-<script>function faq(el) { el.parentElement.classList.toggle('open'); }</script>
 <script src="header.js"></script>
+<script>
+function faq(el) { el.parentElement.classList.toggle('open'); }
+</script>
 </body>
 </html>
