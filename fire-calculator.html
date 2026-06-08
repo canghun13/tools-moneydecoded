@@ -350,7 +350,18 @@
 .related-guides ul li a:hover {
   color: #1a6b4a;
 }
-</style>
+
+    .faq-list { display: flex; flex-direction: column; gap: 0; border: 2px solid var(--ink); border-radius: 4px; overflow: hidden; margin-bottom: 0; box-shadow: 5px 5px 0 var(--ink); }
+    .fi { border-bottom: 1px solid var(--border); }
+    .fi:last-child { border-bottom: none; }
+    .fi-q { padding: 16px 20px; font-weight: 600; font-size: 0.9rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; background: var(--paper); transition: background 0.12s; user-select: none; }
+    .fi-q:hover { background: #faf8f4; }
+    .fi-arr { color: var(--muted); transition: transform 0.2s; }
+    .fi.open .fi-arr { transform: rotate(180deg); }
+    .fi-a { display: none; padding: 0 20px 16px; font-size: 0.85rem; color: var(--ink2); line-height: 1.7; background: var(--paper); }
+    .fi.open .fi-a { display: block; }
+
+  </style>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-4S5PXFNZWR"></script>
 <script type="application/ld+json">
@@ -670,6 +681,7 @@ function calcFIRE() {
   document.getElementById('fire-cta').classList.add('visible');
 }
 </script>
+<script>function faq(el) { el.parentElement.classList.toggle('open'); }</script>
 <script src="header.js"></script>
 </body>
 </html>
