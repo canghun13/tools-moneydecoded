@@ -18,6 +18,7 @@
     { label: 'Savings Rate',       href: 'savings-rate-calculator.html' },
     { label: 'Paycheck',          href: 'paycheck-calculator.html' },
     { label: 'FIRE / Early Retire', href: 'fire-calculator.html' },
+    { label: 'Personal Loan',    href: 'personal-loan-calculator.html' },
   ];
 
   const COMPARE = [

@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Personal Loan Calculator 2026 — Monthly Payment, Total Interest & APR Comparison | MoneyDecoded</title>
+  <meta name="description" content="Free personal loan calculator. See your exact monthly payment, total interest, and true APR cost before you borrow. Compare loan amounts, rates, and terms side by side." />
+  <link rel="canonical" href="https://tools.moneydecoded.net/personal-loan-calculator.html" />
+  <meta property="og:url" content="https://tools.moneydecoded.net/personal-loan-calculator.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Personal Loan Calculator 2026 — Monthly Payment & Total Cost | MoneyDecoded" />
+  <meta property="og:description" content="See your exact monthly payment, total interest, and true cost before you borrow. Free personal loan calculator by MoneyDecoded." />
+  <link rel="icon" href="/favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg:       #f7f5f0;
+      --paper:    #ffffff;
+      --ink:      #1a1a1a;
+      --ink2:     #4a4a4a;
+      --muted:    #888;
+      --border:   #e2ddd6;
+      --accent:   #1a4f2e;
+      --accent-l: #e8f5ee;
+      --accent-mid: #2d9966;
+      --wise:     #9fe870;
+      --wise-dk:  #163300;
+      --warn:     #c0392b;
+      --warn-l:   #fdf0ee;
+      --rule:     #d5cfc6;
+      --mono:     'DM Mono', monospace;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--ink); font-family: 'DM Sans', sans-serif; font-size: 15px; line-height: 1.7; }
+
+    /* HERO */
+    .hero { max-width: 960px; margin: 0 auto; padding: 56px 24px 40px; display: grid; grid-template-columns: 1fr 300px; gap: 48px; align-items: start; }
+    @media(max-width:720px){ .hero{grid-template-columns:1fr} .hero-aside{display:none} }
+
+    .hero-kicker { display: inline-block; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; border-left: 3px solid var(--accent); padding-left: 10px; }
+    h1 { font-family: 'Playfair Display', serif; font-weight: 900; font-size: clamp(1.8rem, 4vw, 2.6rem); line-height: 1.1; letter-spacing: -1px; margin-bottom: 16px; }
+    h1 em { color: var(--accent); font-style: normal; }
+    .hero-byline { font-size: 0.8rem; color: var(--muted); margin-bottom: 16px; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); padding: 10px 0; }
+    .hero-lead { font-size: 0.95rem; color: var(--ink2); line-height: 1.65; }
+
+    .hero-aside { background: var(--ink); color: #fff; border-radius: 4px; padding: 24px; border: 2px solid var(--ink); box-shadow: 6px 6px 0 var(--accent); }
+    .aside-title { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--wise); margin-bottom: 16px; }
+    .aside-stat { padding: 12px 0; border-bottom: 1px solid #2a2a2a; }
+    .aside-stat:last-of-type { border-bottom: none; }
+    .aside-stat-num { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1.4rem; color: var(--wise); }
+    .aside-stat-label { font-size: 0.75rem; color: #999; margin-top: 2px; }
+    .aside-note { font-size: 0.68rem; color: #555; margin-top: 12px; }
+
+    /* BODY */
+    .body-wrap { max-width: 960px; margin: 0 auto; padding: 0 24px 80px; }
+
+    .calc-section { background: var(--paper); border: 2px solid var(--ink); border-radius: 4px; padding: 36px; margin-bottom: 24px; box-shadow: 5px 5px 0 var(--ink); }
+
+    .calc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 24px; }
+    .calc-grid.three { grid-template-columns: 1fr 1fr 1fr; }
+    @media(max-width:600px){ .calc-grid, .calc-grid.three { grid-template-columns: 1fr; } }
+
+    .field { display: flex; flex-direction: column; }
+    .field label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+    .input-wrap { position: relative; display: flex; align-items: center; }
+    .input-prefix, .input-suffix { position: absolute; font-family: var(--mono); font-size: 13px; color: var(--muted); pointer-events: none; }
+    .input-prefix { left: 12px; }
+    .input-suffix { right: 12px; }
+    input[type="number"], select {
+      width: 100%; padding: 11px 14px;
+      font-family: var(--mono); font-size: 14px; font-weight: 400;
+      color: var(--ink); background: var(--bg);
+      border: 1.5px solid var(--border); border-radius: 6px;
+      outline: none; transition: border-color 0.15s, background 0.15s;
+      -moz-appearance: textfield;
+    }
+    input[type="number"]::-webkit-outer-spin-button,
+    input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; }
+    input[type="number"]:focus, select:focus { border-color: var(--accent-mid); background: var(--paper); }
+    .has-prefix input { padding-left: 28px; }
+    .has-suffix input { padding-right: 32px; }
+
+    input[type="range"] {
+      width: 100%; padding: 0; height: 4px;
+      border-radius: 2px; background: var(--border);
+      cursor: pointer; border: none; accent-color: var(--accent);
+      margin-top: 8px;
+    }
+
+    .calc-btn {
+      width: 100%; padding: 14px;
+      background: var(--accent); color: #fff;
+      border: 2px solid var(--ink); border-radius: 6px;
+      font-family: 'DM Sans', sans-serif; font-size: 1rem; font-weight: 700;
+      cursor: pointer; box-shadow: 3px 3px 0 var(--ink);
+      transition: transform 0.1s, box-shadow 0.1s;
+    }
+    .calc-btn:hover { transform: translate(-1px,-1px); box-shadow: 4px 4px 0 var(--ink); }
+    .calc-btn:active { transform: translate(1px,1px); box-shadow: 2px 2px 0 var(--ink); }
+
+    /* RESULTS */
+    .results { display: none; margin-top: 28px; }
+    .results.visible { display: block; }
+
+    .result-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border: 2px solid var(--ink); border-radius: 4px; overflow: hidden; margin-bottom: 20px; }
+    @media(max-width:600px){ .result-grid { grid-template-columns: 1fr 1fr; } }
+    .result-cell { background: var(--paper); padding: 20px 16px; border-right: 2px solid var(--ink); border-bottom: 2px solid var(--ink); }
+    .result-cell:nth-child(3) { border-right: none; }
+    .result-cell:nth-child(4), .result-cell:nth-child(5), .result-cell:nth-child(6) { border-bottom: none; }
+    @media(max-width:600px){
+      .result-cell:nth-child(2) { border-right: none; }
+      .result-cell:nth-child(3) { border-right: 2px solid var(--ink); }
+      .result-cell:nth-child(4) { border-bottom: none; }
+      .result-cell:nth-child(5) { border-right: none; border-bottom: none; }
+      .result-cell:nth-child(6) { border-bottom: none; }
+    }
+    .result-cell.highlight { background: var(--ink); }
+    .result-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+    .result-cell.highlight .result-label { color: var(--wise); }
+    .result-value { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1.5rem; color: var(--accent); }
+    .result-cell.highlight .result-value { color: var(--wise); font-size: 1.8rem; }
+    .result-sub { font-size: 0.72rem; color: var(--muted); margin-top: 3px; }
+    .result-cell.highlight .result-sub { color: #666; }
+
+    /* PIE CHART */
+    .chart-row { display: grid; grid-template-columns: 180px 1fr; gap: 24px; align-items: center; margin-bottom: 20px; }
+    @media(max-width:500px){ .chart-row { grid-template-columns: 1fr; } }
+    .pie-wrap { position: relative; width: 160px; height: 160px; margin: 0 auto; }
+    .pie-svg { transform: rotate(-90deg); }
+    .pie-label { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); text-align: center; }
+    .pie-label-pct { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; color: var(--accent); }
+    .pie-label-text { font-size: 0.65rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; }
+    .legend { display: flex; flex-direction: column; gap: 12px; }
+    .legend-item { display: flex; align-items: center; gap: 10px; }
+    .legend-dot { width: 12px; height: 12px; border-radius: 2px; flex-shrink: 0; }
+    .legend-text { font-size: 0.82rem; color: var(--ink2); }
+    .legend-val { font-family: var(--mono); font-weight: 500; font-size: 0.9rem; color: var(--ink); }
+
+    /* SCHEDULE TABLE */
+    .sched-toggle { display: flex; align-items: center; gap: 10px; font-size: 0.85rem; font-weight: 600; color: var(--accent); cursor: pointer; margin-bottom: 16px; border: none; background: none; padding: 0; font-family: 'DM Sans', sans-serif; }
+    .sched-toggle svg { transition: transform 0.2s; }
+    .sched-toggle.open svg { transform: rotate(180deg); }
+    .sched-table-wrap { display: none; overflow-x: auto; border: 1.5px solid var(--border); border-radius: 4px; margin-bottom: 8px; }
+    .sched-table-wrap.visible { display: block; }
+    table.sched { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+    table.sched thead tr { background: var(--ink); }
+    table.sched thead th { padding: 10px 14px; text-align: right; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #ccc; white-space: nowrap; }
+    table.sched thead th:first-child { text-align: left; }
+    table.sched tbody tr { border-top: 1px solid var(--border); }
+    table.sched tbody tr:hover { background: #faf8f4; }
+    table.sched tbody td { padding: 9px 14px; text-align: right; font-family: var(--mono); font-size: 0.8rem; }
+    table.sched tbody td:first-child { text-align: left; font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 0.8rem; color: var(--ink2); }
+
+    /* COMPARE SECTION */
+    .compare-section { background: var(--paper); border: 2px solid var(--ink); border-radius: 4px; padding: 36px; margin-bottom: 24px; box-shadow: 5px 5px 0 var(--ink); }
+    .compare-table-wrap { overflow-x: auto; }
+    table.compare { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+    table.compare thead tr { background: var(--ink); }
+    table.compare thead th { padding: 12px 16px; text-align: right; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #ccc; }
+    table.compare thead th:first-child { text-align: left; }
+    table.compare tbody tr { border-top: 1px solid var(--border); }
+    table.compare tbody tr:hover { background: #faf8f4; }
+    table.compare tbody tr.best { background: var(--accent-l); }
+    table.compare tbody td { padding: 12px 16px; text-align: right; font-family: var(--mono); }
+    table.compare tbody td:first-child { text-align: left; font-family: 'DM Sans', sans-serif; font-weight: 600; color: var(--ink2); }
+    table.compare tbody td.best-val { color: var(--accent); font-weight: 700; }
+    .best-badge { display: inline-block; font-size: 0.6rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; background: var(--accent); color: #fff; border-radius: 3px; padding: 2px 6px; margin-left: 6px; vertical-align: middle; }
+
+    /* AFFILIATE CTAs */
+    .cta-block { margin-top: 20px; display: flex; flex-direction: column; gap: 12px; }
+    .lender-cta { display: flex; align-items: center; gap: 16px; background: var(--paper); border: 2px solid var(--ink); border-radius: 6px; padding: 18px 20px; text-decoration: none; color: var(--ink); box-shadow: 3px 3px 0 var(--ink); transition: transform 0.1s, box-shadow 0.1s; }
+    .lender-cta:hover { transform: translate(-1px,-1px); box-shadow: 4px 4px 0 var(--ink); }
+    .lender-icon { width: 40px; height: 40px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 1rem; flex-shrink: 0; border: 2px solid var(--ink); }
+    .lender-body { flex: 1; }
+    .lender-tag { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 2px; }
+    .lender-title { font-size: 0.9rem; font-weight: 600; color: var(--ink); line-height: 1.3; }
+    .lender-sub { font-size: 0.75rem; color: var(--ink2); margin-top: 2px; }
+    .lender-arrow { font-size: 1.1rem; color: var(--muted); flex-shrink: 0; }
+
+    .blog-cta-block { display: flex; align-items: center; gap: 14px; background: var(--accent-l); border: 1.5px solid var(--accent); border-radius: 6px; padding: 16px 20px; text-decoration: none; color: var(--ink); transition: background 0.15s; }
+    .blog-cta-block:hover { background: #d4eddf; }
+    .blog-cta-icon { font-size: 1.4rem; flex-shrink: 0; }
+    .blog-cta-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin-bottom: 2px; }
+    .blog-cta-title { font-size: 0.88rem; font-weight: 600; color: var(--ink); }
+
+    /* CONTENT */
+    hr.rule { border: none; border-top: 2px solid var(--ink); margin: 48px 0; }
+    .sec-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
+    .sec-title { font-family: 'Playfair Display', serif; font-weight: 900; font-size: clamp(1.3rem, 3vw, 1.8rem); letter-spacing: -0.5px; margin-bottom: 10px; }
+    .sec-body { color: var(--ink2); font-size: 0.9rem; line-height: 1.75; margin-bottom: 20px; }
+
+    .tip-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 0; }
+    .tip-card { background: var(--paper); border: 1.5px solid var(--border); border-radius: 4px; padding: 20px; }
+    .tip-icon { font-size: 1.5rem; margin-bottom: 10px; }
+    .tip-title { font-weight: 700; font-size: 0.88rem; margin-bottom: 6px; }
+    .tip-desc { font-size: 0.82rem; color: var(--ink2); line-height: 1.55; }
+
+    .stat-strip { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 0; border: 2px solid var(--ink); border-radius: 4px; overflow: hidden; margin-bottom: 36px; }
+    .stat-cell { background: var(--paper); padding: 20px 16px; border-right: 2px solid var(--ink); }
+    .stat-cell:last-child { border-right: none; }
+    .stat-num { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 900; color: var(--accent); }
+    .stat-lbl { font-size: 0.75rem; color: var(--ink2); margin-top: 2px; }
+
+    .faq-list { display: flex; flex-direction: column; gap: 0; border: 2px solid var(--ink); border-radius: 4px; overflow: hidden; margin-bottom: 0; box-shadow: 5px 5px 0 var(--ink); }
+    .fi { border-bottom: 1px solid var(--border); }
+    .fi:last-child { border-bottom: none; }
+    .fi-q { padding: 16px 20px; font-weight: 600; font-size: 0.9rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; background: var(--paper); transition: background 0.12s; user-select: none; }
+    .fi-q:hover { background: #faf8f4; }
+    .fi-arr { color: var(--muted); transition: transform 0.2s; }
+    .fi.open .fi-arr { transform: rotate(180deg); }
+    .fi-a { display: none; padding: 0 20px 16px; font-size: 0.85rem; color: var(--ink2); line-height: 1.7; background: var(--paper); }
+    .fi.open .fi-a { display: block; }
+
+    /* BOTTOM BANNER */
+    .bottom-banner { background: var(--ink); color: #fff; padding: 56px 24px; text-align: center; }
+    .bottom-banner h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.6rem, 4vw, 2.2rem); font-weight: 900; margin-bottom: 12px; line-height: 1.2; }
+    .bottom-banner h2 span { color: var(--wise); }
+    .bottom-banner p { color: #aaa; font-size: 0.88rem; margin-bottom: 24px; max-width: 500px; margin-left: auto; margin-right: auto; }
+
+    footer { background: var(--paper); border-top: 2px solid var(--ink); padding: 32px 24px; text-align: center; font-size: 0.78rem; color: var(--muted); }
+    footer a { color: var(--accent); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+    footer p + p { margin-top: 6px; }
+
+    .related-guides { padding: 1.2em 1.5em; background: #f8faf9; border-left: 3px solid #1a6b4a; max-width: 960px; margin: 2em auto; box-shadow: 1px 1px 3px #3f6f5b; }
+    .related-guides h3 { font-size: 13px; font-weight: 600; color: #1a6b4a; text-transform: uppercase; letter-spacing: 0.06em; margin: 0 0 0.8em 0; }
+    .related-guides ul { margin: 0; padding: 0; list-style: none; }
+    .related-guides ul li { margin-bottom: 0.5em; }
+    .related-guides ul li a { color: #1a1917; font-size: 14px; text-decoration: none; border-bottom: 1px solid #c8e8d8; }
+    .related-guides ul li a:hover { color: #1a6b4a; }
+
+    .section-prose { max-width: 960px; margin: 0 auto; padding: 0 24px 48px; }
+    .section-prose h2 { font-family: 'Playfair Display', serif; font-weight: 900; font-size: 1.4rem; margin: 32px 0 10px; }
+    .section-prose p { font-size: 0.9rem; color: var(--ink2); line-height: 1.8; margin-bottom: 16px; }
+  </style>
+
+  <link rel="stylesheet" href="header.css">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4S5PXFNZWR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4S5PXFNZWR');
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Personal Loan Calculator 2026",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "description": "Free personal loan calculator. See your exact monthly payment, total interest, and true APR cost before you borrow.",
+    "url": "https://tools.moneydecoded.net/personal-loan-calculator.html"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How is my personal loan monthly payment calculated?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Personal loan payments are calculated using the standard amortization formula: M = P[r(1+r)^n]/[(1+r)^n-1], where P is the principal loan amount, r is the monthly interest rate (APR divided by 12), and n is the total number of monthly payments. Each payment covers the interest accrued that month plus a portion of principal."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is a good APR for a personal loan in 2026?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The average personal loan APR in 2026 is around 12–14% for borrowers with good credit (700+). Borrowers with excellent credit (750+) can often qualify for rates below 10%. Rates above 20–25% are typically reserved for borrowers with poor credit or thin credit histories. The best way to get a lower rate is to improve your credit score and compare offers from multiple lenders before accepting."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the difference between APR and interest rate on a personal loan?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The interest rate is the base cost of borrowing expressed as a percentage of the loan amount. APR (Annual Percentage Rate) includes the interest rate plus any origination fees or other loan costs, expressed as a yearly rate. For personal loans, the APR is the more accurate measure of total borrowing cost. An origination fee of 1–6% upfront significantly increases the effective cost of a loan even if the stated interest rate seems low."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is it better to take a shorter or longer loan term?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A shorter term means a higher monthly payment but significantly less total interest paid. A longer term lowers your monthly payment but increases total interest cost — sometimes dramatically. For a $15,000 loan at 12% APR, choosing a 3-year term over a 5-year term cuts total interest nearly in half. If your monthly budget can handle the higher payment, the shorter term is almost always the better financial decision."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I pay off a personal loan early?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Most personal loans allow early payoff, but some lenders charge a prepayment penalty — typically 1–5% of the remaining balance. Always check your loan agreement before making extra payments. If there's no prepayment penalty, paying extra each month (or making lump-sum payments) saves on interest and shortens the loan term."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What credit score do I need to get a personal loan?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Most mainstream lenders require a minimum credit score of 580–640. However, a score below 670 will typically result in higher rates (18–30%+ APR) and lower loan limits. Scores above 720 qualify for the best rates. Some lenders specialize in bad-credit personal loans, but the APRs can approach 36% — the legal maximum in most states."
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-main">
+    <div class="hero-kicker">Free Calculator · Updated 2026</div>
+    <h1>Personal Loan Calculator — <em>Know Your Real</em> Cost Before You Borrow</h1>
+    <div class="hero-byline">By MoneyDecoded · Last updated June 2026 · 2-minute tool</div>
+    <p class="hero-lead">Enter your loan details to instantly see your monthly payment, total interest, and true borrowing cost. Compare different terms and rates side by side. No sign-up required.</p>
+  </div>
+  <div class="hero-aside">
+    <div class="aside-title">📊 Personal Loan Rates (2026)</div>
+    <div class="aside-stat">
+      <div class="aside-stat-num">12.4%</div>
+      <div class="aside-stat-label">Avg APR — good credit (700+)</div>
+    </div>
+    <div class="aside-stat">
+      <div class="aside-stat-num">$8,000</div>
+      <div class="aside-stat-label">Avg loan amount borrowed</div>
+    </div>
+    <div class="aside-stat">
+      <div class="aside-stat-num">3–5 yr</div>
+      <div class="aside-stat-label">Most common loan terms</div>
+    </div>
+    <div class="aside-note">Sources: Federal Reserve, Credible, LendingTree. Rates vary based on credit score, income, and lender. Always compare at least 3 offers.</div>
+  </div>
+</div>
+
+<div class="body-wrap">
+
+  <!-- CALCULATOR -->
+  <div class="calc-section">
+    <div class="sec-label">Personal Loan Calculator</div>
+    <div class="sec-title" style="margin-bottom:24px;">Calculate Your Monthly Payment</div>
+
+    <div class="calc-grid">
+      <div class="field">
+        <label>Loan Amount</label>
+        <div class="input-wrap has-prefix">
+          <span class="input-prefix">$</span>
+          <input type="number" id="loan-amount" value="10000" min="500" max="100000" step="500" oninput="syncRange('loan-amount','r-amount')">
+        </div>
+        <input type="range" id="r-amount" min="500" max="100000" value="10000" step="500" oninput="syncInput('r-amount','loan-amount')">
+      </div>
+      <div class="field">
+        <label>Annual APR</label>
+        <div class="input-wrap has-suffix">
+          <input type="number" id="apr" value="12.4" min="1" max="36" step="0.1" oninput="syncRange('apr','r-apr')">
+          <span class="input-suffix">%</span>
+        </div>
+        <input type="range" id="r-apr" min="1" max="36" value="12.4" step="0.1" oninput="syncInput('r-apr','apr')">
+      </div>
+    </div>
+
+    <div class="calc-grid three">
+      <div class="field">
+        <label>Loan Term</label>
+        <select id="loan-term">
+          <option value="12">1 year</option>
+          <option value="24">2 years</option>
+          <option value="36" selected>3 years</option>
+          <option value="48">4 years</option>
+          <option value="60">5 years</option>
+          <option value="72">6 years</option>
+          <option value="84">7 years</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Origination Fee</label>
+        <div class="input-wrap has-suffix">
+          <input type="number" id="orig-fee" value="0" min="0" max="10" step="0.5">
+          <span class="input-suffix">%</span>
+        </div>
+      </div>
+      <div class="field">
+        <label>Start Month</label>
+        <select id="start-month">
+          <option value="0">January</option>
+          <option value="1">February</option>
+          <option value="2">March</option>
+          <option value="3">April</option>
+          <option value="4">May</option>
+          <option value="5" selected>June</option>
+          <option value="6">July</option>
+          <option value="7">August</option>
+          <option value="8">September</option>
+          <option value="9">October</option>
+          <option value="10">November</option>
+          <option value="11">December</option>
+        </select>
+      </div>
+    </div>
+
+    <button class="calc-btn" onclick="calculate()">Calculate My Loan →</button>
+
+    <!-- RESULTS -->
+    <div class="results" id="results">
+      <div style="border-top: 2px solid var(--border); margin: 28px 0 24px;"></div>
+
+      <div class="result-grid">
+        <div class="result-cell highlight">
+          <div class="result-label">Monthly Payment</div>
+          <div class="result-value" id="res-monthly">—</div>
+          <div class="result-sub">Fixed for loan term</div>
+        </div>
+        <div class="result-cell highlight">
+          <div class="result-label">Total Interest</div>
+          <div class="result-value" id="res-interest">—</div>
+          <div class="result-sub">Total cost of borrowing</div>
+        </div>
+        <div class="result-cell">
+          <div class="result-label">Total Repaid</div>
+          <div class="result-value" id="res-total">—</div>
+          <div class="result-sub">Principal + interest</div>
+        </div>
+        <div class="result-cell">
+          <div class="result-label">Origination Fee</div>
+          <div class="result-value" id="res-fee">—</div>
+          <div class="result-sub">Deducted from proceeds</div>
+        </div>
+        <div class="result-cell">
+          <div class="result-label">Cash Received</div>
+          <div class="result-value" id="res-cash">—</div>
+          <div class="result-sub">After origination fee</div>
+        </div>
+        <div class="result-cell">
+          <div class="result-label">Payoff Date</div>
+          <div class="result-value" id="res-payoff" style="font-size:1.1rem;">—</div>
+          <div class="result-sub">Estimated</div>
+        </div>
+      </div>
+
+      <!-- PIE CHART -->
+      <div class="chart-row">
+        <div class="pie-wrap">
+          <svg class="pie-svg" width="160" height="160" viewBox="0 0 160 160" id="pie-svg"></svg>
+          <div class="pie-label">
+            <div class="pie-label-pct" id="pie-interest-pct">—</div>
+            <div class="pie-label-text">Interest</div>
+          </div>
+        </div>
+        <div class="legend">
+          <div class="legend-item">
+            <div class="legend-dot" style="background:var(--accent)"></div>
+            <div>
+              <div class="legend-text">Principal</div>
+              <div class="legend-val" id="leg-principal">—</div>
+            </div>
+          </div>
+          <div class="legend-item">
+            <div class="legend-dot" style="background:#c0392b"></div>
+            <div>
+              <div class="legend-text">Total Interest</div>
+              <div class="legend-val" id="leg-interest">—</div>
+            </div>
+          </div>
+          <div class="legend-item">
+            <div class="legend-dot" style="background:#f0a500"></div>
+            <div>
+              <div class="legend-text">Origination Fee</div>
+              <div class="legend-val" id="leg-fee">—</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- AMORTIZATION SCHEDULE -->
+      <button class="sched-toggle" id="sched-btn" onclick="toggleSched()">
+        Show payment schedule
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 4L7 10L12 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+      <div class="sched-table-wrap" id="sched-wrap">
+        <table class="sched" id="sched-table"></table>
+      </div>
+
+      <!-- AFFILIATE CTAs -->
+      <div class="cta-block">
+        <!-- LendingTree CTA: CJ Pending — insert link when approved -->
+
+        <a href="https://www.moneydecoded.net" class="blog-cta-block">
+          <div class="blog-cta-icon">📖</div>
+          <div>
+            <div class="blog-cta-label">From the blog</div>
+            <div class="blog-cta-title">Personal loans vs. credit cards: which is cheaper for debt consolidation?</div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- TERM COMPARISON TABLE -->
+  <div class="compare-section" id="compare-section" style="display:none;">
+    <div class="sec-label">Term Comparison</div>
+    <div class="sec-title" style="margin-bottom:20px;">Same Loan, Different Terms — Side by Side</div>
+    <div class="compare-table-wrap">
+      <table class="compare" id="compare-table"></table>
+    </div>
+    <p style="font-size:0.75rem;color:var(--muted);margin-top:12px;">All figures use the same loan amount and APR entered above. The highlighted row is your selected term.</p>
+  </div>
+
+  <hr class="rule" />
+
+  <!-- CONTEXT SECTION -->
+  <div class="sec-label">Why It Matters</div>
+  <div class="sec-title">The Real Cost of a Personal Loan</div>
+  <p class="sec-body">The APR you see advertised is not what you actually pay — it's the annual cost of borrowing expressed as a percentage. What matters is the total dollar amount leaving your pocket. A $10,000 loan at 15% APR for 5 years costs $4,274 in total interest. At 10% APR for 3 years, the same loan costs $1,616 in total interest — less than half, paid off in 60% of the time. The calculator above makes this concrete with your exact numbers.</p>
+
+  <div class="stat-strip">
+    <div class="stat-cell">
+      <div class="stat-num">$8K</div>
+      <div class="stat-lbl">Avg personal loan amount (2026)</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-num">12.4%</div>
+      <div class="stat-lbl">Avg APR — good credit</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-num">1–6%</div>
+      <div class="stat-lbl">Typical origination fee range</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-num">36%</div>
+      <div class="stat-lbl">Max APR in most states</div>
+    </div>
+  </div>
+
+  <div class="sec-label">Smart Strategies</div>
+  <div class="sec-title">How to Borrow Less Expensively</div>
+  <div class="tip-grid">
+    <div class="tip-card">
+      <div class="tip-icon">📊</div>
+      <div class="tip-title">Improve Your Credit Score First</div>
+      <div class="tip-desc">Moving from 650 to 720 can cut your APR by 4–8 percentage points. On a $15,000 loan, that's $2,000–$4,000 in interest savings over 5 years.</div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-icon">🔍</div>
+      <div class="tip-title">Compare At Least 3–5 Lenders</div>
+      <div class="tip-desc">APRs on the same loan profile can vary by 5–10% between lenders. Pre-qualification uses a soft inquiry that won't hurt your credit score.</div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-icon">⏱️</div>
+      <div class="tip-title">Choose the Shortest Term You Can Afford</div>
+      <div class="tip-desc">A shorter term means higher monthly payments but dramatically less total interest. Use the comparison table above to see the difference in dollars.</div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-icon">🏦</div>
+      <div class="tip-title">Watch Out for Origination Fees</div>
+      <div class="tip-desc">A 5% origination fee on a $10,000 loan means you only receive $9,500 but owe $10,000. Factor this into your comparison — sometimes a higher APR with no fee is cheaper.</div>
+    </div>
+  </div>
+
+  <hr class="rule" />
+
+  <div class="sec-label">Common Questions</div>
+  <div class="sec-title">Personal Loan FAQ</div>
+  <p class="sec-body" style="margin-bottom:24px;"></p>
+
+  <div class="faq-list">
+    <div class="fi">
+      <div class="fi-q" onclick="faq(this)">How is my personal loan monthly payment calculated? <span class="fi-arr">▾</span></div>
+      <div class="fi-a">Personal loan payments use the standard amortization formula: M = P[r(1+r)^n]/[(1+r)^n-1], where P is the loan principal, r is the monthly interest rate (APR ÷ 12), and n is the number of monthly payments. Each payment covers that month's interest first, with the remainder reducing your principal balance.</div>
+    </div>
+    <div class="fi">
+      <div class="fi-q" onclick="faq(this)">What is a good APR for a personal loan in 2026? <span class="fi-arr">▾</span></div>
+      <div class="fi-a">The average personal loan APR in 2026 is around 12–14% for borrowers with good credit (700+). Borrowers with excellent credit (750+) can often qualify for rates below 10%. Rates above 20–25% are typical for borrowers with poor credit. The best strategy is to improve your credit score and compare offers from multiple lenders before accepting anything.</div>
+    </div>
+    <div class="fi">
+      <div class="fi-q" onclick="faq(this)">What is the difference between APR and interest rate? <span class="fi-arr">▾</span></div>
+      <div class="fi-a">The interest rate is the base cost of borrowing. APR includes the interest rate plus any fees (like origination fees), expressed as a yearly rate. For personal loans, APR is the more accurate measure of true borrowing cost. A lender advertising a 9% interest rate with a 5% origination fee can have an effective APR of 12% or more — always compare APRs, not just rates.</div>
+    </div>
+    <div class="fi">
+      <div class="fi-q" onclick="faq(this)">Is it better to choose a shorter or longer loan term? <span class="fi-arr">▾</span></div>
+      <div class="fi-a">Shorter terms mean higher monthly payments but far less total interest. For a $15,000 loan at 12% APR, a 3-year term costs about $2,980 in interest. The same loan over 5 years costs $5,020 — nearly $2,000 more. If your budget can handle the higher monthly payment, the shorter term is almost always the better financial decision. Use the comparison table above to see your specific numbers.</div>
+    </div>
+    <div class="fi">
+      <div class="fi-q" onclick="faq(this)">Can I pay off a personal loan early? <span class="fi-arr">▾</span></div>
+      <div class="fi-a">Most personal loans allow early payoff, but some lenders charge a prepayment penalty — typically 1–5% of the remaining balance. Always check your loan agreement. If there's no prepayment penalty, paying extra each month reduces your total interest cost significantly since personal loans are front-loaded with interest.</div>
+    </div>
+    <div class="fi">
+      <div class="fi-q" onclick="faq(this)">What credit score do I need to get a personal loan? <span class="fi-arr">▾</span></div>
+      <div class="fi-a">Most mainstream lenders require a minimum score of 580–640. A score below 670 typically results in rates of 18–30%+ APR. Scores above 720 qualify for the most competitive rates. Some lenders specialize in bad-credit loans but APRs can approach the 36% legal maximum. If your score is below 670, it's often worth spending 6–12 months improving it before borrowing.</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- BOTTOM BANNER -->
+<div class="bottom-banner">
+  <h2>Ready to Find Your <span>Best Rate?</span></h2>
+  <p>Compare personal loan offers from 30+ lenders. Check your rate in minutes — no impact on your credit score.</p>
+  <p style="color:#555;font-size:0.72rem;margin-top:16px;">Affiliate disclosure: MoneyDecoded may earn a commission if you apply via these links. This does not affect the rates or offers you receive.</p>
+</div>
+
+<div class="section-prose">
+  <h2>How Personal Loan Interest Works</h2>
+  <p>Personal loans are fully amortizing, which means every payment covers both interest and principal, and the loan balance reaches exactly zero on the final payment. Unlike a credit card — where interest compounds on a revolving balance — a personal loan has a fixed payment schedule from day one. The downside is that interest is front-loaded: in the early months, the majority of each payment goes toward interest rather than reducing your balance. This is why paying extra early in the loan saves more than paying extra later.</p>
+
+  <h2>APR vs. Interest Rate: Why the Difference Matters</h2>
+  <p>The stated interest rate tells you the cost of borrowing before fees. APR incorporates the interest rate and fees into a single annualized number, making it a better apples-to-apples comparison between lenders. A lender offering a 9.5% rate with a 4% origination fee can be more expensive in practice than a lender offering 11% with no origination fee — particularly on shorter loan terms. The calculator above includes an origination fee field specifically for this reason. Always compare the total dollar cost, not just the APR percentage.</p>
+
+  <h2>When a Personal Loan Makes Financial Sense</h2>
+  <p>Personal loans make sense when the APR is significantly lower than the rate you'd otherwise pay — most commonly for credit card debt consolidation. If you're carrying $15,000 across credit cards at an average of 22% APR, refinancing into a personal loan at 12% APR for 3 years saves roughly $3,500 in interest. Personal loans also make sense for one-time large expenses (medical bills, home repairs, moving costs) where a fixed payoff timeline is preferable to open-ended revolving debt. They don't make sense for ongoing expenses — that's a budgeting problem, not a borrowing problem.</p>
+
+  <h2>Origination Fees: The Hidden Cost Most People Ignore</h2>
+  <p>An origination fee is a one-time charge deducted from the loan proceeds before you receive the money. A 5% fee on a $10,000 loan means you receive $9,500 but owe and must repay $10,000 plus interest. This effectively increases your APR. On a 2-year loan, a 5% origination fee adds roughly 2.5 percentage points to your effective APR. On a 5-year loan, it adds about 1 percentage point. The fee has more impact on shorter-term loans — another reason to compare total dollar cost rather than just the advertised APR.</p>
+</div>
+
+<div class="related-guides">
+  <h3>Related Calculators & Guides</h3>
+  <ul>
+    <li><a href="https://tools.moneydecoded.net/debt-payoff-calculator.html">Debt Payoff Calculator — Avalanche vs. Snowball</a></li>
+    <li><a href="https://tools.moneydecoded.net/loan-repayment-calculator.html">Loan Repayment Calculator</a></li>
+    <li><a href="https://tools.moneydecoded.net/budget-calculator.html">50/30/20 Budget Calculator</a></li>
+  </ul>
+</div>
+
+<footer>
+  <p>
+    <a href="https://www.moneydecoded.net">MoneyDecoded</a> &nbsp;·&nbsp;
+    <a href="https://tools.moneydecoded.net">Financial Calculators</a> &nbsp;·&nbsp;
+    <a href="https://tools.moneydecoded.net/remittance-compare.html">Wire Transfer Tool</a> &nbsp;·&nbsp;
+    <a href="https://www.moneydecoded.net/p/about.html">About</a> &nbsp;·&nbsp;
+    <a href="https://www.moneydecoded.net/p/privacy-policy.html">Privacy Policy</a>
+  </p>
+  <p style="margin-top:8px;">This calculator is for informational purposes only and does not constitute financial advice.</p>
+  <p style="margin-top:6px;">© 2026 MoneyDecoded. All rights reserved.</p>
+</footer>
+
+<script>
+function fmt(n) {
+  return '$' + Math.round(n).toLocaleString('en-US');
+}
+function fmtD(n) {
+  return '$' + n.toLocaleString('en-US', {minimumFractionDigits:2, maximumFractionDigits:2});
+}
+
+function syncRange(inputId, rangeId) {
+  document.getElementById(rangeId).value = document.getElementById(inputId).value;
+}
+function syncInput(rangeId, inputId) {
+  document.getElementById(inputId).value = document.getElementById(rangeId).value;
+}
+function faq(el) { el.parentElement.classList.toggle('open'); }
+
+function toggleSched() {
+  const wrap = document.getElementById('sched-wrap');
+  const btn = document.getElementById('sched-btn');
+  wrap.classList.toggle('visible');
+  btn.classList.toggle('open');
+  btn.childNodes[0].textContent = wrap.classList.contains('visible') ? 'Hide payment schedule ' : 'Show payment schedule ';
+}
+
+function drawPie(principal, interest, fee) {
+  const total = principal + interest + fee;
+  const svg = document.getElementById('pie-svg');
+  const cx = 80, cy = 80, r = 70;
+  const segments = [
+    { val: principal, color: 'var(--accent)' },
+    { val: interest,  color: '#c0392b' },
+    { val: fee,       color: '#f0a500' },
+  ];
+  let startAngle = 0, paths = '';
+  segments.forEach(seg => {
+    if (seg.val <= 0) return;
+    const angle = (seg.val / total) * 2 * Math.PI;
+    const endAngle = startAngle + angle;
+    const x1 = cx + r * Math.cos(startAngle);
+    const y1 = cy + r * Math.sin(startAngle);
+    const x2 = cx + r * Math.cos(endAngle);
+    const y2 = cy + r * Math.sin(endAngle);
+    const largeArc = angle > Math.PI ? 1 : 0;
+    paths += `<path d="M${cx},${cy} L${x1.toFixed(2)},${y1.toFixed(2)} A${r},${r} 0 ${largeArc},1 ${x2.toFixed(2)},${y2.toFixed(2)} Z" fill="${seg.color}" stroke="white" stroke-width="2"/>`;
+    startAngle = endAngle;
+  });
+  paths += `<circle cx="${cx}" cy="${cy}" r="40" fill="var(--bg)"/>`;
+  svg.innerHTML = paths;
+}
+
+function buildSchedTable(principal, monthlyRate, numPayments, monthlyPayment) {
+  let balance = principal;
+  const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  const startMo = parseInt(document.getElementById('start-month').value);
+  let html = `<thead><tr>
+    <th>Payment</th><th>Principal</th><th>Interest</th><th>Balance</th>
+  </tr></thead><tbody>`;
+  for (let i = 1; i <= numPayments; i++) {
+    const interest = balance * monthlyRate;
+    const principalPart = Math.min(monthlyPayment - interest, balance);
+    balance = Math.max(0, balance - principalPart);
+    const moIdx = (startMo + i - 1) % 12;
+    const year = new Date().getFullYear() + Math.floor((startMo + i - 1) / 12);
+    html += `<tr>
+      <td>${months[moIdx]} ${year}</td>
+      <td>${fmtD(principalPart)}</td>
+      <td>${fmtD(interest)}</td>
+      <td>${fmtD(Math.max(0, balance))}</td>
+    </tr>`;
+  }
+  html += '</tbody>';
+  return html;
+}
+
+function buildCompareTable(loanAmount, apr, selectedTerm) {
+  const terms = [12, 24, 36, 48, 60, 72, 84];
+  const monthlyRate = apr / 100 / 12;
+  let html = `<thead><tr>
+    <th>Term</th><th>Monthly Payment</th><th>Total Interest</th><th>Total Cost</th>
+  </tr></thead><tbody>`;
+  terms.forEach(t => {
+    const n = t;
+    const mp = loanAmount * (monthlyRate * Math.pow(1 + monthlyRate, n)) / (Math.pow(1 + monthlyRate, n) - 1);
+    const totalInterest = mp * n - loanAmount;
+    const totalCost = mp * n;
+    const isSel = t === selectedTerm;
+    const yrs = t >= 12 ? (t / 12) + ' year' + (t > 12 ? 's' : '') : t + ' months';
+    html += `<tr class="${isSel ? 'best' : ''}">
+      <td>${yrs}${isSel ? '<span class="best-badge">Selected</span>' : ''}</td>
+      <td class="${isSel ? 'best-val' : ''}">${fmtD(mp)}</td>
+      <td class="${isSel ? 'best-val' : ''}">${fmt(totalInterest)}</td>
+      <td class="${isSel ? 'best-val' : ''}">${fmt(totalCost)}</td>
+    </tr>`;
+  });
+  html += '</tbody>';
+  return html;
+}
+
+function calculate() {
+  const loanAmount  = parseFloat(document.getElementById('loan-amount').value) || 0;
+  const apr         = parseFloat(document.getElementById('apr').value) || 0;
+  const termMonths  = parseInt(document.getElementById('loan-term').value);
+  const origFeePct  = parseFloat(document.getElementById('orig-fee').value) || 0;
+  const startMoIdx  = parseInt(document.getElementById('start-month').value);
+
+  const monthlyRate = apr / 100 / 12;
+  const origFee     = loanAmount * (origFeePct / 100);
+  const cashReceived = loanAmount - origFee;
+
+  let monthlyPayment;
+  if (monthlyRate === 0) {
+    monthlyPayment = loanAmount / termMonths;
+  } else {
+    monthlyPayment = loanAmount * (monthlyRate * Math.pow(1 + monthlyRate, termMonths)) / (Math.pow(1 + monthlyRate, termMonths) - 1);
+  }
+
+  const totalRepaid   = monthlyPayment * termMonths;
+  const totalInterest = totalRepaid - loanAmount;
+  const interestPct   = ((totalInterest / (totalRepaid + origFee)) * 100).toFixed(0);
+
+  const payoffDate = new Date();
+  payoffDate.setMonth(payoffDate.getMonth() + termMonths);
+  const payoffStr = payoffDate.toLocaleDateString('en-US', {month:'short', year:'numeric'});
+
+  document.getElementById('res-monthly').textContent  = fmtD(monthlyPayment);
+  document.getElementById('res-interest').textContent = fmt(totalInterest);
+  document.getElementById('res-total').textContent    = fmt(totalRepaid);
+  document.getElementById('res-fee').textContent      = origFee > 0 ? fmt(origFee) : '$0';
+  document.getElementById('res-cash').textContent     = fmt(cashReceived);
+  document.getElementById('res-payoff').textContent   = payoffStr;
+  document.getElementById('pie-interest-pct').textContent = interestPct + '%';
+  document.getElementById('leg-principal').textContent = fmt(loanAmount);
+  document.getElementById('leg-interest').textContent  = fmt(totalInterest);
+  document.getElementById('leg-fee').textContent       = origFee > 0 ? fmt(origFee) : '$0';
+
+  drawPie(loanAmount, totalInterest, origFee);
+
+  document.getElementById('sched-table').innerHTML = buildSchedTable(loanAmount, monthlyRate, termMonths, monthlyPayment);
+
+  // Comparison table
+  const compareTable = document.getElementById('compare-table');
+  compareTable.innerHTML = buildCompareTable(loanAmount, apr, termMonths);
+  document.getElementById('compare-section').style.display = 'block';
+
+  document.getElementById('results').classList.add('visible');
+  document.getElementById('results').scrollIntoView({behavior:'smooth', block:'nearest'});
+}
+</script>
+<script src="header.js"></script>
+</body>
+</html>
