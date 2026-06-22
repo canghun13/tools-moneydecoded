@@ -19,6 +19,7 @@
     { label: 'Paycheck',          href: 'paycheck-calculator.html' },
     { label: 'FIRE / Early Retire', href: 'fire-calculator.html' },
     { label: 'Personal Loan',    href: 'personal-loan-calculator.html' },
+    { label: 'Car Loan',         href: 'car-loan-calculator.html' },
   ];
 
   const COMPARE = [

@@ -2,7 +2,7 @@
 
 > Free financial calculators and comparison tools for Americans. No sign-up required. Tools cover mortgage, retirement, budgeting, debt payoff, savings, taxes, and international money transfers.
 
-MoneyDecoded Tools (tools.moneydecoded.net) is a collection of 21 free financial calculators and comparison pages designed to help Americans make smarter money decisions. Each tool includes a plain-English guide explaining the underlying concepts.
+MoneyDecoded Tools (tools.moneydecoded.net) is a collection of 22 free financial calculators and comparison pages designed to help Americans make smarter money decisions. Each tool includes a plain-English guide explaining the underlying concepts.
 
 ## Calculators
 
@@ -23,6 +23,7 @@ MoneyDecoded Tools (tools.moneydecoded.net) is a collection of 21 free financial
 - [Paycheck Calculator](https://tools.moneydecoded.net/paycheck-calculator.html): See take-home pay after federal tax, state tax, Social Security, and Medicare deductions.
 - [FIRE Calculator](https://tools.moneydecoded.net/fire-calculator.html): Find your Financial Independence number and projected retirement age.
 - [Personal Loan Calculator](https://tools.moneydecoded.net/personal-loan-calculator.html): Calculate monthly payment, total interest, and true borrowing cost. Compare terms side by side.
+- [Car Loan Calculator](https://tools.moneydecoded.net/car-loan-calculator.html): Calculate monthly payment, total interest, and true cost of ownership. Includes trade-in value and term comparison.
 
 ## Compare & Rates
 
