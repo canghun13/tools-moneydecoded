@@ -3,6 +3,7 @@
 
   const CALCULATORS = [
     { label: 'Mortgage',          href: 'mortgage-calculator.html' },
+    { label: 'Roth IRA',          href: 'roth-ira-calculator.html' },
     { label: '401(k)',            href: '401k-calculator.html' },
     { label: 'Compound Interest', href: 'compound-interest-calculator.html' },
     { label: 'Loan Repayment',    href: 'loan-repayment-calculator.html' },
