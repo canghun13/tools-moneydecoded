@@ -2,12 +2,13 @@
 
 > Free financial calculators and comparison tools for Americans. No sign-up required. Tools cover mortgage, retirement, budgeting, debt payoff, savings, taxes, and international money transfers.
 
-MoneyDecoded Tools (tools.moneydecoded.net) is a collection of 22 free financial calculators and comparison pages designed to help Americans make smarter money decisions. Each tool includes a plain-English guide explaining the underlying concepts.
+MoneyDecoded Tools (tools.moneydecoded.net) is a collection of 23 free financial calculators and comparison pages designed to help Americans make smarter money decisions. Each tool includes a plain-English guide explaining the underlying concepts.
 
 ## Calculators
 
 - [Mortgage Calculator](https://tools.moneydecoded.net/mortgage-calculator.html): Calculate monthly mortgage payment, total interest, and full amortization schedule.
 - [401(k) Calculator](https://tools.moneydecoded.net/401k-calculator.html): Project 401(k) growth at retirement based on salary, contribution rate, employer match, and expected return.
+- [Roth IRA Calculator](https://tools.moneydecoded.net/roth-ira-calculator.html): See your tax-free retirement balance. Includes year-by-year growth table, Roth vs Traditional IRA comparison, and 2026 contribution limits.
 - [Compound Interest Calculator](https://tools.moneydecoded.net/compound-interest-calculator.html): See how investments grow with regular contributions and compounding over time.
 - [Loan Repayment Calculator](https://tools.moneydecoded.net/loan-repayment-calculator.html): Find monthly payment, total interest, and payoff date for any loan.
 - [Student Loan Calculator](https://tools.moneydecoded.net/student-loan-calculator.html): Calculate student loan monthly payments and total interest paid.
