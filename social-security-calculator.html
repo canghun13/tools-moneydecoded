@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Social Security Calculator 2026 — Estimate Your Benefit at 62, FRA & 70 | MoneyDecoded</title>
+  <meta name="description" content="Free Social Security calculator. See how your monthly benefit changes if you claim at 62, Full Retirement Age, or 70 — plus your breakeven age." />
+<link rel="canonical" href="https://tools.moneydecoded.net/social-security-calculator.html" />
+  <meta property="og:url" content="https://tools.moneydecoded.net/social-security-calculator.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Social Security Calculator 2026 | MoneyDecoded" />
+  <meta property="og:description" content="See how claiming age changes your Social Security benefit — compare 62, Full Retirement Age, and 70 side by side." />
+  <link rel="icon" href="/favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="header.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4S5PXFNZWR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4S5PXFNZWR');
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Social Security Calculator 2026",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Web",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "description": "Free Social Security calculator. See how your monthly benefit changes if you claim at 62, Full Retirement Age, or 70.",
+  "url": "https://tools.moneydecoded.net/social-security-calculator.html"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What age is best to claim Social Security?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "There's no single best age for everyone. Claiming at 62 gives you the most years of payments but the smallest monthly check. Waiting until 70 maximizes your monthly benefit but means fewer years of payments if you don't live long enough to break even, typically in your early-to-mid 80s. Health, other income, and marital status all affect the right choice."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much less do you get if you claim at 62 instead of Full Retirement Age?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Claiming at 62 instead of a Full Retirement Age of 67 reduces your benefit by about 30%. The reduction is 5/9 of 1% per month for the first 36 months early, and 5/12 of 1% per month beyond that."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much more do you get if you wait until 70?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Delaying past Full Retirement Age increases your benefit by about 8% per year, up to age 70. Waiting from age 67 to 70 increases your monthly benefit by roughly 24%. There's no additional benefit to delaying past age 70."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the breakeven age for Social Security?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The breakeven age is when total lifetime payments from claiming later catch up to and surpass total payments from claiming earlier. Comparing age 62 vs Full Retirement Age, the breakeven is typically around age 78-80. Comparing FRA vs age 70, it's typically around age 82-83."
+      }
+    }
+  ]
+}
+</script>
+  <style>
+    :root{--bg:#f7f5f0;--paper:#fff;--ink:#1a1a1a;--ink2:#4a4a4a;--muted:#888;--border:#e2ddd6;--accent:#1a4f2e;--accent-l:#e8f5ee;--accent-mid:#2d9966;--wise:#9fe870;--wise-dk:#163300;--warn:#c0392b;--warn-l:#fdf0ee;--rule:#d5cfc6;--mono:'DM Mono',monospace;}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{background:var(--bg);color:var(--ink);font-family:'DM Sans',sans-serif;font-size:15px;line-height:1.7;}
+    .disclosure{background:#fffbea;border-bottom:1px solid #e5d96a;padding:8px 20px;font-size:.72rem;color:#7a6a00;text-align:center;}
+
+    .hero{max-width:960px;margin:0 auto;padding:56px 24px 40px;display:grid;grid-template-columns:1fr 300px;gap:48px;align-items:start;}
+    @media(max-width:720px){.hero{grid-template-columns:1fr}.hero-aside{display:none}}
+    .hero-kicker{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:16px;border-left:3px solid var(--accent);padding-left:10px;}
+    h1{font-family:'Playfair Display',serif;font-weight:900;font-size:clamp(1.8rem,4vw,2.6rem);line-height:1.1;letter-spacing:-1px;margin-bottom:16px;}
+    h1 em{color:var(--accent);font-style:normal;}
+    .hero-byline{font-size:.8rem;color:var(--muted);margin-bottom:16px;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);padding:10px 0;}
+    .hero-lead{font-size:.95rem;color:var(--ink2);line-height:1.65;}
+    .hero-aside{background:var(--ink);color:#fff;border-radius:4px;padding:24px;border:2px solid var(--ink);box-shadow:6px 6px 0 var(--accent);}
+    .aside-title{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--wise);margin-bottom:16px;}
+    .aside-stat{padding:12px 0;border-bottom:1px solid #2a2a2a;}
+    .aside-stat:last-of-type{border-bottom:none;}
+    .aside-stat-num{font-family:'Playfair Display',serif;font-weight:700;font-size:1.4rem;color:var(--wise);}
+    .aside-stat-label{font-size:.75rem;color:#999;margin-top:2px;}
+    .aside-note{font-size:.68rem;color:#555;margin-top:12px;}
+
+    .body-wrap{max-width:960px;margin:0 auto;padding:0 24px 80px;}
+    .calc-section{background:var(--paper);border:2px solid var(--ink);border-radius:4px;padding:36px;margin-bottom:24px;box-shadow:5px 5px 0 var(--ink);}
+    .section-header{display:flex;align-items:center;gap:10px;margin-bottom:20px;padding-bottom:12px;border-bottom:2px solid var(--border);}
+    .section-title{font-weight:700;font-size:1rem;}
+    .field{display:flex;flex-direction:column;margin-bottom:16px;}
+    .field label{font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
+    .input-wrap{position:relative;display:flex;align-items:center;}
+    .input-prefix{position:absolute;left:12px;font-family:var(--mono);font-size:13px;color:var(--muted);pointer-events:none;}
+    input[type="number"],input[type="range"]{width:100%;padding:11px 14px;font-family:var(--mono);font-size:14px;color:var(--ink);background:var(--bg);border:1.5px solid var(--border);border-radius:6px;outline:none;-moz-appearance:textfield;}
+    input[type="number"]::-webkit-outer-spin-button,input[type="number"]::-webkit-inner-spin-button{-webkit-appearance:none;}
+    input[type="number"]:focus{border-color:var(--accent-mid);background:var(--paper);}
+    .has-prefix input{padding-left:28px;}
+    .range-wrap{display:flex;flex-direction:column;gap:8px;}
+    input[type="range"]{padding:0;height:4px;border-radius:2px;background:var(--border);cursor:pointer;border:none;accent-color:var(--accent);}
+    .range-label-row{display:flex;justify-content:space-between;font-size:.72rem;color:var(--muted);}
+    .range-current{text-align:center;font-family:'Playfair Display',serif;font-weight:700;font-size:1.3rem;color:var(--accent);margin-top:4px;}
+    .calc-btn{width:100%;padding:14px;background:var(--accent);color:#fff;border:2px solid var(--ink);border-radius:6px;font-family:'DM Sans',sans-serif;font-size:1rem;font-weight:700;cursor:pointer;box-shadow:3px 3px 0 var(--ink);transition:transform .1s,box-shadow .1s;margin-top:8px;}
+    .calc-btn:hover{transform:translate(-1px,-1px);box-shadow:4px 4px 0 var(--ink);}
+    .calc-btn:active{transform:translate(1px,1px);box-shadow:2px 2px 0 var(--ink);}
+
+    .results{display:none;margin-top:28px;}
+    .results.visible{display:block;}
+    .result-grid{display:grid;grid-template-columns:repeat(3,1fr);border:2px solid var(--ink);border-radius:4px;overflow:hidden;margin-bottom:20px;}
+    @media(max-width:600px){.result-grid{grid-template-columns:1fr 1fr}}
+    .result-cell{background:var(--paper);padding:20px 16px;border-right:2px solid var(--ink);border-bottom:2px solid var(--ink);}
+    .result-cell:nth-child(3){border-right:none;}
+    .result-cell.highlight{background:var(--ink);}
+    .result-label{font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:6px;}
+    .result-cell.highlight .result-label{color:var(--wise);}
+    .result-value{font-family:'Playfair Display',serif;font-weight:700;font-size:1.5rem;color:var(--accent);}
+    .result-cell.highlight .result-value{color:var(--wise);font-size:1.8rem;}
+    .result-sub{font-size:.72rem;color:var(--muted);margin-top:3px;}
+    .result-cell.highlight .result-sub{color:#666;}
+
+    .compare-table{width:100%;border-collapse:collapse;margin-top:8px;}
+    .compare-table th,.compare-table td{padding:12px 14px;text-align:center;border:1.5px solid var(--border);font-size:.85rem;}
+    .compare-table th{background:var(--accent);color:#fff;font-size:.72rem;text-transform:uppercase;letter-spacing:.05em;}
+    .compare-table td.hl{background:var(--accent-l);font-weight:700;color:var(--accent);}
+
+    .ss-verdict{background:var(--ink);color:#fff;border-radius:4px;padding:20px 24px;margin-bottom:20px;display:flex;align-items:center;gap:16px;}
+    .ss-verdict-icon{font-size:2rem;flex-shrink:0;}
+    .ss-verdict-title{font-family:'Playfair Display',serif;font-weight:700;font-size:1.1rem;margin-bottom:4px;}
+    .ss-verdict-sub{font-size:.82rem;color:#aaa;}
+
+    hr.rule{border:none;border-top:2px solid var(--ink);margin:48px 0;}
+    .sec-label{font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:6px;}
+    .sec-title{font-family:'Playfair Display',serif;font-weight:900;font-size:clamp(1.3rem,3vw,1.8rem);letter-spacing:-.5px;margin-bottom:10px;}
+    .sec-body{font-size:.9rem;color:var(--ink2);}
+    .faq-list{display:flex;flex-direction:column;border:2px solid var(--ink);border-radius:4px;overflow:hidden;box-shadow:5px 5px 0 var(--ink);}
+    .fi{border-bottom:1px solid var(--border);}.fi:last-child{border-bottom:none;}
+    .fi-q{padding:16px 20px;font-weight:600;font-size:.9rem;cursor:pointer;display:flex;justify-content:space-between;align-items:center;background:var(--paper);user-select:none;}
+    .fi-q:hover{background:#faf8f4;}
+    .fi-arr{color:var(--muted);transition:transform .2s;}
+    .fi.open .fi-arr{transform:rotate(180deg);}
+    .fi-a{display:none;padding:0 20px 16px;font-size:.85rem;color:var(--ink2);line-height:1.7;background:var(--paper);}
+    .fi.open .fi-a{display:block;}
+    .bottom-banner{background:var(--ink);color:#fff;padding:56px 24px;text-align:center;}
+    .bottom-banner h2{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,4vw,2.2rem);font-weight:900;margin-bottom:12px;}
+    .bottom-banner h2 span{color:var(--wise);}
+    .bottom-banner p{color:#aaa;font-size:.88rem;margin-bottom:24px;max-width:500px;margin-left:auto;margin-right:auto;}
+    .bottom-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+    .btn-ghost{display:inline-flex;align-items:center;background:transparent;color:#fff;font-weight:600;font-size:.9rem;padding:13px 24px;border-radius:6px;text-decoration:none;border:2px solid #fff;}
+    footer{background:var(--paper);border-top:2px solid var(--ink);padding:32px 24px;text-align:center;font-size:.78rem;color:var(--muted);}
+    footer a{color:var(--accent);text-decoration:none;}
+    footer p+p{margin-top:6px;}
+    .related-guides{padding:1.2em 1.5em;background:#f8faf9;border-left:3px solid #1a6b4a;max-width:960px;margin:2em auto;box-shadow:1px 1px 3px #3f6f5b;}
+    .related-guides h3{font-size:13px;font-weight:600;color:#1a6b4a;text-transform:uppercase;letter-spacing:.06em;margin:0 0 .8em 0;}
+    .related-guides ul{margin:0;padding:0;list-style:none;}
+    .related-guides ul li{margin-bottom:.5em;}
+    .related-guides ul li a{color:#1a1917;font-size:14px;text-decoration:none;border-bottom:1px solid #c8e8d8;}
+    .related-guides ul li a:hover{color:#1a6b4a;}
+  </style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-main">
+    <div class="hero-kicker">Free Calculator · 2026</div>
+    <h1>Social Security Calculator — <em>What You'll Actually Get</em></h1>
+    <div class="hero-byline">By MoneyDecoded · Updated July 2026</div>
+    <p class="hero-lead">Your Social Security benefit changes dramatically depending on when you claim it. Enter your estimated benefit and see exactly how much more — or less — you'd get by claiming early, at Full Retirement Age, or at 70.</p>
+  </div>
+  <div class="hero-aside">
+    <div class="aside-title">📊 Claiming Age Impact</div>
+    <div class="aside-stat"><div class="aside-stat-num">−30%</div><div class="aside-stat-label">Claiming at 62 vs FRA</div></div>
+    <div class="aside-stat"><div class="aside-stat-num">+24%</div><div class="aside-stat-label">Waiting to 70 vs FRA</div></div>
+    <div class="aside-stat"><div class="aside-stat-num">~8%</div><div class="aside-stat-label">Growth per year delayed</div></div>
+    <div class="aside-note">Based on SSA benefit adjustment formulas for a Full Retirement Age of 67.</div>
+  </div>
+</div>
+
+<div class="body-wrap">
+  <div class="calc-section">
+    <div class="section-header"><div class="section-title">Your Information</div></div>
+
+    <div class="field">
+      <label>Birth Year</label>
+      <input type="number" id="birth-year" value="1990" min="1943" max="2005">
+    </div>
+
+    <div class="field">
+      <label>Estimated Monthly Benefit at Full Retirement Age</label>
+      <div class="input-wrap has-prefix"><span class="input-prefix">$</span><input type="number" id="fra-benefit" value="2200" min="0"></div>
+    </div>
+
+    <div class="field">
+      <label>Planned Claiming Age</label>
+      <div class="range-wrap">
+        <input type="range" id="claim-age" min="62" max="70" step="1" value="67" oninput="document.getElementById('claim-age-out').textContent = this.value">
+        <div class="range-label-row"><span>62 (Earliest)</span><span>70 (Latest)</span></div>
+        <div class="range-current"><span id="claim-age-out">67</span> years old</div>
+      </div>
+    </div>
+
+    <button class="calc-btn" onclick="calculate()">Calculate My Benefit →</button>
+  </div>
+
+  <div class="results" id="results">
+    <div class="result-grid">
+      <div class="result-cell highlight">
+        <div class="result-label">Monthly Benefit</div>
+        <div class="result-value" id="res-monthly">—</div>
+        <div class="result-sub">At your chosen claiming age</div>
+      </div>
+      <div class="result-cell">
+        <div class="result-label">Annual Benefit</div>
+        <div class="result-value" id="res-annual">—</div>
+        <div class="result-sub">12 months of payments</div>
+      </div>
+      <div class="result-cell">
+        <div class="result-label">Adjustment vs FRA</div>
+        <div class="result-value" id="res-adjustment">—</div>
+        <div class="result-sub">Compared to Full Retirement Age</div>
+      </div>
+    </div>
+
+    <div class="ss-verdict" id="ss-verdict">
+      <div class="ss-verdict-icon" id="verdict-icon">📅</div>
+      <div>
+        <div class="ss-verdict-title" id="verdict-title">—</div>
+        <div class="ss-verdict-sub" id="verdict-sub">—</div>
+      </div>
+    </div>
+
+    <div class="section-header"><div class="section-title">Compare Claiming Ages</div></div>
+    <table class="compare-table">
+      <thead>
+        <tr><th>Claim at 62</th><th id="th-fra">Full Retirement Age</th><th>Claim at 70</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td id="cmp-62">—</td>
+          <td class="hl" id="cmp-fra">—</td>
+          <td id="cmp-70">—</td>
+        </tr>
+      </tbody>
+    </table>
+    <p style="font-size:.75rem;color:var(--muted);margin-top:10px;">Breakeven age (62 vs FRA): <strong id="breakeven-fra">—</strong> &nbsp;·&nbsp; Breakeven age (FRA vs 70): <strong id="breakeven-70">—</strong></p>
+  </div>
+
+  <hr class="rule"/>
+  <div class="sec-label">Common Questions</div>
+  <div class="sec-title">Social Security FAQ</div>
+  <div class="faq-list" style="margin-top:16px;">
+    <div class="fi"><div class="fi-q" onclick="faq(this)">What age is best to claim Social Security? <span class="fi-arr">▾</span></div><div class="fi-a">There's no single best age for everyone. Claiming at 62 gives you the most years of payments but the smallest monthly check. Waiting until 70 maximizes your monthly benefit but means fewer years of payments if you don't live long enough to break even, typically in your early-to-mid 80s. Health, other income, and marital status all affect the right choice.</div></div>
+    <div class="fi"><div class="fi-q" onclick="faq(this)">How much less do you get if you claim at 62 instead of Full Retirement Age? <span class="fi-arr">▾</span></div><div class="fi-a">Claiming at 62 instead of a Full Retirement Age of 67 reduces your benefit by about 30%. The reduction is 5/9 of 1% per month for the first 36 months early, and 5/12 of 1% per month beyond that.</div></div>
+    <div class="fi"><div class="fi-q" onclick="faq(this)">How much more do you get if you wait until 70? <span class="fi-arr">▾</span></div><div class="fi-a">Delaying past Full Retirement Age increases your benefit by about 8% per year, up to age 70. Waiting from age 67 to 70 increases your monthly benefit by roughly 24%. There's no additional benefit to delaying past age 70.</div></div>
+    <div class="fi"><div class="fi-q" onclick="faq(this)">What is the breakeven age for Social Security? <span class="fi-arr">▾</span></div><div class="fi-a">The breakeven age is when total lifetime payments from claiming later catch up to and surpass total payments from claiming earlier. Comparing age 62 vs Full Retirement Age, the breakeven is typically around age 78-80. Comparing FRA vs age 70, it's typically around age 82-83.</div></div>
+  </div>
+
+  <div class="bottom-banner">
+    <h2>Want to See Your <span>Full Retirement Picture?</span></h2>
+    <p>Combine your Social Security estimate with your savings to find your total retirement number.</p>
+    <div class="bottom-btns">
+      <a href="https://tools.moneydecoded.net/fire-calculator.html" class="btn-ghost">Try the FIRE Calculator</a>
+    </div>
+    <p style="color:#555;font-size:.72rem;margin-top:16px;">This calculator provides estimates only and does not replace your official Social Security Statement.</p>
+  </div>
+
+  <div class="section-prose">
+    <h2>How Social Security Benefits Are Adjusted by Claiming Age</h2>
+    <p>Your Social Security benefit at Full Retirement Age (FRA) is fixed based on your lifetime earnings. But the actual monthly amount you receive depends heavily on when you start claiming. Claim before FRA and your benefit is permanently reduced. Claim after FRA and it's permanently increased — up until age 70, when the increases stop.</p>
+
+    <h2>The Early Claiming Penalty</h2>
+    <p>If you claim before your Full Retirement Age, your benefit is reduced by 5/9 of 1% for each of the first 36 months early, and 5/12 of 1% for each additional month beyond that. For someone with an FRA of 67 claiming at 62 — 60 months early — this works out to roughly a 30% permanent reduction compared to waiting until FRA.</p>
+
+    <h2>The Delayed Retirement Credit</h2>
+    <p>For each year you delay claiming past your FRA, up to age 70, your benefit increases by about 8% — technically 2/3 of 1% per month. This is one of the few guaranteed, inflation-adjusted returns available anywhere, which is why many financial planners recommend delaying if you can afford to and are in reasonably good health.</p>
+
+    <h2>Why Breakeven Age Matters</h2>
+    <p>The breakeven age is the point at which someone who claimed later has received as much total money as someone who claimed earlier — after that point, the later claimer comes out ahead in lifetime totals. Comparing age 62 to FRA, breakeven is typically in the late 70s. Comparing FRA to age 70, breakeven is typically in the early-to-mid 80s. If you expect to live past your relevant breakeven age, waiting tends to pay off financially over your full retirement.</p>
+
+    <h2>Factors Beyond the Math</h2>
+    <p>The numbers are only part of the decision. Health and family longevity matter — if you have health concerns or a family history of shorter lifespans, claiming earlier may make sense regardless of the math. Marital status matters too: a lower-earning spouse's survivor benefit is based on the higher earner's benefit, so a higher earner delaying can meaningfully protect a surviving spouse's income. Continued work also matters — claiming early while still working can trigger the earnings test, temporarily withholding part of your benefit.</p>
+  </div>
+
+  <div class="related-guides">
+    <h3>Related Guides</h3>
+    <ul>
+      <li><a href="https://www.moneydecoded.net/2026/07/what-is-social-security-and-how-much-will-you-actually-get.html">What Is Social Security and How Much Will You Actually Get?</a></li>
+    </ul>
+  </div>
+</div>
+
+<footer>
+  <p>
+    <a href="https://www.moneydecoded.net">MoneyDecoded</a> &nbsp;·&nbsp;
+    <a href="https://tools.moneydecoded.net">Financial Calculators</a> &nbsp;·&nbsp;
+    <a href="https://www.moneydecoded.net/p/about.html">About</a> &nbsp;·&nbsp;
+    <a href="https://www.moneydecoded.net/p/privacy-policy.html">Privacy Policy</a>
+  </p>
+  <p style="margin-top:8px;">For informational purposes only. Not financial advice. Always verify your actual benefit at ssa.gov.</p>
+  <p style="margin-top:6px;">© 2026 MoneyDecoded. All rights reserved.</p>
+</footer>
+
+<script>
+function faq(el){ el.parentElement.classList.toggle('open'); }
+function fmt(n){ return '$' + Math.round(n).toLocaleString('en-US'); }
+
+function getFRA(birthYear){
+  if (birthYear <= 1954) return 66;
+  if (birthYear === 1955) return 66 + 2/12;
+  if (birthYear === 1956) return 66 + 4/12;
+  if (birthYear === 1957) return 66 + 6/12;
+  if (birthYear === 1958) return 66 + 8/12;
+  if (birthYear === 1959) return 66 + 10/12;
+  return 67;
+}
+
+function adjustmentFactor(claimAge, fra){
+  if (claimAge === fra) return 1;
+  if (claimAge < fra){
+    const monthsEarly = Math.round((fra - claimAge) * 12);
+    const first36 = Math.min(monthsEarly, 36);
+    const beyond36 = Math.max(monthsEarly - 36, 0);
+    const reduction = (first36 * (5/9/100)) + (beyond36 * (5/12/100));
+    return 1 - reduction;
+  } else {
+    const monthsLate = Math.round((claimAge - fra) * 12);
+    const increase = monthsLate * (2/3/100);
+    return 1 + increase;
+  }
+}
+
+function calculate(){
+  const birthYear = parseInt(document.getElementById('birth-year').value) || 1990;
+  const fraBenefit = parseFloat(document.getElementById('fra-benefit').value) || 0;
+  const claimAge = parseFloat(document.getElementById('claim-age').value);
+  const fra = getFRA(birthYear);
+
+  const factor = adjustmentFactor(claimAge, fra);
+  const monthly = fraBenefit * factor;
+  const annual = monthly * 12;
+  const adjPct = ((factor - 1) * 100);
+
+  document.getElementById('res-monthly').textContent = fmt(monthly);
+  document.getElementById('res-annual').textContent = fmt(annual);
+  document.getElementById('res-adjustment').textContent = (adjPct >= 0 ? '+' : '') + adjPct.toFixed(1) + '%';
+  document.getElementById('res-adjustment').style.color = adjPct >= 0 ? 'var(--accent)' : 'var(--warn)';
+
+  const f62 = fraBenefit * adjustmentFactor(62, fra);
+  const fFRA = fraBenefit;
+  const f70 = fraBenefit * adjustmentFactor(70, fra);
+  document.getElementById('cmp-62').textContent = fmt(f62) + '/mo';
+  document.getElementById('cmp-fra').textContent = fmt(fFRA) + '/mo';
+  document.getElementById('cmp-70').textContent = fmt(f70) + '/mo';
+  document.getElementById('th-fra').textContent = 'Full Retirement Age (' + (Number.isInteger(fra) ? fra : fra.toFixed(1)) + ')';
+
+  // Breakeven: cumulative(later) >= cumulative(earlier)
+  function breakevenAge(earlyAge, earlyBenefit, laterAge, laterBenefit){
+    for (let age = laterAge; age <= 100; age += 1){
+      const monthsEarly = (age - earlyAge) * 12;
+      const monthsLater = (age - laterAge) * 12;
+      const totalEarly = earlyBenefit * monthsEarly;
+      const totalLater = laterBenefit * monthsLater;
+      if (totalLater >= totalEarly) return age;
+    }
+    return null;
+  }
+  const be1 = breakevenAge(62, f62, fra, fFRA);
+  const be2 = breakevenAge(fra, fFRA, 70, f70);
+  document.getElementById('breakeven-fra').textContent = be1 ? '~age ' + Math.round(be1) : 'N/A';
+  document.getElementById('breakeven-70').textContent = be2 ? '~age ' + Math.round(be2) : 'N/A';
+
+  let icon, title, sub;
+  if (claimAge <= 63){ icon='⏱️'; title='Claiming Early'; sub='Smaller checks, but more years of payments. Best if you need income now or have health concerns.'; }
+  else if (claimAge >= 69){ icon='📈'; title='Maximizing Your Benefit'; sub='Largest possible monthly check. Best if you can afford to wait and expect a longer retirement.'; }
+  else { icon='⚖️'; title='Near Full Retirement Age'; sub='A balanced approach — full benefit with a moderate claiming timeline.'; }
+  document.getElementById('verdict-icon').textContent = icon;
+  document.getElementById('verdict-title').textContent = title;
+  document.getElementById('verdict-sub').textContent = sub;
+
+  document.getElementById('results').classList.add('visible');
+  document.getElementById('results').scrollIntoView({behavior:'smooth', block:'nearest'});
+}
+</script>
+<script src="header.js"></script>
+</body>
+</html>

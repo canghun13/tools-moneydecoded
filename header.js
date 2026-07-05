@@ -11,6 +11,7 @@
     { label: 'Savings Goal',      href: 'savings-goal-calculator.html' },
     { label: 'Inflation',         href: 'inflation-calculator.html' },
     { label: 'Net Worth',         href: 'net-worth-calculator.html' },
+    { label: 'Social Security',   href: 'social-security-calculator.html' },
     { label: 'Rent vs Buy',       href: 'rent-vs-buy-calculator.html' },
     { label: 'Emergency Fund',    href: 'emergency-fund-calculator.html' },
     { label: 'Debt Payoff',       href: 'debt-payoff-calculator.html' },
