@@ -27,6 +27,7 @@
   const COMPARE = [
     { label: 'Best HYSA Rates',   href: 'best-hysa-rates.html' },
     { label: 'Best CD Rates',     href: 'best-cd-rates.html' },
+    { label: 'Best Checking Accounts', href: 'best-checking-accounts.html' },
     { label: 'ETF Comparison',    href: 'etf-comparison.html' },
     { label: 'Send Money Abroad', href: 'remittance-compare.html' },
   ];
