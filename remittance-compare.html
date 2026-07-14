@@ -437,6 +437,8 @@
           <option value="aud">🇦🇺 Australia (AUD)</option>
           <option value="cad">🇨🇦 Canada (CAD)</option>
           <option value="mxn">🇲🇽 Mexico (MXN)</option>
+          <option value="inr">🇮🇳 India (INR)</option>
+          <option value="php">🇵🇭 Philippines (PHP)</option>
         </select>
       </div>
       <button class="calc-btn" onclick="calc()">Calculate</button>
@@ -510,6 +512,14 @@
       <div class="fi-q" onclick="faq(this)">What is the "mid-market rate" and why does it matter? <span class="fi-arr">▾</span></div>
       <div class="fi-a">The mid-market rate is the midpoint between buy and sell currency prices — what you see on Google or XE.com. Banks give you a rate worse than this and pocket the spread. Wise uses the true mid-market rate and charges a small transparent fee on top, so you always know exactly what you're paying.</div>
     </div>
+    <div class="fi">
+      <div class="fi-q" onclick="faq(this)">What's the cheapest way to send money to India? <span class="fi-arr">▾</span></div>
+      <div class="fi-a">A service using the real mid-market rate with a low flat fee, rather than a bank. On a $1,000 transfer, the gap between a 3% bank markup and a mid-market rate provider is typically over ₹2,500. UPI-linked transfers also tend to arrive within minutes rather than days.</div>
+    </div>
+    <div class="fi">
+      <div class="fi-q" onclick="faq(this)">Is it cheaper to send to the Philippines via bank deposit or GCash? <span class="fi-arr">▾</span></div>
+      <div class="fi-a">It varies by provider and changes with promotions, so it's worth comparing both at the time you send. E-wallet delivery (GCash, Maya) is often priced more competitively than direct bank deposit on the same corridor, but the cheapest option can flip depending on which provider is running a promotional rate that week.</div>
+    </div>
   </div>
 
 </div>
@@ -538,6 +548,12 @@
 
   <h2>Choosing the Right Service for Your Corridor</h2>
   <p>Not all transfer services are equally competitive for all currency corridors. Wise tends to be strongest for transfers to developed markets (UK, EU, Australia, Canada). Remitly often has competitive rates for Latin America and South Asia. Western Union has the broadest network of cash pickup locations, useful when the recipient doesn't have a bank account. WorldRemit and others specialize in African markets. For each transfer, compare 2–3 services using their quoted rates for your specific amount and corridor — the differences can be significant. This comparison tool shows you the key data points side by side.</p>
+
+  <h2>Cheapest Way to Send Money to India from the US</h2>
+  <p>The US-to-India corridor is one of the largest remittance flows in the world, and it's also one of the most competitive on fees — which works in your favor. At the current rate of roughly ₹96 per USD, a $1,000 transfer through a bank with a 3% markup delivers around ₹93,200 to your recipient, while a service using the mid-market rate with a low flat fee delivers closer to ₹95,700 — a gap of over ₹2,500 on a single transfer. Most India-focused transfers also settle faster through fintech apps: bank-to-bank via IMPS or UPI often completes within minutes rather than the 2–5 business days a traditional wire takes. If your recipient has a UPI ID, look specifically for a provider that supports direct UPI payout, since it's typically both the fastest and cheapest delivery method.</p>
+
+  <h2>Cheapest Way to Send Money to the Philippines from the US</h2>
+  <p>Sending to the Philippines involves an added wrinkle most other corridors don't have: many providers offer meaningfully better rates for cash pickup or e-wallet delivery (GCash, Maya) than for direct bank deposit, because of how local payout networks are priced. At the current rate of roughly ₱61.6 per USD, the difference between a bank's marked-up rate and a specialist's mid-market rate on a $1,000 transfer can mean ₱1,500–₱2,000 more landing in your recipient's account. If speed matters more than a few extra pesos, cash pickup networks tend to be near-instant; if cost matters most, compare GCash and bank deposit options side by side before sending, since the "best" method can flip depending on the provider's current promotional rate.</p>
 </div>
 <div class="related-guides">
   <h3>Related Guides</h3>
@@ -554,15 +570,15 @@
     <a href="https://www.moneydecoded.net/p/about.html">About</a> &nbsp;·&nbsp;
     <a href="https://www.moneydecoded.net/p/privacy-policy.html">Privacy Policy</a>
   </p>
-  <p style="margin-top:8px;">Fee data is estimated as of April 2026 for informational purposes only. Rates change daily — always verify on each provider's website before sending. This is not financial advice.</p>
+  <p style="margin-top:8px;">Fee data is estimated as of July 2026 for informational purposes only. Rates change daily — always verify on each provider's website before sending. This is not financial advice.</p>
   <p style="margin-top:6px;">© 2026 MoneyDecoded. All rights reserved.</p>
 </footer>
 
 <script>
   function faq(el) { el.parentElement.classList.toggle('open'); }
 
-  const FX  = { gbp:0.794, eur:0.925, jpy:153.2, aud:1.535, cad:1.368, mxn:17.1 };
-  const SYM = { gbp:'£', eur:'€', jpy:'¥', aud:'A$', cad:'C$', mxn:'MX$' };
+  const FX  = { gbp:0.794, eur:0.925, jpy:153.2, aud:1.535, cad:1.368, mxn:17.1, inr:96.29, php:61.6 };
+  const SYM = { gbp:'£', eur:'€', jpy:'¥', aud:'A$', cad:'C$', mxn:'MX$', inr:'₹', php:'₱' };
   const PROVIDERS = [
     { name:'Wise',            flat:4.14,  fx:0.000, cls:'winner', link:'https://wise.prf.hn/click/camref:1110lEKgS' },
     { name:'Remitly',         flat:2.99,  fx:0.010, cls:'',       link:null },
